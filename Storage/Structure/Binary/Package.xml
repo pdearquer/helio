@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<package>
+  <name>Binary</name>
+  <description>Byte level storage, operations, conversions and enconding</description>
+    
+  <class>
+    <name>Buffer</name>
+    <description>Buffer of bytes</description>
+  </class>
+  <class>
+    <name>Input</name>
+    <description>Abstract bytes input</description>
+    <onlyheader />
+  </class>
+  <class>
+    <name>Output</name>
+    <description>Abstract bytes output</description>
+    <onlyheader />
+  </class>
+  <class>
+    <name>BufferReader</name>
+    <description>Byte input from a buffer</description>
+  </class>
+  <class>
+    <name>BufferWriter</name>
+    <description>Byte output to a buffer</description>
+  </class>
+  <class>
+    <name>FIFO</name>
+    <description>First Input First Output byte queue buffer</description>
+  </class>
+  <class>
+    <name>Encoding</name>
+    <description>Abstract encoding</description>
+  </class>
+  <class>
+    <name>Encoder</name>
+    <description>Encode a character output</description>
+  </class>
+  <class>
+    <name>Decoder</name>
+    <description>Decode a byte input</description>
+  </class>
+  <package include="Encodings" />
+</package>

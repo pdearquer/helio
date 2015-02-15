@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<package>
+  <name>Data</name>
+  <description>Primitive data types</description>
+
+  <class>
+    <name>Object</name>
+    <description>Base of any information class</description>
+  </class>
+  <!-- <class>
+    <name>ObjectTemplate</name>
+    <description>Object templates implementation</description>    
+    <template />
+    <noheader />
+  </class> -->
+  <class>
+    <name>Cloneable</name>
+    <description>Interface for objects that can clone themselves</description>
+    <onlyheader />
+  </class>
+  <class>
+    <name>Comparable</name>
+    <description>Interface for objects that can be compared with others for equality</description>
+    <onlyheader />
+    <declaration>//template class Comparable&lt;&gt;;</declaration>
+  </class>
+  <class>
+    <name>Orderable</name>
+    <description>Interface for objects that can be ordered among others</description>
+    <onlyheader />
+    <declaration>//template class Orderable&lt;&gt;;</declaration>
+  </class>
+  <class>
+    <name>Hashable</name>
+    <description>Interface for any object able to generate a hash</description>
+    <onlyheader />
+    <declaration>//template class Hashable&lt;&gt;;</declaration>
+  </class>  
+  <class>
+    <name>Number</name>
+    <description>Base of any number</description>
+  </class>
+  <class>
+    <name>Boolean</name>
+    <description>Boolean primitive type</description>
+  </class>  
+  <class>
+    <name>Integer</name>
+    <description>Integer number</description>
+  </class>
+  <class>
+    <name>Date</name>
+    <description>Date and time data</description>
+  </class>
+  <class>
+    <name>Float</name>
+    <description>Floating point number</description>
+  </class>
+  <class>
+    <name>Character</name>
+    <description>Character store</description>
+  </class>
+  <class>
+    <name>String</name>
+    <description>Text string</description>
+  </class>
+  <class>
+    <name>Pointer</name>
+    <description>Memory address pointer</description>
+  </class>
+  <class>
+    <name>Function</name>
+    <description>Function handler and invoker</description>
+    <declaration>//template &lt;&gt; class Function;</declaration>
+    <onlyheader />
+  </class>
+  <class>
+    <name>MemberFunction</name>
+    <description>Member function or method handler and invoker</description>
+    <declaration>//template &lt;&gt; class MemberFunction;</declaration>
+    <onlyheader />
+  </class>
+  <class>
+    <name>StaticFunction</name>
+    <description>Static function handler and invoker</description>
+    <declaration>//template &lt;&gt; class StaticFunction;</declaration>
+    <onlyheader />
+  </class>
+</package>

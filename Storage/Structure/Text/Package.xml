@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<package>
+  <name>Text</name>
+  <description>Character level operations: formating, parsing and escaping</description>
+    
+  <class>
+    <name>Buffer</name>
+    <description>Buffer of characters</description>
+  </class>
+  <class>
+    <name>StringBuffer</name>
+    <description>Temporary static characters string</description>
+  </class>
+  <class>
+    <name>Input</name>
+    <description>Abstract characters input</description>
+    <onlyheader />
+  </class>
+  <class>
+    <name>Output</name>
+    <description>Abstract characters output</description>
+  </class>
+  <class>
+    <name>BufferReader</name>
+    <description>Character input from a buffer</description>
+  </class>
+  <class>
+    <name>BufferWriter</name>
+    <description>Character output to a buffer</description>
+  </class>
+  <class>
+    <name>WindowStatus</name>
+    <description>Window status descriptor for debug information</description>
+  </class>
+  <class>
+    <name>Window</name>
+    <description>Characters processing window</description>
+  </class>
+  <class>
+    <name>WindowPointer</name>
+    <description>Pointer into a window</description>
+  </class>
+  <class>
+    <name>StringWindow</name>
+    <description>Processing window over a StringBuffer</description>
+  </class>
+  <class>
+    <name>InputWindow</name>
+    <description>Moving window from an input</description>
+  </class>
+  <class>
+    <name>WritableWindow</name>
+    <description>Processing window that allows modify data</description>
+  </class>
+  <class>
+    <name>BufferWindow</name>
+    <description>Processing window over a Buffer of characters</description>
+  </class>
+  <class>
+    <name>ProcessWindow</name>
+    <description>Processing window from an input to an output</description>
+  </class>
+  <class>
+    <name>Escaping</name>
+    <description>Abstract escaping interface</description>
+  </class>
+  <class>
+    <name>Format</name>
+    <description>Format numbers into text and vice versa</description>
+  </class>
+  
+  <package include="Escapings" />
+</package>

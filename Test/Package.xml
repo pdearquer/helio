@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<package>
+  <name>Test</name>
+  <description>Test Framework</description>
+  
+  <class>
+    <name>TestCase</name>
+    <description>Test case descriptor</description>
+  </class>
+  <class>
+    <name>Test</name>
+    <description>Test unit base</description>
+  </class>
+  <class>
+    <name>TestSuite</name>
+    <description>Test suite base</description>
+  </class>
+  <class>
+    <name>SelfTest</name>
+    <description>Framework tests</description>
+  </class>
+  <class>
+    <name>RootSuite</name>
+    <description>Root suite of all tests</description>
+  </class>
+  <class>
+    <name>TestReporter</name>
+    <description>Test report handler</description>
+  </class>
+  <class>
+    <name>VerboseReporter</name>
+    <description>Verbose reports generator</description>
+  </class>
+  <class>
+    <name>TestFramework</name>
+    <description>Testing framework and runner</description>
+  </class>
+  
+  <package include="Storage" />
+
+</package>
+

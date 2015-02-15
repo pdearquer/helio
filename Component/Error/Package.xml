@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<package>
+  <name>Error</name>
+  <description>Error description and handling</description>
+  
+  <class>
+    <name>Exception</name>
+    <description>Exception description container</description>
+  </class>
+  <class>
+    <name>Error</name>
+    <description>Error handling interface</description>
+  </class>
+  <class>
+    <name>Messages</name>
+    <description>Multi-language messages manager</description>
+  </class>
+  <class>
+    <name>Trace</name>
+    <description>Trace the error</description>
+  </class>
+  <class>
+    <name>Fault</name>
+    <description>Fault detection support</description>
+  </class>
+</package>

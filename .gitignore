@@ -1,0 +1,19 @@
+#
+# Files to be ignored by git (to clean status)
+#
+
+*~
+*.o
+.*
+
+Package.h
+Makefile
+
+/Compilation.xml
+/Classes.h
+/Defines.h
+
+/Information/*
+/Build/*
+!/Build/*.xml
+

@@ -1,0 +1,18 @@
+#!/bin/bash
+##
+# PreBuild/clean
+#
+# Remove the construction files from the working directory
+#
+
+if [ ! -f "Helio.h" ]; then
+   echo "ERROR: Must run on Helio root"
+   exit 1
+fi
+
+rm -f Makefile Classes.h Defines.h Compilation.xml
+find . -name Package.h -delete
+find . -name "*~" -delete
+
+echo "Build files deleted"
+

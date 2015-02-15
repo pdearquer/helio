@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<package>
+  <name>Component</name>
+  <description>Component model implementation</description>
+  
+  <package include="Error" />
+  
+  <class>
+    <name>Console</name>
+    <description>Console user interface</description>
+  </class>
+</package>

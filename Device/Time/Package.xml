@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<package>
+  <name>Time</name>
+  <description>Time control</description>
+    
+  <class>
+    <name>Clock</name>
+    <description>Date and time retrieval interface</description>
+  </class>
+  <class>
+    <name>UnixClock</name>
+    <description>Date and time retrieval in Unix</description>
+  </class>
+</package>

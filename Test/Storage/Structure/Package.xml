@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<package>
+  <name>Structure</name>
+  <description>Storage.Structure package tests</description>
+  
+  <class>
+    <name>DataTest</name>
+    <description>Data package tests</description>
+  </class>
+  <class>
+    <name>StringTest</name>
+    <description>String tests</description>
+  </class>
+  <class>
+    <name>FormatTest</name>
+    <description>Texts formating tests</description>
+  </class>
+  <class>
+    <name>ArrayListTest</name>
+    <description>ArrayList container tests</description>
+  </class>
+  <class>
+    <name>LinkedQueueTest</name>
+    <description>LinkedQueue container tests</description>
+  </class>
+  <class>
+    <name>ArraySetTest</name>
+    <description>ArraySet container tests</description>
+  </class>
+  <class>
+    <name>HashSetTest</name>
+    <description>HashSet container tests</description>
+  </class>
+  <class>
+    <name>HashMapTest</name>
+    <description>HashMap container tests</description>
+  </class>
+  <class>
+    <name>ArrayMapTest</name>
+    <description>ArrayMap container tests</description>
+  </class>
+  <class>
+    <name>LinkedListTest</name>
+    <description>LinkedList container tests</description>
+  </class>
+  <class>
+    <name>Suite</name>
+    <description>Package test suite</description>
+  </class>
+
+</package>

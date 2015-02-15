@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<package>
+  <name>Encodings</name>
+  <description>Implementation of encoding to convert bytes to characters and vicicersa</description>
+    
+  <class>
+    <name>ASCII</name>
+    <description>American Standard Code for Information Interchange</description>
+  </class>
+  <class>
+    <name>Base64</name>
+    <description>Radix-64 ASCII representation for binary data</description>
+  </class>
+  <class>
+    <name>ISO_8859_1</name>
+    <description>ISO/IEC 8859-1 (Latin-1) encoding</description>
+  </class>
+  <class>
+    <name>ISO_8859_2</name>
+    <description>ISO/IEC 8859-2 (Latin-2) encoding</description>
+  </class>
+  <class>
+    <name>UTF_8</name>
+    <description>UCS Transformation Format to 8 bit words</description>
+  </class>
+  <class>
+    <name>UTF_16</name>
+    <description>UCS Transformation Format to 16 bit words</description>
+  </class>
+  <class>
+    <name>UTF_32</name>
+    <description>UCS Transformation Format to 32 bit words</description>
+  </class>
+  <class>
+    <name>Windows1250</name>
+    <description>Windows-1250 (CP-1250) encoding</description>
+  </class>
+  <class>
+    <name>Windows1252</name>
+    <description>Windows-1252 (CP-1252) encoding</description>
+  </class>
+</package>

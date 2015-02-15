@@ -1,0 +1,30 @@
+#!/bin/bash
+##
+# PreBuild/pack
+#
+# Stores the construction files
+#
+
+BUILD=PreBuild/build.tgz
+
+if [ ! -f "Helio.h" ]; then
+   echo "ERROR: Must run on Helio root"
+   exit 1
+fi
+
+if [ ! -f "Makefile" ]; then
+   echo "ERROR: Construction files not found"
+   exit 1
+fi
+
+rm -f $BUILD
+
+(echo "Makefile" ; \
+ echo "Classes.h" ; \
+ echo "Defines.h" ; \
+ echo "Compilation.xml" ; \
+ find . -name Package.h -print) \
+   | tar -caf $BUILD -T -
+
+echo "Build files packed as: $BUILD"
+

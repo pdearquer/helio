@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<package>
+  <name>Structure</name>
+  <description>Complex information storage</description>
+    
+  <package include="Data" />  
+  
+  <class>
+    <name>Vector</name>
+    <description>Array list for static types</description>
+    <onlyheader />
+    <declaration>template &lt;class T&gt; class Vector;</declaration>
+  </class>
+  <class>
+    <name>Table</name>
+    <description>Array map of pairs key-value for static types</description>
+    <onlyheader />
+    <declaration>template &lt;class K, class T&gt; class Table;</declaration>
+  </class>
+  
+  <class>
+    <name>DynIterator</name>
+    <description>Dynamic elements iterator</description>
+    <onlyheader />
+    <declaration>template&lt;class T&gt; class DynIterator;</declaration>
+  </class>
+  <class>
+    <name>Iterator</name>
+    <description>Container elements iterator</description>
+    <onlyheader />
+    <declaration>template&lt;class T&gt; class Iterator;</declaration>
+  </class>
+  <class>
+    <name>Iterable</name>
+    <description>Interface of an iterator provider</description>
+    <onlyheader />
+    <declaration>template&lt;class T&gt; class Iterable;</declaration>
+  </class>
+  <class>
+    <name>Container</name>
+    <description>Base of any container of objects</description>
+    <onlyheader />
+    <declaration>template&lt;class T&gt; class Container;</declaration>
+  </class>   
+  <class>
+    <name>List</name>
+    <description>Container of elements stored by index</description>
+    <onlyheader />
+    <declaration>template&lt;class T&gt; class List;</declaration>
+  </class>
+  <class>
+    <name>Stack</name>
+    <description>LIFO queue of elements</description>
+    <onlyheader />
+    <declaration>template&lt;class T&gt; class Stack;</declaration>
+  </class>
+  <class>
+    <name>Queue</name>
+    <description>Bidirectional FIFO queue of elements</description>
+    <onlyheader />
+    <declaration>template&lt;class T&gt; class Queue;</declaration>
+  </class>
+  <class>
+    <name>Set</name>
+    <description>Container of non-duplicated elements</description>
+    <onlyheader />
+    <declaration>template&lt;class T&gt; class Set;</declaration>
+  </class>
+  <class>
+    <name>Map</name>
+    <description>Container of key-value pairs</description>
+    <onlyheader />
+    <declaration>template&lt;class K, class V&gt; class Map;</declaration>
+  </class>
+  <class>
+    <name>Node</name>
+    <description>Base of any graph node</description>
+    <onlyheader />
+    <declaration>template&lt;class N&gt; class Node;</declaration>
+  </class>
+  <class>
+    <name>Graph</name>
+    <description>Container of nodes</description>
+    <onlyheader />
+    <declaration>template&lt;class N&gt; class Graph;</declaration>
+  </class>
+  
+  <class>
+    <name>ArrayBase</name>
+    <description>Base of every array implementation</description>
+    <onlyheader />
+    <declaration>template&lt;class T&gt; class ArrayBase;</declaration>
+  </class>
+  <class>
+    <name>ArrayListIterator</name>
+    <description>Iterator for ArrayListIterator</description>
+    <onlyheader />
+    <declaration>template&lt;class T&gt; class ArrayListIterator;</declaration>
+  </class>
+  <class>
+    <name>ArrayList</name>
+    <description>Dynamic array List implementation</description>
+    <onlyheader />
+    <declaration>template&lt;class T&gt; class ArrayList;</declaration>
+  </class>
+  <class>
+    <name>LinkedQueueNode</name>
+    <description>Linked queue node</description>
+    <onlyheader />
+    <declaration>template&lt;class T&gt; class LinkedQueueNode;</declaration>
+  </class>
+  <class>
+    <name>LinkedQueueIterator</name>
+    <description>Iterator for LinkedQueue</description>
+    <onlyheader />
+    <declaration>template&lt;class T&gt; class LinkedQueueIterator;</declaration>
+  </class>
+  <class>
+    <name>LinkedQueue</name>
+    <description>Queue implemented as a linked list</description>
+    <onlyheader />
+    <declaration>template&lt;class T&gt; class LinkedQueue;</declaration>
+  </class>
+  <class>
+    <name>ArraySetIterator</name>
+    <description>Iterator for ArraySetIterator</description>
+    <onlyheader />
+    <declaration>template&lt;class T&gt; class ArraySetIterator;</declaration>
+  </class>
+  <class>
+    <name>ArraySet</name>
+    <description>Dynamic array Set implementation</description>
+    <onlyheader />
+    <declaration>template&lt;class T&gt; class ArraySet;</declaration>
+  </class>
+  <class>
+    <name>HashSetIterator</name>
+    <description>Iterator for HashSet</description>
+    <onlyheader />
+    <declaration>template&lt;class T&gt; class HashSetIterator;</declaration>
+  </class>
+  <class>
+    <name>HashSetNode</name>
+    <description>HashSet element entry</description>
+    <onlyheader />
+    <declaration>template&lt;class T&gt; class HashSetNode;</declaration>
+  </class>
+  <class>
+    <name>HashSet</name>
+    <description>Set implementation using hash indices</description>
+    <onlyheader />
+    <declaration>template&lt;class T&gt; class HashSet;</declaration>
+  </class>
+  <class>
+    <name>HashMapIterator</name>
+    <description>Iterator for HashMap</description>
+    <onlyheader />
+    <declaration>template&lt;class K, class V&gt; class HashMapIterator;</declaration>
+  </class>
+  <class>
+    <name>HashMapNode</name>
+    <description>HashMap pair entry</description>
+    <onlyheader />
+    <declaration>template&lt;class K, class V&gt; class HashMapNode;</declaration>
+  </class>
+  <class>
+    <name>HashMap</name>
+    <description>Map based on a hash table</description>
+    <onlyheader />
+    <declaration>template&lt;class K, class V&gt; class HashMap;</declaration>
+  </class>
+  <class>
+    <name>ArrayMapIterator</name>
+    <description>Array map implementations iterator</description>
+    <onlyheader />
+    <declaration>template&lt;class K, class V&gt; class ArrayMapIterator;</declaration>
+  </class> 
+  <class>
+    <name>MapEntry</name>
+    <description>Array map implementations pair entry</description>
+    <onlyheader />
+    <declaration>template&lt;class K, class V&gt; class MapEntry;</declaration>
+  </class>  
+  <class>
+    <name>ArrayMap</name>
+    <description>Map implementation using an array</description>
+    <onlyheader />
+    <declaration>template&lt;class K, class V&gt; class ArrayMap;</declaration>
+  </class>  
+  
+  <class>
+    <name>LinkedNode</name>
+    <description>Linked list node structure</description>
+    <onlyheader />
+    <declaration>template&lt;class N&gt; class LinkedNode;</declaration>
+  </class>
+  <class>
+    <name>LinkedListIterator</name>
+    <description>Iterator for LinkedList</description>
+    <onlyheader />
+    <declaration>template&lt;class N&gt; class LinkedListIterator;</declaration>
+  </class>
+  <class>
+    <name>LinkedList</name>
+    <description>List of linked nodes</description>
+    <onlyheader />
+    <declaration>template&lt;class N&gt; class LinkedList;</declaration>
+  </class>
+  
+  <package include="Text" />
+  <package include="Binary" />
+  
+</package>
+

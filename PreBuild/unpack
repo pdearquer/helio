@@ -1,0 +1,19 @@
+#!/bin/bash
+##
+# PreBuild/unpack
+#
+# Deploys the construction files
+#
+
+BUILD=PreBuild/build.tgz
+
+if [ ! -f "Helio.h" ]; then
+   echo "ERROR: Must run on Helio root"
+   exit 1
+fi
+
+tar -xaf $BUILD
+
+echo "Build files unpacked from: $BUILD"
+echo "Run \"make\" to start compilation"
+

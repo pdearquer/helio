@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<package>
+  <name>Loader</name>
+  <description>Runtime environment preparation</description>
+
+  <class>
+    <name>Simulation</name>
+    <description>Runtime environment within other operative systems</description>
+  </class>
+</package>
+

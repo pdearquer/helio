@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<package>
+  <name>Storage</name>
+  <description>Storage package tests</description>
+  
+  <class>
+    <name>Suite</name>
+    <description>Package test suite</description>
+  </class>
+
+  <package include="Structure" />
+</package>

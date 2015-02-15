@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<package>
+  <name>Escapings</name>
+  <description>Escaping implementations</description>
+    
+  <class>
+    <name>LineFeed</name>
+    <description>Covert Line Feed conventions in texts</description>
+  </class>
+  <class>
+    <name>CStyle</name>
+    <description>C style strings escaping</description>
+  </class>
+  <class>
+    <name>HTML</name>
+    <description>HTML especial characters escaping</description>
+  </class>
+</package>
