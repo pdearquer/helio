@@ -8,13 +8,13 @@
       Operation not supported.
     </msg>
     <msg id="NotImplemented">
-      Functionality not implemented.
+      Feature not implemented.
     </msg>
     <msg id="NullObject">
       Unexpected null object.
     </msg>
     <msg id="Internal">
-      Internal error condition found.
+      Internal error occured.
     </msg>
     
     
@@ -23,25 +23,25 @@
     </msg>
     
     <msg id="Storage.Structure.BadClass">
-      The object does not belong to expected class.
+      The object does not belong to the expected class.
     </msg>
     <msg id="Storage.Structure.BadCapacity">
-      Capacity must be higher than 0.
+      The capacity must be higher than 0.
     </msg>
     <msg id="Storage.Structure.OutOfBounds">
       Index or interval out of bounds.
     </msg>
     <msg id="Storage.Structure.Empty">
-      Container is empty.
+      The container is empty.
     </msg>
     <msg id="Storage.Structure.IterationEnd">
-      There is no more elements to iterate.
+      There are no more elements to iterate.
     </msg>
     <msg id="Storage.Structure.IteratorInvalidated">
       The container has been modified and that invalidates this iterator.
     </msg>
     <msg id="Storage.Structure.InvalidLength">
-      Trying to set a negative or too much higher length.
+      Trying to set a negative or too long length.
     </msg>
     <msg id="Storage.Structure.KeyNotFound">
       The given key was not found is the container.
@@ -59,7 +59,7 @@
       This node container do not allow loops.
     </msg>
     <msg id="Storage.Structure.InvalidContainer">
-      The element do not belong to the container provided.
+      The element does not belong to the container provided.
     </msg>
     <msg id="Storage.Structure.Overflow">
       Last arithmetic operation has overflown.
@@ -72,10 +72,10 @@
     </msg>
     
     <msg id="Storage.Structure.Text.EmptyBuffer">
-      Empty buffers can not be processed.
+      Empty buffers cannot be processed.
     </msg>
     <msg id="Storage.Structure.Text.NoBackward">
-      Window start or end pointers can not go backward.
+      Window start and end pointers can not go backward.
     </msg>
     <msg id="Storage.Structure.Text.IncompatiblePointers">
       Incompatible pointers mixed, they must work over the same window.
@@ -109,10 +109,10 @@
       Encoding not supported.
     </msg>
     <msg id="Storage.Structure.Binary.Encodings.InvalidByte">
-      Invalid byte sequence for this encoding found.
+      Invalid byte sequence for this encoding.
     </msg>
     <msg id="Storage.Structure.Binary.Encodings.InvalidCharacter">
-      Invalid character for this encoding found.
+      Invalid character for this encoding.
     </msg>
     <msg id="Storage.Structure.Binary.Encodings.UnexpectedEnd">
       Unexpected end of data.
@@ -120,15 +120,12 @@
     <msg id="Storage.Structure.Binary.Encodings.BadByteOrder">
       Invalid byte order or encoding.
     </msg>
-    <msg id="Storage.Structure.Binary.Encodings.Internal">
-      Internal error while encoding. Please report.
-    </msg>
     
     <msg id="Storage.Structure.XML.EmptyName">
-      Name can not be empty.
+      Name cannot be empty.
     </msg>
     <msg id="Storage.Structure.XML.NoChildAllow">
-      This element can not have children.
+      This element cannot have children.
     </msg>
     <msg id="Storage.Structure.XML.UnexpectedEnd">
       Unexpected end of document.
@@ -165,7 +162,7 @@
       Trying to unregister a memory allocator in use.
     </msg>
     <msg id="Storage.Memory.ThreadRegistered">      
-      Trying to register a thread already registered in memory manager.
+      Trying to register a thread already registered in the memory manager.
     </msg>
     <msg id="Storage.Memory.AllocatorNotFound">      
       Trying to use a memory allocator not register.
@@ -180,7 +177,7 @@
       Fail to accomplish alignment constraints.
     </msg>
     <msg id="Storage.Memory.BigAllocation">
-      Trying to allocate an object too bigger.
+      Trying to allocate an object too big.
     </msg>
     <msg id="Storage.Memory.DoubleDeallocation">
       Trying to deallocate an object already deallocated.
@@ -196,7 +193,7 @@
     </msg>
     
     <msg id="Storage.FileSystem.FileAccessFail">
-      File do not exist or access denied.
+      The file does not exist or access denied.
     </msg>
     <msg id="Storage.FileSystem.NoAbsoluteURI">
       Invalid URI, must be absolute.
@@ -208,25 +205,25 @@
       Invalid URI, must be a directory.
     </msg>
     <msg id="Storage.FileSystem.BadDirectoryName">
-      Directory names can not contain the '/' character.
+      Directory names cannot contain the '/' character.
     </msg>
     <msg id="Storage.FileSystem.BadFileName">
-      File names can not contain the '/' character.
+      File names cannot contain the '/' character.
     </msg>
     <msg id="Storage.FileSystem.NotExists">
-      File or directory does not exist or access denied.
+      The file or directory does not exist or access denied.
     </msg>
     <msg id="Storage.FileSystem.NotForRoot">
-      Operation can not be done over the root.
+      Operation cannot be done on the root.
     </msg>
     <msg id="Storage.FileSystem.ListError">
       Directory listing error.
     </msg>
     <msg id="Storage.FileSystem.FileLocked">
-      File could not be accessed because it has been locked.
+      File could not be accessed because it is locked.
     </msg>
     <msg id="Storage.FileSystem.DirectoryLocked">
-      Directory could not be accessed because it has been locked.
+      Directory could not be accessed because it is locked.
     </msg>
     <msg id="Storage.FileSystem.DirectoryNotEmpty">
       Directory could not be remove, try recursively.
@@ -250,12 +247,12 @@
       The origin and destination are the same.
     </msg>
     <msg id="Storage.FileSystem.DirLoop">
-      The destination directory is contained in the origin.
+      The destination directory is contained within the origin.
     </msg>
     
     
     <msg id="Device.NoDefault">
-      No default device available.
+      No default device available of this kind.
     </msg>
     
     
@@ -267,130 +264,130 @@
     </msg>
 
     <msg id="Component.Error.NoMessages">
-      No exception messages database found.
+      Exception messages database not found.
     </msg>
     <msg id="Component.Error.BadMessages">
       Exception messages database not valid.
     </msg>
     <msg id="Component.Error.NoLanguage">
-       Exception messages for current language not found.
+      Exception message not found for current language.
     </msg>
     <msg id="Component.Error.NotFound">
-       Exception message not found for the identifier.
+      Exception message not found for the identifier.
     </msg>
     <msg id="Component.Error.MemoryFault">
-       Trying to access to invalid memory address.
+      Trying to access an invalid memory address.
     </msg> 
     <msg id="Component.Error.FloatingPoint">
-       Floating point exception.
+      Floating point exception.
     </msg>
     <msg id="Component.Error.IllegalInstruction">
-       Trying to execute an illegal instruction.
+      Trying to execute an illegal instruction.
     </msg>
     <msg id="Component.Error.UserInterrupt">
-       Execution interrupted by the user.
+      Execution interrupted by the user.
     </msg>
     <msg id="Component.Error.TimeOut">
-       The execution has timed out.
+      The execution has timed out.
     </msg>
     <msg id="Component.SystemCall.BadIdentifier">
-       Invalid handle identifier.
+      Invalid handle identifier.
     </msg>
     <msg id="Component.SystemCall.IdentifierConflict">
-       Generated an identifier that already exists.
+      Generated an identifier that already exists.
     </msg>
     
     <msg id="Builder.BadRoot">
-       Invalid source root (Package.xml not found).
+      Invalid source root (Package.xml not found).
     </msg>
     <msg id="Builder.NoCompiled">
-       Compilation not created.
+      Compilation not created.
     </msg>
     <msg id="Builder.NoBuild">
-       Build not found.
+      Build descriptor not found.
     </msg>
     <msg id="Builder.BadName">
-       Build name and xml name not match.
+      Build name and xml name do not match.
     </msg>
     <msg id="Builder.ClassNotFound">
-       Class to build not found.
+      Class to build not found.
     </msg>
     <msg id="Builder.PackNotFound">
-       Package to build not found.
+      Package to build not found.
     </msg>
     <msg id="Builder.NoClassName">
-       Class name could not be retrieved.
+      Class name could not be retrieved.
     </msg>
     <msg id="Builder.NoAnonClass">
-       Anonimous class not allowed.
+      Anonimous class not allowed.
     </msg>
     <msg id="Builder.DupClass">
-       Class duplicated.
+      Class duplicated.
     </msg>
     <msg id="Builder.DupCompilation">
-       Class compilation duplicated.
+      Class compilation duplicated.
     </msg>
     <msg id="Builder.NoPackageName">
-       Package name could not be retrieved.
+      Package name could not be retrieved.
     </msg>
     <msg id="Builder.DupPackage">
-       Package duplicated.
+      Package duplicated.
     </msg>
     <msg id="Builder.BadBuildRoot">
-       Invalid build root tag.
+      Invalid build root tag.
     </msg>
     <msg id="Builder.DupTagName">
-       Tag "name" duplicated.
+      Tag "name" duplicated.
     </msg>
     <msg id="Builder.EmptyTagName">
-       Tag "name" can not be empty.
+      Tag "name" can not be empty.
     </msg>
     <msg id="Builder.DupDesc">
-       Tag "description" duplicated.
+      Tag "description" duplicated.
     </msg>
     <msg id="Builder.BadTagName">
-       Unknown tag name.
+      Unknown tag name.
     </msg>
     <msg id="Builder.Unexpected">
-       Unexpected data.
+      Unexpected data.
     </msg>
     <msg id="Builder.NoTagName">
-       Tag "name" require.
+      Tag "name" required.
     </msg>
     <msg id="Builder.NoPackName">
-       Package tag require "name" attribute.
+      Package tag requires "name" attribute.
     </msg>
     <msg id="Builder.BadPackRoot">
-       Invalid package root tag.
+      Invalid package root tag.
     </msg>
     <msg id="Builder.BadRootTag">
-       Tag not allowed in root package.
+      Tag not allowed in root package.
     </msg>
     <msg id="Builder.NoInclude">
-       Empty package requite "include" attribute.
+      Empty package requites "include" attribute.
     </msg>
     <msg id="Builder.PackRepeated">
-       Package include repeated.
+      Package include repeated.
     </msg>
     
     <msg id="Test.Assert">
-       Test assertion.
+      Test assertion.
     </msg>
     <msg id="Test.UnknownException">
-       Catched unknown exception.
+      Catched unknown exception.
     </msg>
     <msg id="Test.Duplicated">
-       Test name duplicated.
+      Test name duplicated.
     </msg>
     <msg id="Test.InvalidFilter">
-       Invalid test filtering pattern.
+      Invalid test filtering pattern.
     </msg>
     <msg id="Test.Error.TestError">
-       This error is just for test purposes.
+      This error is just for test purposes.
     </msg>
     
     <msg id="Utilities.BadFormat">
-       Input format not valid or not supported.
+      Input format not valid or not supported.
     </msg>
   </lang>
 </messages>

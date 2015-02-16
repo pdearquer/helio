@@ -10,7 +10,7 @@ If you plan to play with it, I'd recommend you to start reading the project docu
 Check out the wiki, 10 minutes reading it will save you many hours diging through
 the code...
 
-If there is something else you have doubts or problems, send me an email to the
+If there is something else you have doubts or problems with, send me an email to the
 discussion group:
   helio-discuss@googlegroups.com
 or:

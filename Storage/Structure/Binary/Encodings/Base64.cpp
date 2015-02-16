@@ -56,7 +56,7 @@ _char Base64::getChar(_int val)
  
    if(val > 61)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.Internal");
+      Exception *ex = MAKE_ERROR("Internal");
       ex->add("encoding", _name);
       throw ex;
    }
@@ -120,7 +120,7 @@ _int Base64::decode(const Buffer *in, Text::Buffer *out, _bool finish)
          break;
          
       default:
-         Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.Internal");
+         Exception *ex = MAKE_ERROR("Internal");
          ex->add("encoding", _name);
          throw ex;
    }
@@ -329,3 +329,4 @@ void Base64::modeXML()
 }
    
 } } } }
+
