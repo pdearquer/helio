@@ -551,7 +551,7 @@ using namespace Test;
  */
 int main(int argc, char **argv)
 {
-   TestFramework *tf;
+   TestFramework *tf = null;
    try
    {
       PRINTLN("[Helio Test framework]");
