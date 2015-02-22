@@ -180,7 +180,7 @@ Integer::operator int() const
 Integer::operator size_t() const
 {
    if(_value < 0)
-      ERROR("Storage.Structure.Overflow");
+      ERROR(Error::Arithmetic::Overflow);
    
    return (size_t)_value;
 }
@@ -188,7 +188,7 @@ Integer::operator size_t() const
 Integer::operator _uint8() const
 {
    if(_value < __HELIO_TYPE_UINT8_MIN || _value > __HELIO_TYPE_UINT8_MAX)
-      ERROR("Storage.Structure.Overflow");
+      ERROR(Error::Arithmetic::Overflow);
    
    return (_uint8)_value;
 }
@@ -196,15 +196,18 @@ Integer::operator _uint8() const
 Integer::operator _uint16() const
 {
    if(_value < __HELIO_TYPE_UINT16_MIN || _value > __HELIO_TYPE_UINT16_MAX)
-      ERROR("Storage.Structure.Overflow");
+      ERROR(Error::Arithmetic::Overflow);
       
    return (_uint16)_value;
 }
    
 Integer::operator _uint32() const
 {
-   if(_value < __HELIO_TYPE_UINT32_MIN || _value > __HELIO_TYPE_UINT32_MAX)
-      ERROR("Storage.Structure.Overflow");
+   if(_value < __HELIO_TYPE_UINT32_MIN)
+      ERROR(Error::Arithmetic::Overflow);
+      
+   if(sizeof(__int) > sizeof(_uint32) && _value > (__int)__HELIO_TYPE_UINT32_MAX)
+      ERROR(Error::Arithmetic::Overflow);
       
    return (_uint32)_value;
 }
@@ -212,7 +215,7 @@ Integer::operator _uint32() const
 Integer::operator _uint64() const
 {
    if(_value < 0)
-      ERROR("Storage.Structure.Overflow");
+      ERROR(Error::Arithmetic::Overflow);
       
    return (_uint64)_value;
 }
@@ -398,10 +401,10 @@ void Integer::operator *=(const Integer &other)
 void Integer::operator /=(const Integer &other)
 {
    if(other._value == 0)
-      ERROR("Storage.Structure.DivisionByCero");
+      ERROR(Error::Arithmetic::DivisionByCero);
    
    if(_value == MIN && other._value == -1)
-      ERROR("Storage.Structure.Overflow");
+      ERROR(Error::Arithmetic::Overflow);
    
    _value /= other._value;
 }
@@ -409,10 +412,10 @@ void Integer::operator /=(const Integer &other)
 void Integer::operator %=(const Integer &other)
 {
    if(other._value == 0)
-      ERROR("Storage.Structure.DivisionByCero");
+      ERROR(Error::Arithmetic::ModuloByCero);
    
    if(_value == MIN && other._value == -1)
-      ERROR("Storage.Structure.Overflow");
+      ERROR(Error::Arithmetic::Overflow);
    
    _value %= other._value;
 }
@@ -437,10 +440,10 @@ void Integer::operator *=(_int other)
 void Integer::operator /=(_int other)
 {
    if((__int)other == 0)
-      ERROR("Storage.Structure.DivisionByCero");
+      ERROR(Error::Arithmetic::DivisionByCero);
    
    if(_value == MIN && (__int)other == -1)
-      ERROR("Storage.Structure.Overflow");
+      ERROR(Error::Arithmetic::Overflow);
    
    checkOverflow(_value / (__int)other);
 }
@@ -448,10 +451,10 @@ void Integer::operator /=(_int other)
 void Integer::operator %=(_int other)
 {
    if((__int)other == 0)
-      ERROR("Storage.Structure.DivisionByCero");
+      ERROR(Error::Arithmetic::ModuloByCero);
       
    if(_value == MIN && (__int)other == -1)
-      ERROR("Storage.Structure.Overflow");
+      ERROR(Error::Arithmetic::Overflow);
       
    _value %= (__int)other;
 }
@@ -477,10 +480,10 @@ void Integer::operator *=(int other)
 void Integer::operator /=(int other)
 {
    if((__int)other == 0)
-      ERROR("Storage.Structure.DivisionByCero");
+      ERROR(Error::Arithmetic::DivisionByCero);
    
    if(_value == MIN && (__int)other == -1)
-      ERROR("Storage.Structure.Overflow");
+      ERROR(Error::Arithmetic::Overflow);
    
    checkOverflow(_value / (__int)other);
 }
@@ -488,10 +491,10 @@ void Integer::operator /=(int other)
 void Integer::operator %=(int other)
 {
    if((__int)other == 0)
-      ERROR("Storage.Structure.DivisionByCero");
+      ERROR(Error::Arithmetic::ModuloByCero);
       
    if(_value == MIN && (__int)other == -1)
-      ERROR("Storage.Structure.Overflow");
+      ERROR(Error::Arithmetic::Overflow);
       
    _value %= (__int)other;
 }
@@ -515,10 +518,10 @@ void Integer::operator *=(size_t other)
 void Integer::operator /=(size_t other)
 {
    if(other == 0)
-      ERROR("Storage.Structure.DivisionByCero");
+      ERROR(Error::Arithmetic::DivisionByCero);
    
    if(_value == MIN && (__int)other == -1)
-      ERROR("Storage.Structure.Overflow");
+      ERROR(Error::Arithmetic::Overflow);
 
    _value /= (__int)other;
 }
@@ -526,10 +529,10 @@ void Integer::operator /=(size_t other)
 void Integer::operator %=(size_t other)
 {
    if((__int)other == 0)
-      ERROR("Storage.Structure.DivisionByCero");
+      ERROR(Error::Arithmetic::ModuloByCero);
       
    if(_value == MIN && (__int)other == -1)
-      ERROR("Storage.Structure.Overflow");
+      ERROR(Error::Arithmetic::Overflow);
       
    _value %= (__int)other;
 }
@@ -558,7 +561,7 @@ void Integer::operator --()
 const Integer Integer::operator -() const
 {
    if(_value == MIN)
-      ERROR("Storage.Structure.Overflow");
+      ERROR(Error::Arithmetic::Overflow);
       
    Integer result;
    result.checkOverflow(-_value);
@@ -721,7 +724,7 @@ __int Integer::raw() const
 void Integer::checkOverflow(__int value)
 {
    if(value < MIN || value > MAX)
-      ERROR("Storage.Structure.Overflow");
+      ERROR(Error::Arithmetic::Overflow);
    
    _value = value;
 }

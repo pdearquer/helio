@@ -59,7 +59,7 @@ template <class T> void ArrayBase<T>::eraseElements(_int start, _int end)
 {
    if(0 > start || start > end || end >= this->_count)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("end", end);
       ex->addInt("count", this->_count);

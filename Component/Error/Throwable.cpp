@@ -14,7 +14,7 @@ Throwable::Throwable()
    _trace = new Trace(1);
 }
 
-void Throwable::init(String msg, Throwable *child, String source, _int line, String date)
+void Throwable::init(String msg, Throwable *child, const String &source, _int line, const String &date)
 {
    _msg = msg;
    _child = child;
@@ -40,7 +40,7 @@ String Throwable::msg()
    
 const Table<String, String> *Throwable::params()
 {
-   return _params;
+   return &_params;
 }
    
 Throwable *Throwable::child()
@@ -67,37 +67,37 @@ void Throwable::reportSilenty()
 
 void Throwable::add(String param, const String &value)
 {
-   params.add(param, value);
+   _params.add(param, value);
 }
 
 void Throwable::add(String param, const Object *value)
 {
-   params.add(param, value->toString());
+   _params.add(param, value->toString());
 }
 
 void Throwable::addInt(String param, _int value)
 {
-   params.add(param, Integer(value).toString());
+   _params.add(param, Integer(value).toString());
 }
 
 void Throwable::addByte(String param, _byte value)
 {
-   params.add(param, Integer(value).toString());
+   _params.add(param, Integer(value).toString());
 }
 
 void Throwable::addUInt32(String param, _uint32 value)
 {
-   params.add(param, Integer((_int)value).toString());
+   _params.add(param, Integer((_int)value).toString());
 }
 
 void Throwable::addPointer(String param, const _pointer value)
 {
-   params.add(param, Pointer(value).toString());
+   _params.add(param, Pointer(value).toString());
 }
 
 void Throwable::addPointer(String param, const Object *value)
 {
-   params.add(param, Pointer((const _pointer)value).toString());
+   _params.add(param, Pointer((const _pointer)value).toString());
 }
 
 } }

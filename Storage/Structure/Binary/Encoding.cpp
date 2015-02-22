@@ -82,9 +82,10 @@ Encoding *Encoding::get(String name)
       return new Encodings::Base64();
 #endif
    
-   Exception *ex = MAKE_ERROR("Storage.Structure.Binary.BadEncoding");
+   Exception *ex = MAKE_ERROR(Exception::Structure::EncodingNotSupported);
    ex->add("encoding", name);
    throw ex;
 }
 
 } } }
+

@@ -59,7 +59,7 @@ template<class N> void LinkedNode<N>::removeThis(_bool deleting)
 template<class N> void LinkedNode<N>::removePrev()
 {
    if(this->_prev == null)
-      ERROR("Storage.Structure.OutOfBounds");
+      ERROR(Error::Structure::OutOfBounds);
 
    this->_prev->removeThis();
 }
@@ -67,7 +67,7 @@ template<class N> void LinkedNode<N>::removePrev()
 template<class N> void LinkedNode<N>::removeNext()
 {
    if(this->_next == null)
-      ERROR("Storage.Structure.OutOfBounds");
+      ERROR(Error::Structure::OutOfBounds);
 
    this->_next->removeThis();
 }
@@ -75,11 +75,11 @@ template<class N> void LinkedNode<N>::removeNext()
 
 template<class N> void LinkedNode<N>::insertAfter(N *node)
 {
-   if(this == node)
-      ERROR("Storage.Structure.LoopsNotAllowed");
    if(node == null)
-      ERROR("NullObject");
-
+      ERROR(Error::NullObject);
+   if(this == node)
+      ERROR(Error::Structure::LoopsNotAllowed);
+   
    node->adding(this->_list);
 
    N *myself = ((Object *)this)->as<N>();
@@ -95,10 +95,10 @@ template<class N> void LinkedNode<N>::insertAfter(N *node)
 
 template<class N> void LinkedNode<N>::insertBefore(N *node)
 {
-   if(this == node)
-      ERROR("Storage.Structure.LoopsNotAllowed");
    if(node == null)
-      ERROR("NullObject");
+      ERROR(Error::NullObject);
+   if(this == node)
+      ERROR(Error::Structure::LoopsNotAllowed);
 
    node->adding(this->_list);
 
@@ -117,7 +117,7 @@ template<class N> void LinkedNode<N>::insertBefore(N *node)
 template<class N> void LinkedNode<N>::swapWithPrev()
 {
    if(this->_prev == null)
-      ERROR("Storage.Structure.OutOfBounds");
+      ERROR(Error::Structure::OutOfBounds);
 
    this->_prev->swapWithNext();
 }
@@ -125,7 +125,7 @@ template<class N> void LinkedNode<N>::swapWithPrev()
 template<class N> void LinkedNode<N>::swapWithNext()
 {
    if(this->_next == null)
-      ERROR("Storage.Structure.OutOfBounds");
+      ERROR(Error::Structure::OutOfBounds);
 
    N *prev = this->_prev;
    N *myself = ((Object *)this)->as<N>();
@@ -152,9 +152,9 @@ template<class N> void LinkedNode<N>::swap(N *other)
    if(this == other)
       return;
    if(other == null)
-      ERROR("NullObject");
+      ERROR(Error::NullObject);
    if(this->_list != other->_list)
-      ERROR("Storage.Structure.InvalidContainer");
+      ERROR(Error::Structure::InvalidContainer);
 
    N *myself = ((Object *)this)->as<N>();
    N *prev = other->_prev;
@@ -201,7 +201,7 @@ template<class N> void LinkedNode<N>::adding(Object *container)
    LinkedList<N> *list = container->as<LinkedList<N> >();
 
    if(this->_list != null)
-      ERROR("Storage.Structure.InvalidContainer");
+      ERROR(Error::Structure::InvalidContainer);
 
    this->_list = list;
 }
@@ -213,7 +213,7 @@ template<class N> void LinkedNode<N>::removed(Object *container)
    LinkedList<N> *list = container->as<LinkedList<N> >();
 
    if(this->_list != list)
-      ERROR("Storage.Structure.InvalidContainer");
+      ERROR(Error::Structure::InvalidContainer);
 
    this->_list = null;
    this->_prev = null;
@@ -223,10 +223,10 @@ template<class N> void LinkedNode<N>::removed(Object *container)
 template<class N> _bool LinkedNode<N>::hasLink(N *other)
 {
    if(other == null)
-      ERROR("NullObject");
+      ERROR(Error::NullObject);
 
    return (other == this->_prev) || (other == this->_next);
 }
 
-}
-}
+} }
+

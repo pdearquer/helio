@@ -33,7 +33,7 @@ void Encoder::write(Text::Buffer *buf, _int chars, _int start)
 {
    if(start < 0 || chars < 0)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("characters", chars);
       throw ex;
@@ -88,3 +88,4 @@ Encoding *Encoder::encoding(String enc)
 }
 
 } } }
+

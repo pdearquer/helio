@@ -56,7 +56,7 @@ String::String(const _uint8 *utf8, _int length)
 {
    if(length < 0)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.InvalidLength");
+      Error *ex = MAKE_ERROR(Error::Structure::InvalidLength);
       ex->addInt("length", length);
       throw ex;
    }
@@ -139,7 +139,7 @@ String::String(const char *ascii)
          _uint32 utf32 = (_uint32)ascii[i];
          if(!Storage::Structure::Binary::Encodings::ASCII::isValid(utf32))
          {
-            Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidCharacter");
+            Exception *ex = MAKE_ERROR(Exception::Format::InvalidCharacter);
             ex->add("encoding", "ASCII");
             ex->addUInt32("character", utf32);
             throw ex;
@@ -401,7 +401,7 @@ _char String::get(_int index) const
 {
    if(index < 0 || index >= _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("index", index);
       ex->addInt("length", _length);
       throw ex;
@@ -515,7 +515,7 @@ String String::sub(_int length) const
 
    if(actual_len < 0 || actual_len > _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("sub.length", length);
       ex->addInt("sub.actual", actual_len);
       ex->addInt("length", _length);
@@ -536,7 +536,7 @@ String String::sub(_int start, _int length) const
 
    if(start < 0 || actual_len < 0 || start + actual_len > _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("sub.length", length);
       ex->addInt("sub.actual", actual_len);
@@ -590,7 +590,7 @@ _int String::indexOf(_char c, _int start) const
       
    if(start2 < 0 || start2 >= _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("length", _length);
       throw ex;
@@ -612,7 +612,7 @@ _int String::indexOf(const String &s, _int start) const
       
    if(start2 < 0 || start2 >= _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("length", _length);
       throw ex;
@@ -650,7 +650,7 @@ _int String::lastIndexOf(_char c, _int start) const
       
    if(start2 < 0 || start2 >= _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("length", _length);
       throw ex;
@@ -672,7 +672,7 @@ _int String::lastIndexOf(const String &s, _int start) const
       
    if(start2 < 0 || start2 >= _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("length", _length);
       throw ex;
@@ -785,7 +785,7 @@ void String::operator =(const char *ascii)
          _uint32 utf32 = (_uint32)ascii[i];
          if(!Storage::Structure::Binary::Encodings::ASCII::isValid(utf32))
          {
-            Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidCharacter");
+            Exception *ex = MAKE_ERROR(Exception::Format::InvalidCharacter);
             ex->add("encoding", "ASCII");
             ex->addUInt32("character", utf32);
             throw ex;

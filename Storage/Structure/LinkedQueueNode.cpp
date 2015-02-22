@@ -20,7 +20,7 @@ template <class T> LinkedQueueNode<T>::LinkedQueueNode()
 template <class T> T *LinkedQueueNode<T>::front()
 {
    if(this->_count <= 0)
-      ERROR("Test.Assert");
+      ERROR(Error::Structure::Empty);
 
    return this->_elements[0];
 }
@@ -41,7 +41,7 @@ template <class T> _bool LinkedQueueNode<T>::add_front(T *el)
 template <class T> T *LinkedQueueNode<T>::dequeue()
 {
    if(this->_count <= 0)
-      ERROR("Test.Assert");
+      ERROR(Error::Structure::Empty);
 
    T *el = this->_elements[0];
 
@@ -55,7 +55,7 @@ template <class T> T *LinkedQueueNode<T>::dequeue()
 template <class T> T *LinkedQueueNode<T>::back()
 {
    if(this->_count <= 0)
-      ERROR("Test.Assert");
+      ERROR(Error::Structure::Empty);
 
    return this->_elements[this->_count - 1];
 }
@@ -73,7 +73,7 @@ template <class T> _bool LinkedQueueNode<T>::add(T *el)
 template <class T> T *LinkedQueueNode<T>::dequeue_back()
 {
    if(this->_count <= 0)
-      ERROR("Test.Assert");
+      ERROR(Error::Structure::Empty);
 
    T *el = this->_elements[this->_count - 1];
    this->_count--;
@@ -85,7 +85,7 @@ template <class T> void LinkedQueueNode<T>::erase(_int start, _int end, _bool de
 {
    if(0 > start || start > end || end >= this->_count)
    {
-      Exception *ex = MAKE_ERROR("Test.Assert");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("end", end);
       ex->addInt("count", this->_count);
@@ -106,5 +106,5 @@ template <class T> void LinkedQueueNode<T>::erase(_int start, _int end, _bool de
    this->_count -= end - start + 1;
 }
 
-}
-}
+} }
+

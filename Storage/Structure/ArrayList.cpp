@@ -39,7 +39,7 @@ template <class T> void ArrayList<T>::setCount(_int num, _bool deleting)
 
    if(num < 0 || num > this->_count)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("new", num);
       ex->addInt("count", this->_count);
       throw ex;
@@ -68,7 +68,7 @@ template <class T> void ArrayList<T>::set(_int index, T *el, _bool deleting)
 
    if(index < 0 || index >= this->_count)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("index", index);
       ex->addInt("count", this->_count);
       throw ex;
@@ -87,7 +87,7 @@ template <class T> T *ArrayList<T>::get(_int index) const
 {
    if(index < 0 || index >= this->_count)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("index", index);
       ex->addInt("count", this->_count);
       throw ex;
@@ -102,7 +102,7 @@ template <class T> void ArrayList<T>::erase(_int start, _int end, _bool deleting
 
    if(0 > start || start > end || end >= this->_count)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("end", end);
       ex->addInt("count", this->_count);
@@ -132,7 +132,7 @@ template <class T> T *ArrayList<T>::pop()
 
    _int c = count();
    if(c == 0)
-      ERROR("Storage.Structure.Empty");
+      ERROR(Error::Structure::Empty);
       
    T *el = get(c - 1);
    setCount(c - 1, false);   
@@ -143,7 +143,7 @@ template <class T> T *ArrayList<T>::peek() const
 {
    _int c = count();
    if(c == 0)
-      ERROR("Storage.Structure.Empty");
+      ERROR(Error::Structure::Empty);
       
    return get(c - 1);
 }

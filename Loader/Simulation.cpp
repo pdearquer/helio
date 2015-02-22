@@ -36,7 +36,7 @@ Simulation::Simulation()
  */
 void sig_segv(int signal, siginfo_t *si, void *arg)
 {
-   Exception *ex = MAKE_ERROR(Fault::Code::InvalidAddress);
+   Fault *ex = MAKE_ERROR(Fault::Code::InvalidAddress);
    ex->addPointer("address", si->si_addr);
    switch(si->si_code)
    {
@@ -57,7 +57,7 @@ void sig_segv(int signal, siginfo_t *si, void *arg)
  */
 void sig_fpe(int signal, siginfo_t *si, void *arg)
 {
-   Exception *ex = MAKE_ERROR(Fault::Code::FloatingPoint);
+   Fault *ex = MAKE_ERROR(Fault::Code::FloatingPoint);
    ex->addPointer("address", si->si_addr);
    switch(si->si_code)
    {
@@ -96,7 +96,7 @@ void sig_fpe(int signal, siginfo_t *si, void *arg)
  */
 void sig_ill(int signal, siginfo_t *si, void *arg)
 {
-   Exception *ex = MAKE_ERROR(Fault::Code::IllegalInstruction);
+   Fault *ex = MAKE_ERROR(Fault::Code::IllegalInstruction);
    ex->addPointer("address", si->si_addr);
    switch(si->si_code)
    {
@@ -135,7 +135,7 @@ void sig_ill(int signal, siginfo_t *si, void *arg)
  */
 void sig_int(int signal, siginfo_t *si, void *arg)
 {
-   Exception *ex = MAKE_ERROR(Error::UserInterrupt);
+   Error *ex = MAKE_ERROR(Error::UserInterrupt);
    ex->addPointer("address", si->si_addr);
    throw ex;
 }

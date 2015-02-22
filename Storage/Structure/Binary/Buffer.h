@@ -12,20 +12,8 @@ class Buffer :
 {
    friend class Storage::Structure::Data::String;
    friend class Storage::Structure::Text::Buffer;
-#ifdef __HELIO_STORAGE_FILESYSTEM_SIMULATION_DIRECTORYHANDLE
-   friend class Storage::FileSystem::Simulation::DirectoryHandle;
-#endif
-#ifdef __HELIO_ARCHITECTURE_SIMULATION_FUSE
-   friend class Architecture::Simulation::Fuse;
-#endif
-#ifdef __HELIO_COMPONENT_ERROR_FAULT
-   friend class Component::Error::Fault;
-#endif
-#ifdef __HELIO_STORAGE_MEMORY_MANAGER
-   friend class Storage::Memory::Manager;
-#endif
-#ifdef __HELIO_STORAGE_MEMORY_POOLALLOCATOR
-   friend class Storage::Memory::PoolAllocator;
+#ifdef __HELIO_LOADER_SIMULATION
+   friend class Loader::Simulation;
 #endif
 #ifdef __HELIO_COMPONENT_CONSOLE
    friend class Component::Console;

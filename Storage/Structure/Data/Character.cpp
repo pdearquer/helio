@@ -94,7 +94,7 @@ _uint8 Character::getAscii() const
 {
    if(!Storage::Structure::Binary::Encodings::ASCII::isValid(_value))
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidCharacter");
+      Exception *ex = MAKE_ERROR(Exception::Format::InvalidCharacter);
       ex->add("encoding", "ASCII");
       ex->addUInt32("character", _value);
       throw ex;
@@ -108,7 +108,7 @@ void Character::setAscii(_uint8 ascii)
 #ifdef __HELIO_STORAGE_STRUCTURE_BINARY_ENCODINGS_ASCII
    if(!Storage::Structure::Binary::Encodings::ASCII::isValid(ascii))
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidByte");
+      Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
       ex->add("encoding", "ASCII");
       ex->addByte("byte", ascii);
       throw ex;
@@ -121,7 +121,7 @@ _uint16 Character::getUtf16() const
 {
    if(_value > __HELIO_TYPE_UINT16_MAX)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidCharacter");
+      Exception *ex = MAKE_ERROR(Exception::Format::InvalidCharacter);
       ex->add("encoding", "UTF-16");
       ex->addUInt32("character", _value);
       throw ex;
@@ -144,7 +144,7 @@ void Character::setUtf32(_uint32 utf32)
 {
    if(!isValid(utf32))
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.InvalidCharacter");
+      Exception *ex = MAKE_ERROR(Exception::Format::InvalidCharacter);
       ex->addUInt32("code", utf32);
       throw ex;
    }

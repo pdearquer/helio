@@ -18,7 +18,7 @@ void Clock::getDefault(Date *date)
 #ifdef __HELIO_DEVICE_TIME_UNIXCLOCK
       _default = new UnixClock();
 #else
-      Exception *ex = MAKE_ERROR("Device.NoDefault");
+      Exception *ex = MAKE_ERROR(Exception::Device::NoDefault);
       ex->add("interface", "Device.Time.Clock");
       throw ex;
 #endif      

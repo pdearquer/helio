@@ -204,5 +204,5 @@ template<class N> DynIterator<N> *LinkedList<N>::dynIterate()
    return new LinkedListIterator<N>(this);
 }
 
-}
-}
+} }
+

@@ -20,7 +20,7 @@ _int BufferReader::read(Buffer *buf, _int chars, _int start)
 {
    if(start < 0 || start > buf->length() || chars < 0)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("length", buf->length());
       throw ex;
@@ -55,7 +55,7 @@ _int BufferReader::seek(_int pos)
 {
    if(pos < 0 || pos >= _buffer->length())
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("index", pos);
       ex->addInt("length", _buffer->length());
       throw ex;
@@ -66,3 +66,4 @@ _int BufferReader::seek(_int pos)
 }
 
 } } }
+

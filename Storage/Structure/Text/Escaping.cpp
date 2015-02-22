@@ -96,9 +96,10 @@ Escaping *Escaping::get(String name)
       return new Escapings::HTML();
 #endif
 
-   Exception *ex = MAKE_ERROR("Storage.Structure.Text.BadEscaping");
+   Exception *ex = MAKE_ERROR(Exception::Structure::EscapingNotSupported);
    ex->add("escaping", name);
    throw ex;
 }
 
 } } }
+

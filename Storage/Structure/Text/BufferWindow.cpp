@@ -13,7 +13,7 @@ BufferWindow::BufferWindow(Buffer *buf)
 {
    _buffer = buf;
    if(_buffer->length() == 0)
-      ERROR("Storage.Structure.Text.EmptyBuffer");
+      ERROR(Exception::Format::EmptyBuffer);
       
    _position = 0;
 }
@@ -67,7 +67,7 @@ void BufferWindow::moveEnd(_int chars)
 {
    if(chars < 0)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.Text.NoBackward");
+      Error *ex = MAKE_ERROR(Error::Text::NoBackward);
       ex->add("pointer", "end");
       ex->addInt("move", chars);
       throw ex;
@@ -88,3 +88,4 @@ void BufferWindow::displace(const WindowPointer &p, _int chars)
 }
 
 } } }
+

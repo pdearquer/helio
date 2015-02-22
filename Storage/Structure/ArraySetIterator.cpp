@@ -27,7 +27,7 @@ template <class T> T *ArraySetIterator<T>::get()
 {
    if(!hasMore())
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.IterationEnd");
+      Error *ex = MAKE_ERROR(Error::Structure::IterationEnded);
       ex->addInt("position", this->_position);
       ex->addInt("count", this->_set->_count);
       throw ex;
@@ -40,7 +40,7 @@ template <class T> T *ArraySetIterator<T>::next()
 {
    if(!hasMore())
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.IterationEnd");
+      Error *ex = MAKE_ERROR(Error::Structure::IterationEnded);
       ex->addInt("position", this->_position);
       ex->addInt("count", this->_set->_count);
       throw ex;

@@ -54,7 +54,7 @@ template <class T> _bool HashSet<T>::add(T *el, _bool deleting)
 
    if(el == null)
    {
-      Exception *ex = MAKE_ERROR("NullObject");
+      Error *ex = MAKE_ERROR(Error::NullObject);
       ex->add("reason", "The Set containers do not allow null elements");
       throw ex;
    }

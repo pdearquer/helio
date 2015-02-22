@@ -55,7 +55,7 @@ WindowPointer Window::pointer(_int index)
 {
    if(index < 0 || index >= _pointers.count())
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.Text.BadPointer");
+      Error *ex = MAKE_ERROR(Error::Text::InvalidPointer);
       ex->addInt("index", index);
       throw ex;
    }
@@ -93,7 +93,7 @@ Buffer *Window::get(const WindowPointer &from, const WindowPointer &to)
 {
    if(this != from._win || this != to._win)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.Text.IncompatiblePointers");
+      Error *ex = MAKE_ERROR(Error::Text::IncompatiblePointers);
       ex->addInt("from.pointer", from._index);
       ex->addInt("to.pointer", to._index);
       throw ex;
@@ -101,7 +101,7 @@ Buffer *Window::get(const WindowPointer &from, const WindowPointer &to)
    
    if(to < from)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("from.pointer", from._index);
       ex->addInt("to.pointer", to._index);
       throw ex;
@@ -221,7 +221,7 @@ _bool Window::find(_char c, const WindowPointer &from)
 {
    if(this != from._win)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.Text.IncompatiblePointers");
+      Error *ex = MAKE_ERROR(Error::Text::IncompatiblePointers);
       ex->addInt("pointer", from._index);
       throw ex;
    }
@@ -247,7 +247,7 @@ _bool Window::find(_char c, const WindowPointer &from, const WindowPointer &to)
 {
    if(this != from._win || this != to._win)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.Text.IncompatiblePointers");
+      Error *ex = MAKE_ERROR(Error::Text::IncompatiblePointers);
       ex->addInt("from.pointer", from._index);
       ex->addInt("to.pointer", to._index);
       throw ex;
@@ -276,7 +276,7 @@ _bool Window::find(const StringBuffer &s, const WindowPointer &from)
 {
    if(this != from._win)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.Text.IncompatiblePointers");
+      Error *ex = MAKE_ERROR(Error::Text::IncompatiblePointers);
       ex->addInt("pointer", from._index);
       throw ex;
    }
@@ -313,7 +313,7 @@ _bool Window::find(const StringBuffer &s, const WindowPointer &from, const Windo
 {
    if(this != from._win || this != to._win)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.Text.IncompatiblePointers");
+      Error *ex = MAKE_ERROR(Error::Text::IncompatiblePointers);
       ex->addInt("from.pointer", from._index);
       ex->addInt("to.pointer", to._index);
       throw ex;
@@ -355,7 +355,7 @@ _bool Window::findAny(const StringBuffer &valid, const WindowPointer &from)
 {
    if(this != from._win)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.Text.IncompatiblePointers");
+      Error *ex = MAKE_ERROR(Error::Text::IncompatiblePointers);
       ex->addInt("pointer", from._index);
       throw ex;
    }
@@ -392,7 +392,7 @@ _bool Window::findNone(const StringBuffer &invalid, const WindowPointer &from)
 {
    if(this != from._win)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.Text.IncompatiblePointers");
+      Error *ex = MAKE_ERROR(Error::Text::IncompatiblePointers);
       ex->addInt("pointer", from._index);
       throw ex;
    }
@@ -433,7 +433,7 @@ WindowStatus *Window::getStatus(const WindowPointer &at)
 {
    if(this != at._win)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.Text.IncompatiblePointers");
+      Error *ex = MAKE_ERROR(Error::Text::IncompatiblePointers);
       ex->addInt("pointer", at._index);
       throw ex;
    }
@@ -464,7 +464,7 @@ void Window::addStatus(Exception *ex, const WindowPointer &from, const WindowPoi
 {
    if(to < from)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("from.pointer", from._index);
       ex->addInt("to.pointer", to._index);
       throw ex;
@@ -488,7 +488,7 @@ void Window::moveStart(_int chars)
 {
    if(chars < 0)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.Text.NoBackward");
+      Error *ex = MAKE_ERROR(Error::Text::NoBackward);
       ex->add("pointer", "start");
       ex->addInt("move", chars);
       throw ex;
@@ -508,7 +508,7 @@ void Window::movePointer(_int index, _int chars)
 {
    if(index < 0 || index >= _pointers.count())
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.Text.BadPointer");
+      Error *ex = MAKE_ERROR(Error::Text::InvalidPointer);
       ex->addInt("index", index);
       throw ex;
    }
@@ -520,7 +520,7 @@ void Window::movePointer(_int index, _int chars)
    {
       if(chars < 0)
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.Text.NoBackward");
+         Error *ex = MAKE_ERROR(Error::Text::NoBackward);
          ex->add("pointer", "start");
          ex->addInt("move", chars);
          throw ex;
@@ -542,7 +542,7 @@ void Window::movePointer(_int index, _int chars)
    {
       if(chars < 0)
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.Text.NoBackward");
+         Error *ex = MAKE_ERROR(Error::Text::NoBackward);
          ex->add("pointer", "end");
          ex->addInt("move", chars);
          throw ex;
@@ -573,14 +573,14 @@ void Window::setPointer(_int index, _int other)
 {
    if(index < 0 || index >= _pointers.count())
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.Text.BadPointer");
+      Error *ex = MAKE_ERROR(Error::Text::InvalidPointer);
       ex->addInt("index", index);
       throw ex;
    }
    
    if(other < 0 || other >= _pointers.count())
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.Text.BadPointer");
+      Error *ex = MAKE_ERROR(Error::Text::InvalidPointer);
       ex->addInt("index", other);
       throw ex;
    }
@@ -590,15 +590,15 @@ void Window::setPointer(_int index, _int other)
       
    if(index == POINTER_START)
    {
-      /* Since start pointer should always be 0, this should be enough:
+      /* Since the start pointer should always be 0, this should be enough:
        *  moveStart(_pointers[other]);
-       * Unfortunately, we don't trust in "should".*/
+       * Unfortunately, we don't trust these "should"s. */
        
       _int chars = _pointers[other] - _pointers[index];
       
       if(chars < 0)
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.Text.NoBackward");
+         Error *ex = MAKE_ERROR(Error::Text::NoBackward);
          ex->add("pointer", "start");
          ex->addInt("move", chars);
          throw ex;
@@ -610,7 +610,7 @@ void Window::setPointer(_int index, _int other)
    {
       if(_pointers[index] != _pointers[other])
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.Text.NoBackward");
+         Error *ex = MAKE_ERROR(Error::Text::NoBackward);
          ex->add("pointer", "end");
          ex->addInt("other", other);
          throw ex;
@@ -626,7 +626,7 @@ _int Window::getPointer(_int index)
 {
    if(index < 0 || index >= _pointers.count())
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.Text.BadPointer");
+      Error *ex = MAKE_ERROR(Error::Text::InvalidPointer);
       ex->addInt("index", index);
       throw ex;
    }
@@ -638,7 +638,7 @@ _int Window::getPointer(const WindowPointer &p)
 {
    if(this != p._win)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.Text.IncompatiblePointers");
+      Error *ex = MAKE_ERROR(Error::Text::IncompatiblePointers);
       ex->addInt("pointer", p._index);
       throw ex;
    }
@@ -651,7 +651,7 @@ _int Window::copyPointer(_int index)
 {
    if(index < 0 || index >= _pointers.count())
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.Text.BadPointer");
+      Error *ex = MAKE_ERROR(Error::Text::InvalidPointer);
       ex->addInt("index", index);
       throw ex;
    }
@@ -673,7 +673,7 @@ void Window::addRef(_int index)
 {
    if(index < 0 || index >= _pointers.count())
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.Text.BadPointer");
+      Error *ex = MAKE_ERROR(Error::Text::InvalidPointer);
       ex->addInt("index", index);
       throw ex;
    }
@@ -685,7 +685,7 @@ void Window::removeRef(_int index)
 {
    if(index < 0 || index >= _pointers.count())
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.Text.BadPointer");
+      Error *ex = MAKE_ERROR(Error::Text::InvalidPointer);
       ex->addInt("index", index);
       throw ex;
    }
@@ -705,3 +705,4 @@ void Window::removeRef(_int index)
 }
 
 } } }
+

@@ -42,7 +42,7 @@ _int ASCII::decode(const Buffer *in, Text::Buffer *out, _bool finish)
       }
       else
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidByte");
+         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
          ex->add("encoding", _name);
          ex->addByte("byte", (_byte)c);
          throw ex;
@@ -60,7 +60,7 @@ _int ASCII::encode(const Text::Buffer *in, Buffer *out, _bool finish)
          out->add((_byte) c);
       else
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidCharacter");
+         Exception *ex = MAKE_ERROR(Exception::Format::InvalidCharacter);
          ex->add("encoding", _name);
          ex->addUInt32("character", (_uint32)c);
          throw ex;
@@ -70,3 +70,4 @@ _int ASCII::encode(const Text::Buffer *in, Buffer *out, _bool finish)
 }
 
 } } } }
+

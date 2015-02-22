@@ -46,14 +46,14 @@ _int UTF_16::decode(const Buffer *in, Text::Buffer *out, _bool finish)
       else
          w = (__char)in->getUInt16LE(i);
       __char w2;
-      _char c;
+      Character c;
       
       if(w >= 0xD800 && w <= 0xDFFF)
       {
          if(len - i < 4)
          {
             if(finish)
-               ERROR("Storage.Structure.Binary.Encodings.UnexpectedEnd");
+               ERROR(Exception::Format::UnexpectedEnd);
             return i;     
          }
          
@@ -66,7 +66,7 @@ _int UTF_16::decode(const Buffer *in, Text::Buffer *out, _bool finish)
             w2 = (__char)in->getUInt16LE(i);
          if((w2 & 0xDC00) != 0xDC00)
          {
-            Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidByte");
+            Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
             ex->add("encoding",_name);
             ex->addUInt32("word", w2);
             throw ex;
@@ -90,13 +90,15 @@ _int UTF_16::decode(const Buffer *in, Text::Buffer *out, _bool finish)
       {
          c = w;
       }
+      catch(Exception::Format::InvalidCharacter *e)
+      {
+         throw e;
+      }
       catch(Exception *e)
       {
-         if(e->id() != "Storage.Structure.InvalidCharacter")
-            throw e;
          delete e;
 
-         Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidByte");
+         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
          ex->add("encoding", _name);
          ex->addUInt32("code", w);
          throw ex;
@@ -106,7 +108,7 @@ _int UTF_16::decode(const Buffer *in, Text::Buffer *out, _bool finish)
    }
    
    if(finish && len != in->length())
-      ERROR("Storage.Structure.Binary.Encodings.UnexpectedEnd");
+      ERROR(Exception::Format::UnexpectedEnd);
       
    return len;
 }
@@ -130,7 +132,7 @@ _int UTF_16::encode(const Text::Buffer *in, Buffer *out, _bool finish)
       
       if(!Character::isValid(c))
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidCharacter");
+         Exception *ex = MAKE_ERROR(Exception::Format::InvalidCharacter);
          ex->add("encoding", _name);
          ex->addUInt32("character", c);
          throw ex;
@@ -187,3 +189,4 @@ void UTF_16::setBom(_bool bom)
 }
 
 } } } }
+

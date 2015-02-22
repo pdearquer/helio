@@ -40,7 +40,7 @@ _int ISO_8859_1::encode(const Text::Buffer *in, Buffer *out, _bool finish)
          out->add((_byte) c);
       else
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidCharacter");
+         Exception *ex = MAKE_ERROR(Exception::Format::InvalidCharacter);
          ex->add("encoding", _name);
          ex->addUInt32("character", c);
          throw ex;
@@ -50,3 +50,4 @@ _int ISO_8859_1::encode(const Text::Buffer *in, Buffer *out, _bool finish)
 }
 
 } } } }
+

@@ -19,7 +19,7 @@ void BufferWriter::write(Buffer *buf, _int chars, _int start)
 {
    if(start < 0 || chars < 0 || start + chars > buf->length())
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("characters", chars);
       ex->addInt("length", buf->length());
@@ -42,3 +42,4 @@ void BufferWriter::write(String str)
 }
 
 } } }
+

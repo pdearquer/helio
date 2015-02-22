@@ -54,7 +54,7 @@ template<class K, class V> _bool HashMap<K, V>::add(K *key, V *value, _bool dele
 
    if(key == null)
    {
-      Exception *ex = MAKE_ERROR("NullObject");
+      Error *ex = MAKE_ERROR(Error::NullObject);
       ex->add("reason", "This container do not allow null keys");
       throw ex;
    }
@@ -115,7 +115,7 @@ template<class K, class V> _bool HashMap<K, V>::contains(K *key)
 {
    if(key == null)
    {
-      Exception *ex = MAKE_ERROR("NullObject");
+      Error *ex = MAKE_ERROR(Error::NullObject);
       ex->add("reason", "This container do not allow null keys");
       throw ex;
    }
@@ -141,7 +141,7 @@ template<class K, class V> V *HashMap<K, V>::get(K *key)
 {
    if(key == null)
    {
-      Exception *ex = MAKE_ERROR("NullObject");
+      Error *ex = MAKE_ERROR(Error::NullObject);
       ex->add("reason", "This container do not allow null keys");
       throw ex;
    }
@@ -169,7 +169,7 @@ template<class K, class V> _bool HashMap<K, V>::remove(K *key, _bool deleting)
 
    if(key == null)
    {
-      Exception *ex = MAKE_ERROR("NullObject");
+      Error *ex = MAKE_ERROR(Error::NullObject);
       ex->add("reason", "This container do not allow null keys");
       throw ex;
    }

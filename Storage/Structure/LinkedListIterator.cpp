@@ -28,7 +28,7 @@ template<class N> N *LinkedListIterator<N>::get()
    this->checkVersion(this->_list);
 
    if(this->_node == null)
-      ERROR("Storage.Structure.IterationEnd");
+      ERROR(Error::Structure::IterationEnded);
 
    return _node;
 }
@@ -38,12 +38,12 @@ template<class N> N *LinkedListIterator<N>::next()
    this->checkVersion(this->_list);
 
    if(this->_node == null)
-      ERROR("Storage.Structure.IterationEnd");
+      ERROR(Error::Structure::IterationEnded);
 
    N *current = this->_node;
    this->_node = this->_node->next();
    return current;
 }
 
-}
-}
+} }
+

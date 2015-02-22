@@ -24,5 +24,5 @@ template<class T> Iterator<T> end(const Iterable<T> *cont)
    return Iterator<T>::makeEnd();
 }
 
-}
-}
+} }
+

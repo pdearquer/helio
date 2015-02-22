@@ -16,7 +16,7 @@ ProcessWindow::ProcessWindow(Input *in, Output *out, _int step)
    _finish = false;
    if(step < 1)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.InvalidLength");
+      Error *ex = MAKE_ERROR(Error::Structure::InvalidLength);
       ex->addInt("step", step);
       throw ex;
    }
@@ -54,7 +54,7 @@ _int ProcessWindow::step(_int step)
 {
    if(step < 1)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.InvalidLength");
+      Error *ex = MAKE_ERROR(Error::Structure::InvalidLength);
       ex->addInt("step", step);
       throw ex;
    }
@@ -94,7 +94,7 @@ void ProcessWindow::moveEnd(_int chars)
 {
    if(chars < 0)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.Text.NoBackward");
+      Error *ex = MAKE_ERROR(Error::Text::NoBackward);
       ex->add("pointer", "end");
       ex->addInt("move", chars);
       throw ex;
@@ -134,3 +134,4 @@ void ProcessWindow::displace(const WindowPointer &p, _int chars)
 }
 
 } } }
+

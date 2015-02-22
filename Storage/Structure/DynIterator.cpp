@@ -22,7 +22,7 @@ template <class T> void DynIterator<T>::startVersion(Container<T> *container)
 template <class T> void DynIterator<T>::checkVersion(Container<T> *container) const
 {
    if(this->_version != container->version())
-      ERROR("Storage.Structure.IteratorInvalidated");
+      ERROR(Error::Structure::IteratorInvalidated);
 }
 
 

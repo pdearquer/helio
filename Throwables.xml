@@ -39,7 +39,7 @@ If in doubt, use an Exception (e.g. *NotFound or *NotSupported)
     Unexpected end of data.
   </error>
   <error id="Exception::Format::InvalidByte">
-    Invalid byte sequence for this encoding.
+    Incorrect sequence of bytes found.
   </error>
   <error id="Exception::Format::EmptyBuffer">
     Empty buffers cannot be processed.

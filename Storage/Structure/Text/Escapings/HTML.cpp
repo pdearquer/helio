@@ -78,7 +78,7 @@ void HTML::unescape(WritableWindow *w)
       
       if(!w->find(';'))
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.Text.Escaping.BadSequence");
+         Exception *ex = MAKE_ERROR(Exception::Format::IllegalSequence);
          ex->add("escaping", _name);
          ex->add("expected", ";");
          if(start.diff(result) < 64)
@@ -98,7 +98,7 @@ void HTML::unescape(WritableWindow *w)
       }
       catch(Exception *ex)
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.Text.Escaping.BadSequence");
+         Exception *ex = MAKE_ERROR(Exception::Format::IllegalSequence);
          ex->add("escaping", _name);
          ex->add("entity", name);
          throw ex;
@@ -110,3 +110,4 @@ void HTML::unescape(WritableWindow *w)
 }
 
 } } } }
+

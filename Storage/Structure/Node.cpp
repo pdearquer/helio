@@ -18,5 +18,5 @@ template<class N> void Node<N>::removed(Object *container)
    container->as<Graph<N> >();
 }
 
-}
-}
+} }
+

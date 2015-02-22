@@ -27,7 +27,7 @@ Buffer::Buffer(_int cap)
 {
    if(cap <= 0)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.BadCapacity");
+      Error *ex = MAKE_ERROR(Error::Structure::IllegalCapacity);
       ex->addInt("capacity", cap);
       throw ex;
    }
@@ -54,7 +54,7 @@ Buffer::Buffer(const __char *data, _int len)
 {
    if(len < 0)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.InvalidLength");
+      Error *ex = MAKE_ERROR(Error::Structure::InvalidLength);
       ex->addInt("length", len);
       throw ex;
    }
@@ -73,14 +73,14 @@ Buffer::Buffer(const __char *data, _int len, _int cap)
 {
    if(cap <= 0)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.BadCapacity");
+      Error *ex = MAKE_ERROR(Error::Structure::IllegalCapacity);
       ex->addInt("capacity", cap);
       throw ex;
    }
    
    if(len < 0 || len > cap)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.InvalidLength");
+      Error *ex = MAKE_ERROR(Error::Structure::InvalidLength);
       ex->addInt("length", len);
       ex->addInt("capacity", cap);
       throw ex;
@@ -143,7 +143,7 @@ void Buffer::setLength(_int len)
 {
    if(len < 0)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.InvalidLength");
+      Error *ex = MAKE_ERROR(Error::Structure::InvalidLength);
       ex->addInt("length", len);
       throw ex;
    }
@@ -189,7 +189,7 @@ void Buffer::setCapacity(_int cap)
 {
    if(cap <= 0)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.BadCapacity");
+      Error *ex = MAKE_ERROR(Error::Structure::IllegalCapacity);
       ex->addInt("capacity", cap);
       throw ex;
    }
@@ -213,7 +213,7 @@ _char Buffer::get(_int index) const
 {
    if(index < 0 || index >= _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("index", index);
       ex->addInt("length", _length);
       throw ex;
@@ -226,7 +226,7 @@ const _char Buffer::operator [](_int index) const
 {
    if(index < 0 || index >= _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("index", index);
       ex->addInt("length", _length);
       throw ex;
@@ -240,7 +240,7 @@ void Buffer::set(_int index, _char c)
 {
    if(index < 0 || index >= _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("index", index);
       ex->addInt("length", _length);
       throw ex;
@@ -253,7 +253,7 @@ void Buffer::set(_int index, const String &s)
 {
    if(index < 0 || s._length < 0 || index + s._length > _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("index", index);
       ex->addInt("length", _length);
       ex->addInt("string.length", s._length);
@@ -273,7 +273,7 @@ void Buffer::set(_int index, const Buffer *b)
 {
    if(index < 0 || b->_length < 0 || index + b->_length > _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("index", index);
       ex->addInt("length", _length);
       ex->addInt("buffer.length", b->_length);
@@ -290,7 +290,7 @@ __char &Buffer::operator [](_int index)
 {
    if(index < 0 || index >= _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("index", index);
       ex->addInt("length", _length);
       throw ex;
@@ -309,7 +309,7 @@ _int Buffer::indexOf(_char c, _int start) const
       
    if(start2 < 0 || start2 >= _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("length", _length);
       throw ex;
@@ -331,7 +331,7 @@ _int Buffer::indexOf(const String &s, _int start) const
       
    if(start2 < 0 || start2 >= _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("length", _length);
       throw ex;
@@ -368,7 +368,7 @@ _int Buffer::indexOf(const Buffer *b, _int start) const
       
    if(start2 < 0 || start2 >= _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("length", _length);
       throw ex;
@@ -406,7 +406,7 @@ _int Buffer::lastIndexOf(_char c, _int start) const
       
    if(start2 < 0 || start2 >= _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("length", _length);
       throw ex;
@@ -428,7 +428,7 @@ _int Buffer::lastIndexOf(const String &s, _int start) const
       
    if(start2 < 0 || start2 >= _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("length", _length);
       throw ex;
@@ -466,7 +466,7 @@ _int Buffer::lastIndexOf(const Buffer *b, _int start) const
       
    if(start2 < 0 || start2 >= _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("length", _length);
       throw ex;
@@ -585,7 +585,7 @@ void Buffer::add(const Buffer *b, _int count, _int start)
 
    if(start < 0 || start > b->_length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("length", _length);
       throw ex;
@@ -593,7 +593,7 @@ void Buffer::add(const Buffer *b, _int count, _int start)
    
    if(count < 0 || count > b->_length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("count", count);
       ex->addInt("buffer.length", b->_length);
       throw ex;
@@ -675,7 +675,7 @@ void Buffer::add(_int start, const Buffer *b)
 
    if(start < 0 || start > _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("length", _length);
       throw ex;
@@ -695,7 +695,7 @@ void Buffer::add(_int start, const Buffer *b, _int count)
 
    if(start < 0 || start > _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("length", _length);
       throw ex;
@@ -703,7 +703,7 @@ void Buffer::add(_int start, const Buffer *b, _int count)
       
    if(count < 0 || count > b->_length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("count", count);
       ex->addInt("buffer.length", b->_length);
       throw ex;
@@ -723,7 +723,7 @@ void Buffer::add(_int start, const Buffer *b, _int count, _int start2)
 
    if(start < 0 || start > _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("length", _length);
       throw ex;
@@ -731,7 +731,7 @@ void Buffer::add(_int start, const Buffer *b, _int count, _int start2)
       
    if(start2 < 0 || start2 > b->_length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("buffer.start", start2);
       ex->addInt("buffer.length", b->_length);
       throw ex;
@@ -739,7 +739,7 @@ void Buffer::add(_int start, const Buffer *b, _int count, _int start2)
       
    if(count < 0 || start2 + count > b->_length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("count", count);
       ex->addInt("buffer.start", start2);
       ex->addInt("buffer.length", b->_length);
@@ -763,7 +763,7 @@ Buffer *Buffer::sub(_int length) const
 
    if(actual_len < 0 || actual_len > _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.InvalidLength");
+      Error *ex = MAKE_ERROR(Error::Structure::InvalidLength);
       ex->addInt("sub.length", length);
       ex->addInt("sub.actual", actual_len);
       ex->addInt("length", _length);
@@ -781,7 +781,7 @@ Buffer *Buffer::sub(_int start, _int length) const
 
    if(start < 0 || actual_len < 0 || start + actual_len > _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("sub.length", length);
       ex->addInt("sub.actual", actual_len);
@@ -805,7 +805,7 @@ void Buffer::erase(_int index, _int count)
       
    if(index < 0 || index >= _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("index", index);
       ex->addInt("length", _length);
       throw ex;
@@ -815,7 +815,7 @@ void Buffer::erase(_int index, _int count)
    {
       if(index + count > _length)
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.InvalidLength");
+         Error *ex = MAKE_ERROR(Error::Structure::InvalidLength);
          ex->addInt("count", count);
          ex->addInt("index", index);
          ex->addInt("length", _length);
@@ -875,7 +875,7 @@ void Buffer::replace(_char find, _char other, _int start)
       
    if(start2 < 0 || start2 >= _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("length", _length);
       throw ex;
@@ -895,7 +895,7 @@ void Buffer::replace(const String &find, const String &other, _int start)
       
    if(start2 < 0 || start2 >= _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("length", _length);
       throw ex;
@@ -949,7 +949,7 @@ void Buffer::replace(const Buffer *find, const Buffer *other, _int start)
       
    if(start2 < 0 || start2 >= _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("length", _length);
       throw ex;
@@ -1082,3 +1082,4 @@ void Buffer::ensureCap(_int min)
 }
 
 } } }
+

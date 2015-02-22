@@ -19,7 +19,7 @@ void Reporter::report(Throwable *error, _bool silently)
       {
          PRINTLN("Exception: " + error->msg());
       }
-      else if(error->is<Error>())
+      else if(error->is< ::Error>())
       {
          PRINTLN("Error: " + error->msg());
       }
@@ -34,18 +34,18 @@ void Reporter::report(Throwable *error, _bool silently)
       
       _int pars = 0;
       const Table<String, String> *params = error->params();
-      if(params->containsKey("debug.file"))
+      if(params->contains("debug.file"))
       {
          PRINT(" from " + params->get("debug.file"));
          pars++;
          
-         if(params->containsKey("debug.line"))
+         if(params->contains("debug.line"))
          {
             PRINT(':' + params->get("debug.line"));
             pars++;
          }
          
-         if(ex->params.containsKey("debug.date"))
+         if(params->contains("debug.date"))
          {
             PRINT(" (" + params->get("debug.date") + ")");
             pars++;

@@ -40,7 +40,7 @@ _int UTF_32::decode(const Buffer *in, Text::Buffer *out, _bool finish)
      
    for(_int i = 0; i < len; i += 4)
    {
-      _char c;
+      Character c;
       __char w;
       
       if(_endian)
@@ -64,13 +64,15 @@ _int UTF_32::decode(const Buffer *in, Text::Buffer *out, _bool finish)
       {
          c = w;
       }
+      catch(Exception::Format::InvalidCharacter *e)
+      {
+         throw e;
+      }
       catch(Exception *e)
       {
-         if(e->id() != "Storage.Structure.InvalidCharacter")
-            throw e;
          delete e;
 
-         Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidByte");
+         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
          ex->add("encoding", _name);
          ex->addUInt32("code", w);
          throw ex;
@@ -80,7 +82,7 @@ _int UTF_32::decode(const Buffer *in, Text::Buffer *out, _bool finish)
    }
    
    if(finish && len != in->length())
-      ERROR("Storage.Structure.Binary.Encodings.UnexpectedEnd");
+      ERROR(Exception::Format::UnexpectedEnd);
       
    return len;
 }
@@ -102,7 +104,7 @@ _int UTF_32::encode(const Text::Buffer *in, Buffer *out, _bool finish)
       __char c = (__char)in->get(i);
       if(!Character::isValid(c))
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidCharacter");
+         Exception *ex = MAKE_ERROR(Exception::Format::InvalidCharacter);
          ex->add("encoding", _name);
          ex->addUInt32("character", c);
          throw ex;
@@ -139,3 +141,4 @@ void UTF_32::setBom(_bool bom)
 }
 
 } } } }
+

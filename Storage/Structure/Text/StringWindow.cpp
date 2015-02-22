@@ -13,7 +13,7 @@ StringWindow::StringWindow(const StringBuffer &str)
 {
    _str = str;
    if(_str.count() == 0)
-      ERROR("Storage.Structure.Text.EmptyBuffer");
+      ERROR(Exception::Format::EmptyBuffer);
    _position = 0;
 }
 
@@ -21,7 +21,7 @@ StringWindow::StringWindow(const StringBuffer &str, _int start, _int length)
 {
    _str = str.sub(start, length);
    if(_str.count() == 0)
-      ERROR("Storage.Structure.Text.EmptyBuffer");
+      ERROR(Exception::Format::EmptyBuffer);
    _position = 0;
 }
 
@@ -57,7 +57,7 @@ void StringWindow::moveStart(_int chars)
 {
    if(chars < 0)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.Text.NoBackward");
+      Error *ex = MAKE_ERROR(Error::Text::NoBackward);
       ex->add("pointer", "start");
       ex->addInt("move", chars);
       throw ex;
@@ -76,7 +76,7 @@ void StringWindow::moveEnd(_int chars)
 {
    if(chars < 0)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.Text.NoBackward");
+      Error *ex = MAKE_ERROR(Error::Text::NoBackward);
       ex->add("pointer", "end");
       ex->addInt("move", chars);
       throw ex;
@@ -90,3 +90,4 @@ void StringWindow::moveEnd(_int chars)
 }
 
 } } }
+

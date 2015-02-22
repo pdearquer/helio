@@ -33,7 +33,7 @@ _int UTF_8::decode(const Buffer *in, Text::Buffer *out, _bool finish)
       if(in->length() - i < len)
       {
          if(finish)
-            ERROR("Storage.Structure.Binary.Encodings.UnexpectedEnd");
+            ERROR(Exception::Format::UnexpectedEnd);
          return i;
       }
       
@@ -83,7 +83,7 @@ _int UTF_8::charlen(const _uint8 *buf)
       return 6;
    else
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidByte");
+      Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
       ex->add("encoding", "UTF-8");
       ex->addByte("byte", b);
       throw ex;
@@ -112,7 +112,7 @@ _int UTF_8::charenc(_char ch, _uint8 *buf)
    __char c = (__char)ch;
    if(!Character::isValid(c))
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidCharacter");
+      Exception *ex = MAKE_ERROR(Exception::Format::InvalidCharacter);
       ex->add("encoding", "UTF-8");
       ex->addUInt32("character", c);
       throw ex;
@@ -174,7 +174,7 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
    {
       if(!Character::isValid(b))
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidByte");
+         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b);
          throw ex;
@@ -189,16 +189,16 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
       b2 = (__char) buf[1];
       if((b2 & 0xC0) != 0x80)
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidByte");
+         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b2);
          throw ex;
       }
       b = b | (b2 & 0x3F);
       
-      if(!Character::isValid(b))
+      if(!Character::isValid(b) || b <= 0x7F)
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidByte");
+         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b);
          throw ex;
@@ -213,7 +213,7 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
       b2 = (__char) buf[1];
       if((b2 & 0xC0) != 0x80)
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidByte");
+         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b2);
          throw ex;
@@ -223,16 +223,16 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
       b2 = (__char) buf[2];
       if((b2 & 0xC0) != 0x80)
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidByte");
+         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b2);
          throw ex;
       } 
       b = b | (b2 & 0x3F);
       
-      if(!Character::isValid(b))
+      if(!Character::isValid(b) || b <= 0x7FF)
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidByte");
+         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b);
          throw ex;
@@ -247,7 +247,7 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
       b2 = (__char) buf[1];
       if((b2 & 0xC0) != 0x80)
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidByte");
+         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b2);
          throw ex;
@@ -257,7 +257,7 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
       b2 = (__char) buf[2];
       if((b2 & 0xC0) != 0x80)
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidByte");
+         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b2);
          throw ex;
@@ -267,16 +267,16 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
       b2 = (__char) buf[3];
       if((b2 & 0xC0) != 0x80)
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidByte");
+         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b2);
          throw ex;
       } 
       b = b | (b2 & 0x3F);
       
-      if(!Character::isValid(b))
+      if(!Character::isValid(b) || b <= 0xFFFF)
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidByte");
+         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b);
          throw ex;
@@ -291,7 +291,7 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
       b2 = (__char) buf[1];
       if((b2 & 0xC0) != 0x80)
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidByte");
+         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b2);
          throw ex;
@@ -301,7 +301,7 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
       b2 = (__char) buf[2];
       if((b2 & 0xC0) != 0x80)
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidByte");
+         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b2);
          throw ex;
@@ -311,7 +311,7 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
       b2 = (__char) buf[3];
       if((b2 & 0xC0) != 0x80)
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidByte");
+         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b2);
          throw ex;
@@ -321,16 +321,16 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
       b2 = (__char) buf[4];
       if((b2 & 0xC0) != 0x80)
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidByte");
+         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b2);
          throw ex;
       } 
       b = b | (b2 & 0x3F);
       
-      if(!Character::isValid(b))
+      if(!Character::isValid(b) || b <= 0x1FFFFF)
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidByte");
+         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b);
          throw ex;
@@ -345,7 +345,7 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
       b2 = (__char) buf[1];
       if((b2 & 0xC0) != 0x80)
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidByte");
+         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b2);
          throw ex;
@@ -355,7 +355,7 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
       b2 = (__char) buf[2];
       if((b2 & 0xC0) != 0x80)
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidByte");
+         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b2);
          throw ex;
@@ -365,7 +365,7 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
       b2 = (__char) buf[3];
       if((b2 & 0xC0) != 0x80)
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidByte");
+         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b2);
          throw ex;
@@ -375,7 +375,7 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
       b2 = (__char) buf[4];
       if((b2 & 0xC0) != 0x80)
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidByte");
+         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b2);
          throw ex;
@@ -385,16 +385,16 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
       b2 = (__char) buf[5];
       if((b2 & 0xC0) != 0x80)
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidByte");
+         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b2);
          throw ex;
       } 
       b = b | (b2 & 0x3F);
 
-      if(!Character::isValid(b))
+      if(!Character::isValid(b) || b <= 0x3FFFFFF)
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidByte");
+         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b);
          throw ex;
@@ -404,7 +404,7 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
    }
    else
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidByte");
+      Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
       ex->add("encoding", "UTF-8");
       ex->addByte("byte", b);
       throw ex;
@@ -422,7 +422,7 @@ _int UTF_8::charcount(const _uint8 *buf, _int bytes)
    }
    
    if(i != bytes)
-      ERROR("Storage.Structure.Binary.Encodings.UnexpectedEnd");
+      ERROR(Exception::Format::UnexpectedEnd);
    
    return count;
 }
@@ -437,3 +437,4 @@ _int UTF_8::charbytes(const _uint8 *buf, _int len)
 }
 
 } } } }
+

@@ -528,7 +528,7 @@ void Float::checkOverflow(__float value)
       default:
       case FP_INFINITE:
       case FP_NAN:
-         ERROR("Storage.Structure.Overflow");
+         ERROR(Error::Arithmetic::Overflow);
          break;
       
       case FP_ZERO:      
@@ -539,7 +539,7 @@ void Float::checkOverflow(__float value)
       case FP_NORMAL:
          __float positive = value < 0 ? -value : value;
          if(positive < MIN || positive > MAX)
-            ERROR("Storage.Structure.Overflow");
+            ERROR(Error::Arithmetic::Overflow);
             
          _value = value;
          break;

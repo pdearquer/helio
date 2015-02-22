@@ -213,7 +213,7 @@ template <class K, class V> _bool Table<K, V>::equals(const Table<K, V> &other) 
       
    for(_int i = 0; i < _length; i++)
    {
-      if(!other.containsKey(_keys[i]))
+      if(!other.contains(_keys[i]))
          return false;
          
       if(other.get(_keys[i]) != _values[i])

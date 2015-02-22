@@ -71,7 +71,7 @@ _int Windows1250::decode(const Buffer *in, Text::Buffer *out, _bool finish)
          c = _table[c - 0x80];
          if(c == 0)
          {
-            Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidByte");
+            Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
             ex->add("encoding", _name);
             ex->addByte("byte", c);
             throw ex;
@@ -90,10 +90,12 @@ _int Windows1250::encode(const Text::Buffer *in, Buffer *out, _bool finish)
       _int c = getCode((__char)in->get(i));
       
       if(c >= 0)
+      {
          out->add((_byte) c);
+      }
       else
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidCharacter");
+         Exception *ex = MAKE_ERROR(Exception::Format::InvalidCharacter);
          ex->add("encoding", _name);
          ex->addUInt32("character", (__char)in->get(i));
          throw ex;
@@ -103,3 +105,4 @@ _int Windows1250::encode(const Text::Buffer *in, Buffer *out, _bool finish)
 }
 
 } } } }
+

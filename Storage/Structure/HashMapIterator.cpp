@@ -37,7 +37,7 @@ template<class K, class V> K *HashMapIterator<K, V>::get()
 
    if(this->_node == null)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.IterationEnd");
+      Error *ex = MAKE_ERROR(Error::Structure::IterationEnded);
       ex->addInt("count", this->_map->_count);
       throw ex;
    }
@@ -51,7 +51,7 @@ template<class K, class V> K *HashMapIterator<K, V>::next()
 
    if(this->_node == null)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.IterationEnd");
+      Error *ex = MAKE_ERROR(Error::Structure::IterationEnded);
       ex->addInt("count", this->_map->_count);
       throw ex;
    }

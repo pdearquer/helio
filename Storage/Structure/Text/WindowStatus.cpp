@@ -59,3 +59,4 @@ void WindowStatus::update(const String &text)
 }
 
 } } }
+

@@ -38,7 +38,7 @@ void WindowPointer::move(const _int chars)
 void WindowPointer::move(const WindowPointer &other)
 {
    if(_win != other._win)
-      ERROR("Storage.Structure.Text.IncompatiblePointers");
+      ERROR(Error::Text::IncompatiblePointers);
       
    _win->setPointer(_index, other._index);
 }
@@ -57,7 +57,7 @@ void WindowPointer::end()
 _int WindowPointer::diff(const WindowPointer &other) const
 {
    if(_win != other._win)
-      ERROR("Storage.Structure.Text.IncompatiblePointers");
+      ERROR(Error::Text::IncompatiblePointers);
       
    _int from = _win->getPointer(_index);
    _int to = _win->getPointer(other._index);
@@ -128,7 +128,7 @@ WindowPointer &WindowPointer::operator -=(const _int chars)
 _bool WindowPointer::operator ==(const WindowPointer &other) const
 {
    if(_win != other._win)
-      ERROR("Storage.Structure.Text.IncompatiblePointers");
+      ERROR(Error::Text::IncompatiblePointers);
       
    return (_win->getPointer(_index) == _win->getPointer(other._index));
 }
@@ -136,7 +136,7 @@ _bool WindowPointer::operator ==(const WindowPointer &other) const
 _bool WindowPointer::operator !=(const WindowPointer &other) const
 {
    if(_win != other._win)
-      ERROR("Storage.Structure.Text.IncompatiblePointers");
+      ERROR(Error::Text::IncompatiblePointers);
       
    return (_win->getPointer(_index) != _win->getPointer(other._index));
 }
@@ -144,7 +144,7 @@ _bool WindowPointer::operator !=(const WindowPointer &other) const
 _bool WindowPointer::operator <(const WindowPointer &other) const
 {
    if(_win != other._win)
-      ERROR("Storage.Structure.Text.IncompatiblePointers");
+      ERROR(Error::Text::IncompatiblePointers);
       
    return (_win->getPointer(_index) < _win->getPointer(other._index));
 }
@@ -152,7 +152,7 @@ _bool WindowPointer::operator <(const WindowPointer &other) const
 _bool WindowPointer::operator >(const WindowPointer &other) const
 {
    if(_win != other._win)
-      ERROR("Storage.Structure.Text.IncompatiblePointers");
+      ERROR(Error::Text::IncompatiblePointers);
       
    return (_win->getPointer(_index) > _win->getPointer(other._index));
 }
@@ -160,7 +160,7 @@ _bool WindowPointer::operator >(const WindowPointer &other) const
 _bool WindowPointer::operator <=(const WindowPointer &other) const
 {
    if(_win != other._win)
-      ERROR("Storage.Structure.Text.IncompatiblePointers");
+      ERROR(Error::Text::IncompatiblePointers);
       
    return (_win->getPointer(_index) <= _win->getPointer(other._index));
 }
@@ -168,7 +168,7 @@ _bool WindowPointer::operator <=(const WindowPointer &other) const
 _bool WindowPointer::operator >=(const WindowPointer &other) const
 {
    if(_win != other._win)
-      ERROR("Storage.Structure.Text.IncompatiblePointers");
+      ERROR(Error::Text::IncompatiblePointers);
       
    return (_win->getPointer(_index) >= _win->getPointer(other._index));
 }
@@ -180,3 +180,4 @@ WindowPointer WindowPointer::dup() const
 }
 
 } } }
+

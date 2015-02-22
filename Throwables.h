@@ -26,7 +26,7 @@ public:
 class Exception::NotSupported : public virtual Exception
 {
 public:
-   NotSupported(Component::Error::Throwable *child, String source, _int line, String date)
+   NotSupported(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Operation not supported.", child, source, line, date);
    }
@@ -35,7 +35,7 @@ public:
 class Exception::InvalidClass : public virtual Exception
 {
 public:
-   InvalidClass(Component::Error::Throwable *child, String source, _int line, String date)
+   InvalidClass(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("The object does not belong to the expected class.", child, source, line, date);
    }
@@ -47,7 +47,7 @@ protected:
    Format() { }
    
 public:
-   Format(Component::Error::Throwable *child, String source, _int line, String date)
+   Format(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Invalid format found.", child, source, line, date);
    }
@@ -66,7 +66,7 @@ public:
 class Exception::Format::Overflow : public virtual Exception::Format
 {
 public:
-   Overflow(Component::Error::Throwable *child, String source, _int line, String date)
+   Overflow(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("The number exceed the limits.", child, source, line, date);
    }
@@ -75,7 +75,7 @@ public:
 class Exception::Format::InvalidCharacter : public virtual Exception::Format
 {
 public:
-   InvalidCharacter(Component::Error::Throwable *child, String source, _int line, String date)
+   InvalidCharacter(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Character code is not valid.", child, source, line, date);
    }
@@ -84,7 +84,7 @@ public:
 class Exception::Format::DateLimit : public virtual Exception::Format
 {
 public:
-   DateLimit(Component::Error::Throwable *child, String source, _int line, String date)
+   DateLimit(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Date out of the limits of precision.", child, source, line, date);
    }
@@ -93,7 +93,7 @@ public:
 class Exception::Format::InvalidBase : public virtual Exception::Format
 {
 public:
-   InvalidBase(Component::Error::Throwable *child, String source, _int line, String date)
+   InvalidBase(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Invalid base for current digits.", child, source, line, date);
    }
@@ -102,7 +102,7 @@ public:
 class Exception::Format::InvalidDigits : public virtual Exception::Format
 {
 public:
-   InvalidDigits(Component::Error::Throwable *child, String source, _int line, String date)
+   InvalidDigits(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Invalid set of digits.", child, source, line, date);
    }
@@ -111,7 +111,7 @@ public:
 class Exception::Format::IllegalSequence : public virtual Exception::Format
 {
 public:
-   IllegalSequence(Component::Error::Throwable *child, String source, _int line, String date)
+   IllegalSequence(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Illegal sequence of characters found.", child, source, line, date);
    }
@@ -120,7 +120,7 @@ public:
 class Exception::Format::UnexpectedEnd : public virtual Exception::Format
 {
 public:
-   UnexpectedEnd(Component::Error::Throwable *child, String source, _int line, String date)
+   UnexpectedEnd(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Unexpected end of data.", child, source, line, date);
    }
@@ -129,16 +129,16 @@ public:
 class Exception::Format::InvalidByte : public virtual Exception::Format
 {
 public:
-   InvalidByte(Component::Error::Throwable *child, String source, _int line, String date)
+   InvalidByte(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
-      init("Invalid byte sequence for this encoding.", child, source, line, date);
+      init("Incorrect sequence of bytes found.", child, source, line, date);
    }
 };
 
 class Exception::Format::EmptyBuffer : public virtual Exception::Format
 {
 public:
-   EmptyBuffer(Component::Error::Throwable *child, String source, _int line, String date)
+   EmptyBuffer(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Empty buffers cannot be processed.", child, source, line, date);
    }
@@ -159,7 +159,7 @@ public:
 class Exception::Structure::KeyNotFound : public virtual Exception::Structure
 {
 public:
-   KeyNotFound(Component::Error::Throwable *child, String source, _int line, String date)
+   KeyNotFound(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("The given key was not found is the container.", child, source, line, date);
    }
@@ -168,7 +168,7 @@ public:
 class Exception::Structure::ValueNotFound : public virtual Exception::Structure
 {
 public:
-   ValueNotFound(Component::Error::Throwable *child, String source, _int line, String date)
+   ValueNotFound(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("The given value was not found is the container.", child, source, line, date);
    }
@@ -177,7 +177,7 @@ public:
 class Exception::Structure::EscapingNotSupported : public virtual Exception::Structure
 {
 public:
-   EscapingNotSupported(Component::Error::Throwable *child, String source, _int line, String date)
+   EscapingNotSupported(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Escaping not supported.", child, source, line, date);
    }
@@ -186,7 +186,7 @@ public:
 class Exception::Structure::EncodingNotSupported : public virtual Exception::Structure
 {
 public:
-   EncodingNotSupported(Component::Error::Throwable *child, String source, _int line, String date)
+   EncodingNotSupported(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Encoding not supported.", child, source, line, date);
    }
@@ -204,7 +204,7 @@ public:
 class Exception::Device::NoDefault : public virtual Exception::Device
 {
 public:
-   NoDefault(Component::Error::Throwable *child, String source, _int line, String date)
+   NoDefault(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("No default device available of this type.", child, source, line, date);
    }
@@ -225,7 +225,7 @@ public:
 class Exception::Test::UnknownException : public virtual Exception::Test
 {
 public:
-   UnknownException(Component::Error::Throwable *child, String source, _int line, String date)
+   UnknownException(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Catched unknown exception.", child, source, line, date);
    }
@@ -234,7 +234,7 @@ public:
 class Exception::Test::IllegalFilter : public virtual Exception::Test
 {
 public:
-   IllegalFilter(Component::Error::Throwable *child, String source, _int line, String date)
+   IllegalFilter(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Illegal test filtering pattern.", child, source, line, date);
    }
@@ -243,7 +243,7 @@ public:
 class Exception::Test::TestException : public virtual Exception::Test
 {
 public:
-   TestException(Component::Error::Throwable *child, String source, _int line, String date)
+   TestException(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("This exception is just for test purposes.", child, source, line, date);
    }
@@ -252,7 +252,7 @@ public:
 class Exception::Test::MemoryLeak : public virtual Exception::Test
 {
 public:
-   MemoryLeak(Component::Error::Throwable *child, String source, _int line, String date)
+   MemoryLeak(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Object not deallocated from memory.", child, source, line, date);
    }
@@ -282,7 +282,7 @@ public:
 class Error::UserInterrupt : public virtual Error
 {
 public:
-   UserInterrupt(Component::Error::Throwable *child, String source, _int line, String date)
+   UserInterrupt(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Execution interrupted by the user.", child, source, line, date);
    }
@@ -291,7 +291,7 @@ public:
 class Error::TimeOut : public virtual Error
 {
 public:
-   TimeOut(Component::Error::Throwable *child, String source, _int line, String date)
+   TimeOut(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("The execution has timed out.", child, source, line, date);
    }
@@ -300,7 +300,7 @@ public:
 class Error::NotImplemented : public virtual Error
 {
 public:
-   NotImplemented(Component::Error::Throwable *child, String source, _int line, String date)
+   NotImplemented(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Feature not implemented.", child, source, line, date);
    }
@@ -309,7 +309,7 @@ public:
 class Error::NullObject : public virtual Error
 {
 public:
-   NullObject(Component::Error::Throwable *child, String source, _int line, String date)
+   NullObject(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Unexpected null object.", child, source, line, date);
    }
@@ -318,7 +318,7 @@ public:
 class Error::Internal : public virtual Error
 {
 public:
-   Internal(Component::Error::Throwable *child, String source, _int line, String date)
+   Internal(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Internal error occured.", child, source, line, date);
    }
@@ -327,7 +327,7 @@ public:
 class Error::IllegalClass : public virtual Error
 {
 public:
-   IllegalClass(Component::Error::Throwable *child, String source, _int line, String date)
+   IllegalClass(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("The pointer given is not a legal Object.", child, source, line, date);
    }
@@ -347,7 +347,7 @@ public:
 class Error::Arithmetic::Overflow : public virtual Error::Arithmetic
 {
 public:
-   Overflow(Component::Error::Throwable *child, String source, _int line, String date)
+   Overflow(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Last arithmetic operation has overflown.", child, source, line, date);
    }
@@ -356,7 +356,7 @@ public:
 class Error::Arithmetic::DivisionByCero : public virtual Error::Arithmetic
 {
 public:
-   DivisionByCero(Component::Error::Throwable *child, String source, _int line, String date)
+   DivisionByCero(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Trying to calculate a division by cero.", child, source, line, date);
    }
@@ -365,7 +365,7 @@ public:
 class Error::Arithmetic::ModuloByCero : public virtual Error::Arithmetic
 {
 public:
-   ModuloByCero(Component::Error::Throwable *child, String source, _int line, String date)
+   ModuloByCero(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Trying to calculate a modulo by cero.", child, source, line, date);
    }
@@ -390,7 +390,7 @@ public:
 class Error::Structure::IllegalCapacity : public virtual Error::Structure
 {
 public:
-   IllegalCapacity(Component::Error::Throwable *child, String source, _int line, String date)
+   IllegalCapacity(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("The capacity must be higher than cero.", child, source, line, date);
    }
@@ -399,7 +399,7 @@ public:
 class Error::Structure::OutOfBounds : public virtual Error::Structure
 {
 public:
-   OutOfBounds(Component::Error::Throwable *child, String source, _int line, String date)
+   OutOfBounds(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Index or interval out of bounds.", child, source, line, date);
    }
@@ -408,7 +408,7 @@ public:
 class Error::Structure::Empty : public virtual Error::Structure
 {
 public:
-   Empty(Component::Error::Throwable *child, String source, _int line, String date)
+   Empty(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Operation invalid because the container is empty.", child, source, line, date);
    }
@@ -417,7 +417,7 @@ public:
 class Error::Structure::IterationEnded : public virtual Error::Structure
 {
 public:
-   IterationEnded(Component::Error::Throwable *child, String source, _int line, String date)
+   IterationEnded(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("There are no more elements to iterate.", child, source, line, date);
    }
@@ -426,7 +426,7 @@ public:
 class Error::Structure::IteratorInvalidated : public virtual Error::Structure
 {
 public:
-   IteratorInvalidated(Component::Error::Throwable *child, String source, _int line, String date)
+   IteratorInvalidated(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("The container has been modified and that invalidates this iterator.", child, source, line, date);
    }
@@ -435,7 +435,7 @@ public:
 class Error::Structure::InvalidLength : public virtual Error::Structure
 {
 public:
-   InvalidLength(Component::Error::Throwable *child, String source, _int line, String date)
+   InvalidLength(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Trying to set a negative or too long length.", child, source, line, date);
    }
@@ -444,7 +444,7 @@ public:
 class Error::Structure::LoopsNotAllowed : public virtual Error::Structure
 {
 public:
-   LoopsNotAllowed(Component::Error::Throwable *child, String source, _int line, String date)
+   LoopsNotAllowed(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("This node container does not allow loops.", child, source, line, date);
    }
@@ -453,7 +453,7 @@ public:
 class Error::Structure::InvalidContainer : public virtual Error::Structure
 {
 public:
-   InvalidContainer(Component::Error::Throwable *child, String source, _int line, String date)
+   InvalidContainer(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("The element does not belong to the container provided.", child, source, line, date);
    }
@@ -473,7 +473,7 @@ public:
 class Error::Text::NoBackward : public virtual Error::Text
 {
 public:
-   NoBackward(Component::Error::Throwable *child, String source, _int line, String date)
+   NoBackward(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Window start and end pointers cannot go backwards.", child, source, line, date);
    }
@@ -482,7 +482,7 @@ public:
 class Error::Text::IncompatiblePointers : public virtual Error::Text
 {
 public:
-   IncompatiblePointers(Component::Error::Throwable *child, String source, _int line, String date)
+   IncompatiblePointers(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Incompatible pointers mixed, they must work over the same window.", child, source, line, date);
    }
@@ -491,7 +491,7 @@ public:
 class Error::Text::InvalidPointer : public virtual Error::Text
 {
 public:
-   InvalidPointer(Component::Error::Throwable *child, String source, _int line, String date)
+   InvalidPointer(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Window pointer not allocated.", child, source, line, date);
    }
@@ -511,7 +511,7 @@ public:
 class Error::Test::Assertion : public virtual Error::Test
 {
 public:
-   Assertion(Component::Error::Throwable *child, String source, _int line, String date)
+   Assertion(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Assertion condition failed.", child, source, line, date);
    }
@@ -520,7 +520,7 @@ public:
 class Error::Test::Duplicated : public virtual Error::Test
 {
 public:
-   Duplicated(Component::Error::Throwable *child, String source, _int line, String date)
+   Duplicated(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Test name duplicated.", child, source, line, date);
    }
@@ -529,7 +529,7 @@ public:
 class Error::Test::TestError : public virtual Error::Test
 {
 public:
-   TestError(Component::Error::Throwable *child, String source, _int line, String date)
+   TestError(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("This error is just for test purposes.", child, source, line, date);
    }
@@ -562,7 +562,7 @@ public:
 class Fault::Code::InvalidAddress : public virtual Fault::Code
 {
 public:
-   InvalidAddress(Component::Error::Throwable *child, String source, _int line, String date)
+   InvalidAddress(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Trying to access an invalid memory address.", child, source, line, date);
    }
@@ -571,7 +571,7 @@ public:
 class Fault::Code::FloatingPoint : public virtual Fault::Code
 {
 public:
-   FloatingPoint(Component::Error::Throwable *child, String source, _int line, String date)
+   FloatingPoint(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Floating point exception.", child, source, line, date);
    }
@@ -580,7 +580,7 @@ public:
 class Fault::Code::IllegalInstruction : public virtual Fault::Code
 {
 public:
-   IllegalInstruction(Component::Error::Throwable *child, String source, _int line, String date)
+   IllegalInstruction(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Trying to execute an illegal instruction.", child, source, line, date);
    }
@@ -604,7 +604,7 @@ public:
 class Fault::Memory::SafeAllocatorBroken : public virtual Fault::Memory
 {
 public:
-   SafeAllocatorBroken(Component::Error::Throwable *child, String source, _int line, String date)
+   SafeAllocatorBroken(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Exception thrown on safe allocator environment.", child, source, line, date);
    }
@@ -613,7 +613,7 @@ public:
 class Fault::Memory::OutOfMemory : public virtual Fault::Memory
 {
 public:
-   OutOfMemory(Component::Error::Throwable *child, String source, _int line, String date)
+   OutOfMemory(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("No more memory available.", child, source, line, date);
    }
@@ -622,7 +622,7 @@ public:
 class Fault::Memory::InvalidPointer : public virtual Fault::Memory
 {
 public:
-   InvalidPointer(Component::Error::Throwable *child, String source, _int line, String date)
+   InvalidPointer(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("The pointer provided is not valid in current memory allocator.", child, source, line, date);
    }
@@ -631,7 +631,7 @@ public:
 class Fault::Memory::AlignmentFail : public virtual Fault::Memory
 {
 public:
-   AlignmentFail(Component::Error::Throwable *child, String source, _int line, String date)
+   AlignmentFail(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Fail to accomplish alignment constraints.", child, source, line, date);
    }
@@ -640,7 +640,7 @@ public:
 class Fault::Memory::BigAllocation : public virtual Fault::Memory
 {
 public:
-   BigAllocation(Component::Error::Throwable *child, String source, _int line, String date)
+   BigAllocation(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Trying to allocate an object too big.", child, source, line, date);
    }
@@ -649,7 +649,7 @@ public:
 class Fault::Memory::DoubleDeallocation : public virtual Fault::Memory
 {
 public:
-   DoubleDeallocation(Component::Error::Throwable *child, String source, _int line, String date)
+   DoubleDeallocation(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Trying to deallocate an object already deallocated.", child, source, line, date);
    }
@@ -658,7 +658,7 @@ public:
 class Fault::Memory::MemoryCorrupt : public virtual Fault::Memory
 {
 public:
-   MemoryCorrupt(Component::Error::Throwable *child, String source, _int line, String date)
+   MemoryCorrupt(Component::Error::Throwable *child, const String &source, _int line, const String &date)
    {
       init("Memory corruption detected.", child, source, line, date);
    }

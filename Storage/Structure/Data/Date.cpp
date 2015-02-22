@@ -65,7 +65,7 @@ _uint32 Date::setUnix(_uint32 utime, _bool saturate)
       }
       else
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.DateLimit");
+         Exception *ex = MAKE_ERROR(Exception::Format::DateLimit);
          ex->addUInt32("unix", utime);
          throw ex;
       }
@@ -83,7 +83,7 @@ _uint32 Date::getUnix(_bool saturate) const
       }
       else
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.DateLimit");
+         Exception *ex = MAKE_ERROR(Exception::Format::DateLimit);
          ex->addUInt32("seconds", _secs);
          throw ex;
       }

@@ -130,7 +130,7 @@ StringBuffer StringBuffer::sub(_int length) const
 
    if(actual_len < 0 || actual_len > _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("sub.length", length);
       ex->addInt("sub.actual", actual_len);
       ex->addInt("length", _length);
@@ -149,7 +149,7 @@ StringBuffer StringBuffer::sub(_int start, _int length) const
 
    if(start < 0 || actual_len < 0 || start + actual_len > _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("sub.length", length);
       ex->addInt("sub.actual", actual_len);
@@ -594,7 +594,6 @@ const Storage::Structure::Text::StringBuffer operator +(void *p, const Storage::
 #endif
 
 
-
 const Storage::Structure::Text::StringBuffer operator +(const Storage::Structure::Data::String &str1, const Storage::Structure::Data::String &str2)
 {
    Storage::Structure::Text::StringBuffer ret(str1);
@@ -856,5 +855,4 @@ const Storage::Structure::Text::StringBuffer operator +(const char *ascii, const
    ret.add(o.toString());
    return ret;
 }
-
 

@@ -56,7 +56,7 @@ _char Base64::getChar(_int val)
  
    if(val > 61)
    {
-      Exception *ex = MAKE_ERROR("Internal");
+      Error *ex = MAKE_ERROR(Error::Internal);
       ex->add("encoding", _name);
       throw ex;
    }
@@ -120,7 +120,7 @@ _int Base64::decode(const Buffer *in, Text::Buffer *out, _bool finish)
          break;
          
       default:
-         Exception *ex = MAKE_ERROR("Internal");
+         Error *ex = MAKE_ERROR(Error::Internal);
          ex->add("encoding", _name);
          throw ex;
    }
@@ -149,13 +149,13 @@ _int Base64::encode(const Text::Buffer *in, Buffer *out, _bool finish)
                return i;
                
             if(!_padding || in->length() - i < 2)
-               ERROR("Storage.Structure.Binary.Encodings.UnexpectedEnd");
+               ERROR(Exception::Format::UnexpectedEnd);
          }
          
          c = getValue((__char)ch);
          if(c < 0)
          {
-            Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidCharacter");
+            Exception *ex = MAKE_ERROR(Exception::Format::InvalidCharacter);
             ex->add("encoding", _name);
             ex->addUInt32("character", (__char)ch);
             throw ex;
@@ -166,7 +166,7 @@ _int Base64::encode(const Text::Buffer *in, Buffer *out, _bool finish)
          c = getValue(in->get(i));      
          if(c < 0)
          {
-            Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidCharacter");
+            Exception *ex = MAKE_ERROR(Exception::Format::InvalidCharacter);
             ex->add("encoding", _name);
             ex->addUInt32("character", (__char)ch);
             throw ex;
@@ -187,7 +187,7 @@ _int Base64::encode(const Text::Buffer *in, Buffer *out, _bool finish)
             ch = in->get(i);
             if(ch != '=')
             {
-               Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidCharacter");
+               Exception *ex = MAKE_ERROR(Exception::Format::InvalidCharacter);
                ex->add("encoding", _name);
                ex->addUInt32("character", (__char)ch);
                ex->add("expected", "padding");
@@ -203,7 +203,7 @@ _int Base64::encode(const Text::Buffer *in, Buffer *out, _bool finish)
          c = getValue(ch);      
          if(c < 0)
          {
-            Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidCharacter");
+            Exception *ex = MAKE_ERROR(Exception::Format::InvalidCharacter);
             ex->add("encoding", _name);
             ex->addUInt32("character", (__char)ch);
             throw ex;
@@ -231,7 +231,7 @@ _int Base64::encode(const Text::Buffer *in, Buffer *out, _bool finish)
          c = getValue(ch);      
          if(c < 0)
          {
-            Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidCharacter");
+            Exception *ex = MAKE_ERROR(Exception::Format::InvalidCharacter);
             ex->add("encoding", _name);
             ex->addUInt32("character", (__char)ch);
             throw ex;
@@ -249,7 +249,7 @@ _int Base64::encode(const Text::Buffer *in, Buffer *out, _bool finish)
       ch = in->get(i);
       if(ch != '\r' && ch != '\n')
       {
-         Exception *ex = MAKE_ERROR("Storage.Structure.Binary.Encodings.InvalidCharacter");
+         Exception *ex = MAKE_ERROR(Exception::Format::InvalidCharacter);
          ex->add("encoding", _name);
          ex->addUInt32("character", (__char)ch);
          ex->add("expected", "end");

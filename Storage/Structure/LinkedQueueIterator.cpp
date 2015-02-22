@@ -30,7 +30,7 @@ template <class T> T *LinkedQueueIterator<T>::get()
 
    if(this->_node == null)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.IterationEnd");
+      Error *ex = MAKE_ERROR(Error::Structure::IterationEnded);
       ex->addInt("count", this->_list->_count);
       throw ex;
    }
@@ -44,7 +44,7 @@ template <class T> T *LinkedQueueIterator<T>::next()
 
    if(this->_node == null)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.IterationEnd");
+      Error *ex = MAKE_ERROR(Error::Structure::IterationEnded);
       ex->addInt("count", this->_list->_count);
       throw ex;
    }
@@ -61,5 +61,5 @@ template <class T> T *LinkedQueueIterator<T>::next()
    return current;
 }
 
-}
-}
+} }
+
