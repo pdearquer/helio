@@ -22,7 +22,7 @@ void Console::write(StringBuffer str)
     */
    //std::cout << utf8;
 
-   ::write(STDOUT_FILENO, utf8, Storage::Structure::Binary::Buffer::strlen(utf8));
+   (void)::write(STDOUT_FILENO, utf8, Storage::Structure::Binary::Buffer::strlen(utf8));
 }
 
 String Console::readLine()

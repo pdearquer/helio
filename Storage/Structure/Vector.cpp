@@ -19,7 +19,7 @@ template <class T> Vector<T>::Vector(_int capacity)
 {
    if(capacity <= 0)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.BadCapacity");
+      Error *ex = MAKE_ERROR(Error::Structure::IllegalCapacity);
       ex->addInt("capacity", capacity);
       throw ex;
    }
@@ -56,14 +56,14 @@ template <class T> _int Vector<T>::count(_int len)
 {
    if(len < 0)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.InvalidLength");
+      Error *ex = MAKE_ERROR(Error::Structure::InvalidLength);
       ex->addInt("length", len);
       throw ex;
    }
       
    if(len > _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.InvalidLength");
+      Error *ex = MAKE_ERROR(Error::Structure::InvalidLength);
       ex->addInt("length", len);
       ex->addInt("current", _length);
       throw ex;
@@ -73,7 +73,7 @@ template <class T> _int Vector<T>::count(_int len)
    return _length;
 }
 
-template <class T> _bool Vector<T>::empty() const
+template <class T> _bool Vector<T>::isEmpty() const
 {
    return (_length == 0);
 }
@@ -94,7 +94,7 @@ template <class T> void Vector<T>::set(_int index, T obj)
 {
    if(index < 0 || index >= _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("index", index);
       ex->addInt("length", _length);
       throw ex;
@@ -107,7 +107,7 @@ template <class T> T Vector<T>::get(_int index) const
 {
    if(index < 0 || index >= _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("index", index);
       ex->addInt("length", _length);
       throw ex;
@@ -120,7 +120,7 @@ template <class T> T &Vector<T>::operator [](const _int index)
 {
    if(index < 0 || index >= _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("index", index);
       ex->addInt("length", _length);
       throw ex;
@@ -139,23 +139,9 @@ template <class T> T Vector<T>::push(T obj)
 template <class T> T Vector<T>::pop()
 {
    if(_length <= 0)
-      ERROR("Storage.Structure.Empty");
+      ERROR(Error::Structure::Empty);
    
    T obj = _elements[_length - 1];
-   _length--;
-   return obj;
-}
-   
-template <class T> T Vector<T>::poll()
-{
-   if(_length <= 0)
-      ERROR("Storage.Structure.Empty");
-   
-   T obj = _elements[0];
-   for(_int i = 0; i < _length - 1; i++)
-   {
-      _elements[i] = _elements[i + 1];
-   }
    _length--;
    return obj;
 }
@@ -163,17 +149,9 @@ template <class T> T Vector<T>::poll()
 template <class T> T Vector<T>::peek() const
 {
    if(_length <= 0)
-      ERROR("Storage.Structure.Empty");
+      ERROR(Error::Structure::Empty);
    
    return _elements[_length - 1];
-}
-   
-template <class T> T Vector<T>::front() const
-{
-   if(_length <= 0)
-      ERROR("Storage.Structure.Empty");
-   
-   return _elements[0];
 }
 
 
@@ -182,11 +160,11 @@ template <class T> _bool Vector<T>::contains(T obj) const
    return (indexOf(obj) != -1);
 }
 
-template <class T> void Vector<T>::remove(_int index)
+template <class T> _bool Vector<T>::remove(_int index)
 {
    if(index < 0 || index >= _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("index", index);
       ex->addInt("length", _length);
       throw ex;
@@ -195,6 +173,7 @@ template <class T> void Vector<T>::remove(_int index)
    for(_int next = index + 1; next < _length; next++)
       _elements[next - 1] = _elements[next];
    _length--;
+   return true;
 }
 
 template <class T> void Vector<T>::clear()
@@ -222,7 +201,7 @@ template <class T> _int Vector<T>::indexOf(T obj, _int start) const
 {
    if(start < 0 || start >= _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("length", _length);
       throw ex;

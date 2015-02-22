@@ -8,19 +8,19 @@
 namespace Storage {
 namespace Structure {
 
-template <class K, class T> Table<K, T>::Table()
+template <class K, class V> Table<K, V>::Table()
 {
    _length = 0;
    _size = 10;
    _keys = new K[_size];
-   _values = new T[_size];
+   _values = new V[_size];
 }
 
-template <class K, class T> Table<K, T>::Table(_int capacity)
+template <class K, class V> Table<K, V>::Table(_int capacity)
 {
    if(capacity <= 0)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.BadCapacity");
+      Error *ex = MAKE_ERROR(Error::Structure::IllegalCapacity);
       ex->addInt("capacity", capacity);
       throw ex;
    }
@@ -28,17 +28,17 @@ template <class K, class T> Table<K, T>::Table(_int capacity)
    _length = 0;
    _size = capacity;
    _keys = new K[_size];
-   _values = new T[_size];
+   _values = new V[_size];
 }
 
-template <class K, class T> Table<K, T>::Table(const Table<K, T> &other)
+template <class K, class V> Table<K, V>::Table(const Table<K, V> &other)
 {
    _length = other._length;
    _size = _length;
    if(_size < 10)
       _size = 10;
    _keys = new K[_size];
-   _values = new T[_size];
+   _values = new V[_size];
    
    for(_int i = 0; i < _length; i++)
    {
@@ -47,25 +47,25 @@ template <class K, class T> Table<K, T>::Table(const Table<K, T> &other)
    }
 }
 
-template <class K, class T> Table<K, T>::~Table()
+template <class K, class V> Table<K, V>::~Table()
 {
    delete[] _keys;
    delete[] _values;
 }
 
 
-template <class K, class T> _int Table<K, T>::count() const
+template <class K, class V> _int Table<K, V>::count() const
 {
    return _length;
 }
 
-template <class K, class T> _bool Table<K, T>::empty() const
+template <class K, class V> _bool Table<K, V>::isEmpty() const
 {
    return (_length == 0);
 }
 
 
-template <class K, class T> _bool Table<K, T>::add(K key, T value)
+template <class K, class V> _bool Table<K, V>::add(K key, V value)
 {
    for(_int i = 0; i < _length; i++)
       if(_keys[i] == key)
@@ -84,7 +84,7 @@ template <class K, class T> _bool Table<K, T>::add(K key, T value)
    return false;
 }
 
-template <class K, class T> void Table<K, T>::set(K key, T value)
+template <class K, class V> void Table<K, V>::set(K key, V value)
 {
    for(_int i = 0; i < _length; i++)
       if(_keys[i] == key)
@@ -93,35 +93,43 @@ template <class K, class T> void Table<K, T>::set(K key, T value)
          return;
       }
       
-   Exception *ex = MAKE_ERROR("Storage.Structure.KeyNotFound");
+   Exception *ex = MAKE_ERROR(Exception::Structure::KeyNotFound);
    //ex->add("key", key);
    throw ex;
 }
 
-template <class K, class T> T Table<K, T>::get(K key) const
+template <class K, class V> V Table<K, V>::get(K key) const
 {
    for(_int i = 0; i < _length; i++)
       if(_keys[i] == key)
          return _values[i];
       
-   Exception *ex = MAKE_ERROR("Storage.Structure.KeyNotFound");
+   Exception *ex = MAKE_ERROR(Exception::Structure::KeyNotFound);
    //ex->add("key", key);
    throw ex;
 }
 
-template <class K, class T> T &Table<K, T>::operator [](const K key)
+template <class K, class V> V &Table<K, V>::operator [](const K key)
 {
    for(_int i = 0; i < _length; i++)
       if(_keys[i] == key)
          return _values[i];
       
-   Exception *ex = MAKE_ERROR("Storage.Structure.KeyNotFound");
+   Exception *ex = MAKE_ERROR(Exception::Structure::KeyNotFound);
    //ex->add("key", key);
    throw ex;
 }
 
 
-template <class K, class T> _bool Table<K, T>::contains(T value) const
+template <class K, class V> _bool Table<K, V>::contains(K key) const
+{
+   for(_int i = 0; i < _length; i++)
+      if(_keys[i] == key)
+         return true;
+   return false;
+}
+
+template <class K, class V> _bool Table<K, V>::containsValue(V value) const
 {
    for(_int i = 0; i < _length; i++)
       if(_values[i] == _values)
@@ -129,15 +137,7 @@ template <class K, class T> _bool Table<K, T>::contains(T value) const
    return false;
 }
 
-template <class K, class T> _bool Table<K, T>::containsKey(K key) const
-{
-   for(_int i = 0; i < _length; i++)
-      if(_keys[i] == key)
-         return true;
-   return false;
-}
-
-template <class K, class T> T Table<K, T>::remove(K key)
+template <class K, class V> _bool Table<K, V>::remove(K key)
 {
    _int index = 0;
    for(; index < _length; index++)
@@ -145,13 +145,7 @@ template <class K, class T> T Table<K, T>::remove(K key)
          break;
    
    if(index >= _length)
-   {
-      Exception *ex = MAKE_ERROR("Storage.Structure.KeyNotFound");
-      //ex->add("key", key);
-      throw ex;
-   }
-      
-   T ret = _values[index];
+      return false;
       
    for(_int next = index + 1; next < _length; next++)
    {
@@ -160,10 +154,10 @@ template <class K, class T> T Table<K, T>::remove(K key)
    }
    _length--;
    
-   return ret;
+   return true;
 }
 
-template <class K, class T> void Table<K, T>::clear()
+template <class K, class V> void Table<K, V>::clear()
 {
    delete[] _keys;
    delete[] _values;
@@ -171,26 +165,26 @@ template <class K, class T> void Table<K, T>::clear()
    _length = 0;
    _size = 10;
    _keys = new K[_size];
-   _values = new T[_size];
+   _values = new V[_size];
 }
 
 
-template <class K, class T> K Table<K, T>::keyOf(T value) const
+template <class K, class V> K Table<K, V>::keyOf(V value) const
 {
    for(_int i = 0; i < _length; i++)
       if(_values[i] == value)
          return _keys[i];
       
-   Exception *ex = MAKE_ERROR("Storage.Structure.ValueNotFound");
+   Exception *ex = MAKE_ERROR(Exception::Structure::ValueNotFound);
    //ex->add("value", value);
    throw ex;
 }
 
-template <class K, class T> K Table<K, T>::getKey(_int index) const
+template <class K, class V> K Table<K, V>::getKey(_int index) const
 {
    if(index >= _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("index", index);
       ex->addInt("length", _length);
       throw ex;
@@ -199,11 +193,11 @@ template <class K, class T> K Table<K, T>::getKey(_int index) const
    return _keys[index];
 }
 
-template <class K, class T> T Table<K, T>::getValue(_int index) const
+template <class K, class V> V Table<K, V>::getValue(_int index) const
 {
    if(index >= _length)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.OutOfBounds");
+      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
       ex->addInt("index", index);
       ex->addInt("length", _length);
       throw ex;
@@ -212,7 +206,7 @@ template <class K, class T> T Table<K, T>::getValue(_int index) const
    return _values[index];
 }
 
-template <class K, class T> _bool Table<K, T>::equals(const Table<K, T> &other) const
+template <class K, class V> _bool Table<K, V>::equals(const Table<K, V> &other) const
 {
    if(_length != other._length)
       return false;
@@ -230,7 +224,7 @@ template <class K, class T> _bool Table<K, T>::equals(const Table<K, T> &other) 
 }
 
 
-template <class K, class T> String Table<K, T>::toString() const
+template <class K, class V> String Table<K, V>::toString() const
 {
    StringBuffer ret = "{ ";
 
@@ -245,7 +239,7 @@ template <class K, class T> String Table<K, T>::toString() const
 }
 
 
-template <class K, class T> void Table<K, T>::ensureSize(_int min)
+template <class K, class V> void Table<K, V>::ensureSize(_int min)
 {
    if(min <= _size)
       return;
@@ -263,7 +257,7 @@ template <class K, class T> void Table<K, T>::ensureSize(_int min)
    }
    
    K *keys2 = new K[size2];
-   T *values2 = new T[size2];
+   V *values2 = new V[size2];
    for(_int i = 0; i < _length; i++)
    {
       keys2[i] = _keys[i];
@@ -278,3 +272,4 @@ template <class K, class T> void Table<K, T>::ensureSize(_int min)
 }
 
 } }
+

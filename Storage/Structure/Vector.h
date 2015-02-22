@@ -63,7 +63,7 @@ public:
    /**
     * Says if the vector has no element.
     */
-   _bool empty() const;
+   _bool isEmpty() const;
    
    
    /**
@@ -96,36 +96,27 @@ public:
     * Returns and remove the last element of the array.
     */
    T pop();
-    
-   /**
-    * Returns and removes the first element of the array.
-    */
-   T poll();
    
    /**
     * Returns the last element of the array but doesn't remove it.
     */
    T peek() const;
    
-   /**
-    * Returns the first element of the array but doesn't remove it.
-    */
-   T front() const;
-   
    
    /**
-    * Check if the element is in the vector.
+    * Checks if the element is in the vector.
     */
    _bool contains(T obj) const;
    
    /**
-    * Remove an element.
+    * Removes an element.
     * Note that ahead elements are moved back one position.
+    * @return Always true.
     */
-   void remove(_int index);
+   _bool remove(_int index);
    
    /**
-    * Removes all elements (not deleting it).
+    * Removes all elements.
     */
    void clear();
    

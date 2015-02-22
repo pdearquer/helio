@@ -8,12 +8,15 @@
  * require the keys to be Comparable.
  *
  * Implemented as a container of the key elements, so note that the iteration is done
- * over the keys. The insertion order is maintained. No null is allowed internally.
+ * over the keys. The insertion order is maintained. No null key is allowed internally.
+ * The values must be Comparable so it can do searches on them.
  */
 template<class K, class V>
 class ArrayMap : 
       public virtual Map<K, V>, public virtual ArrayBase<MapEntry<K, V>>
 {
+   __CHECK_BASE(V, Comparable<V>);
+
    friend class Storage::Structure::ArrayMapIterator<K, V>;
 
 public:
@@ -47,9 +50,14 @@ public:
    using Map<K, V>::add;
    
    /**
-    * Checks if the set has a key.
+    * Checks if the map has a key.
     */
    virtual _bool contains(K *key);
+   
+   /**
+    * Checks if the map has a value.
+    */
+   virtual _bool containsValue(V *value);
    
    /**
     * Returns the stored value of associated to the given key.
@@ -62,7 +70,7 @@ public:
    /**
     * Removes an element from the container overriding the ownership.
     * The equals() interface is used as in Comparable<T>.
-    * @return true if the element was found.
+    * @return true if the element was found and removed.
     */
    virtual _bool remove(K *key, _bool deleting);
    using Map<K, V>::remove;

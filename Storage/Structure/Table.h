@@ -6,7 +6,7 @@
 /** Array map of pairs key-value for static types
  * Array map of pairs key-value implemented as a template for cast avoiding.
  */
-template <class K, class T>
+template <class K, class V>
 class Table :
       public virtual Object
 {
@@ -19,7 +19,7 @@ protected:
    /**
     * Array of stored values.
     */
-   T *_values;
+   V *_values;
    
    /**
     * Number of elements.
@@ -46,7 +46,7 @@ public:
    /**
     * Copy other table.
     */
-   Table(const Table<K, T> &other);
+   Table(const Table<K, V> &other);
    
    /**
     * Destroy the table.
@@ -62,48 +62,50 @@ public:
    /**
     * Says if the table has no element.
     */
-   _bool empty() const;
+   _bool isEmpty() const;
    
    
    /**
-    * Adds an element to the table and returns true if was overwriten.
+    * Adds an element to the table.
+    * @return true if other was overwriten.
     */
-   _bool add(K key, T value);
+   _bool add(K key, V value);
    
    /**
     * Set the value for the given key (it must exists).
     */
-   void set(K key, T value);
+   void set(K key, V value);
       
    /**
     * Get a value from its key.
     */
-   T get(K key) const;
+   V get(K key) const;
       
    /**
     * Index operator (write allowed)
     */
-   T &operator [](const K key);
+   V &operator [](const K key);
    
-   
-   /**
-    * Check if the value is in the table.
-    */
-   _bool contains(T value) const;
    
    /**
     * Check if the key is in the table.
     */
-   _bool containsKey(K key) const;
-      
-   /**
-    * Remove a entry from its key (not delete it).
-    * The elements after reduce them index by one.
-    */
-   T remove(K key);
+   _bool contains(K key) const;
    
    /**
-    * Removes all elements (not deleting it).
+    * Check if the value is in the table.
+    */
+   _bool containsValue(V value) const;
+      
+   /**
+    * Remove a entry from its key if found.
+    * The elements after it decrease their index by one.
+    * @return true if the element was found and removed.
+    */
+   _bool remove(K key);
+   
+   /**
+    * Removes all elements.
     */
    void clear();
    
@@ -111,7 +113,7 @@ public:
    /**
     * Returns the first key of a value or null if not found.
     */
-   K keyOf(T value) const;
+   K keyOf(V value) const;
    
    /**
     * Returns a key from a index (from 0 to count - 1).
@@ -121,15 +123,15 @@ public:
    /**
     * Returns a value from a index (from 0 to count - 1).
     */
-   T getValue(_int index) const;
+   V getValue(_int index) const;
    
    
    /**
     * Compare itself with another table.
-    * Return true if the information is similar, but note that comparison is
-    * performed by the == operator.
+    * Return true if the information is similar. Note that the comparison is
+    * done with the == operator.
     */
-   virtual _bool equals(const Table<K, T> &other) const;
+   virtual _bool equals(const Table<K, V> &other) const;
    using Object::equals;
    
    /**

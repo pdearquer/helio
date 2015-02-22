@@ -59,7 +59,7 @@ public:
    /**
     * Removes an element from the list overriding the ownership.
     * Set its position to null.
-    * @return true if the element was found.
+    * @return true if the element was found and removed.
     */
    virtual _bool remove(T *el, _bool deleting);
    using Container<T>::remove;

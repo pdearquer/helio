@@ -91,6 +91,25 @@ template<class K, class V> _bool ArrayMap<K, V>::contains(K *key)
    return false;
 }
 
+template<class K, class V> _bool ArrayMap<K, V>::containsValue(V *value)
+{
+   for(_int i = 0; i < this->_count; i++)
+   {
+      if(value == null)
+      {
+         if(this->_elements[i]->value == null)
+            return true;
+      }
+      else
+      {
+         if(this->_elements[i]->value != null && this->_elements[i]->value->equals(value))
+            return true;
+      }
+   }
+   
+   return false;
+}
+
 template<class K, class V> V *ArrayMap<K, V>::get(K *key)
 {
    if(key == null)
