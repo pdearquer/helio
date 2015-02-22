@@ -4,23 +4,16 @@
   <description>Error description and handling</description>
   
   <class>
-    <name>Exception</name>
-    <description>Exception description container</description>
-  </class>
-  <class>
-    <name>Error</name>
-    <description>Error handling interface</description>
-  </class>
-  <class>
-    <name>Messages</name>
-    <description>Multi-language messages manager</description>
+    <name>Throwable</name>
+    <description>Generic error descriptor</description>
   </class>
   <class>
     <name>Trace</name>
-    <description>Trace the error</description>
+    <description>Trace the stack of an error</description>
   </class>
   <class>
-    <name>Fault</name>
-    <description>Fault detection support</description>
+    <name>Reporter</name>
+    <description>Error reporter</description>
   </class>
 </package>
+

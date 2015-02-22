@@ -38,7 +38,7 @@ String Object::getClass() const
    }
    catch(std::bad_typeid &e)
    {
-      Exception *ex = MAKE_ERROR("Storage.Structure.InvalidObject");
+      Error *ex = MAKE_ERROR(Error::IllegalClass);
       ex->addPointer("object", this);
       throw ex;
    }

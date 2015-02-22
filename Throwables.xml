@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<throwables>
+<!-- Throwables: Error descriptors
+
+If in doubt, use an Exception (e.g. *NotFound or *NotSupported)
+
+  Invalid = inapropriate for this porpuse (use by default)
+  Illegal = incorrect by itself
+-->
+
+  <error id="Exception::NotSupported">
+    Operation not supported.
+  </error>
+  <error id="Exception::InvalidClass">
+    The object does not belong to the expected class.
+  </error>
+  <error id="Exception::Format">
+    Invalid format found.
+  </error>
+  <error id="Exception::Format::Overflow">
+    The number exceed the limits.
+  </error>
+  <error id="Exception::Format::InvalidCharacter">
+    Character code is not valid.
+  </error>
+  <error id="Exception::Format::DateLimit">
+    Date out of the limits of precision.
+  </error>
+  <error id="Exception::Format::InvalidBase">
+    Invalid base for current digits.
+  </error>
+  <error id="Exception::Format::InvalidDigits">
+    Invalid set of digits.
+  </error>
+  <error id="Exception::Format::IllegalSequence">
+    Illegal sequence of characters found.
+  </error>
+  <error id="Exception::Format::UnexpectedEnd">
+    Unexpected end of data.
+  </error>
+  <error id="Exception::Format::InvalidByte">
+    Invalid byte sequence for this encoding.
+  </error>
+  <error id="Exception::Format::EmptyBuffer">
+    Empty buffers cannot be processed.
+  </error>
+  <error id="Exception::Structure::KeyNotFound">
+    The given key was not found is the container.
+  </error>
+  <error id="Exception::Structure::ValueNotFound">
+    The given value was not found is the container.
+  </error>
+  <error id="Exception::Structure::EscapingNotSupported">
+    Escaping not supported.
+  </error>
+  <error id="Exception::Structure::EncodingNotSupported">
+    Encoding not supported.
+  </error>
+  <error id="Exception::Device::NoDefault">
+    No default device available of this type.
+  </error>
+  <error id="Exception::Test::UnknownException">
+    Catched unknown exception.
+  </error>
+  <error id="Exception::Test::IllegalFilter">
+    Illegal test filtering pattern.
+  </error>
+  <error id="Exception::Test::TestException">
+    This exception is just for test purposes.
+  </error>
+  <error id="Exception::Test::MemoryLeak">
+    Object not deallocated from memory.
+  </error>
+
+  <error id="Error::UserInterrupt">
+    Execution interrupted by the user.
+  </error>
+  <error id="Error::TimeOut">
+    The execution has timed out.
+  </error>
+  <error id="Error::NotImplemented">
+    Feature not implemented.
+  </error>
+  <error id="Error::NullObject">
+    Unexpected null object.
+  </error>
+  <error id="Error::Internal">
+    Internal error occured.
+  </error>  
+  <error id="Error::IllegalClass">
+    The pointer given is not a legal Object.
+  </error>
+  <error id="Error::Arithmetic::Overflow">
+    Last arithmetic operation has overflown.
+  </error>
+  <error id="Error::Arithmetic::DivisionByCero">
+    Trying to calculate a division by cero.
+  </error>
+  <error id="Error::Arithmetic::ModuloByCero">
+    Trying to calculate a modulo by cero.
+  </error>
+  <error id="Error::Structure::IllegalCapacity">
+    The capacity must be higher than cero.
+  </error>
+  <error id="Error::Structure::OutOfBounds">
+    Index or interval out of bounds.
+  </error>
+  <error id="Error::Structure::Empty">
+    Operation invalid because the container is empty.
+  </error>
+  <error id="Error::Structure::IterationEnded">
+    There are no more elements to iterate.
+  </error>
+  <error id="Error::Structure::IteratorInvalidated">
+    The container has been modified and that invalidates this iterator.
+  </error>
+  <error id="Error::Structure::InvalidLength">
+    Trying to set a negative or too long length.
+  </error>
+  <error id="Error::Structure::LoopsNotAllowed">
+    This node container does not allow loops.
+  </error>
+  <error id="Error::Structure::InvalidContainer">
+    The element does not belong to the container provided.
+  </error>
+  <error id="Error::Text::NoBackward">
+    Window start and end pointers cannot go backwards.
+  </error>
+  <error id="Error::Text::IncompatiblePointers">
+    Incompatible pointers mixed, they must work over the same window.
+  </error>
+  <error id="Error::Text::InvalidPointer">
+    Window pointer not allocated.
+  </error>
+  <error id="Error::Test::Assertion">
+    Assertion condition failed.
+  </error>
+  <error id="Error::Test::Duplicated">
+    Test name duplicated.
+  </error>
+  <error id="Error::Test::TestError">
+    This error is just for test purposes.
+  </error>
+
+  <error id="Fault::Code::InvalidAddress">
+    Trying to access an invalid memory address.
+  </error>
+  <error id="Fault::Code::FloatingPoint">
+    Floating point exception.
+  </error>
+  <error id="Fault::Code::IllegalInstruction">
+    Trying to execute an illegal instruction.
+  </error>
+  <error id="Fault::Memory::SafeAllocatorBroken">
+    Exception thrown on safe allocator environment.
+  </error>
+  <error id="Fault::Memory::OutOfMemory">
+    No more memory available.
+  </error>
+  <error id="Fault::Memory::InvalidPointer">
+    The pointer provided is not valid in current memory allocator.
+  </error>
+  <error id="Fault::Memory::AlignmentFail">
+    Fail to accomplish alignment constraints.
+  </error>
+  <error id="Fault::Memory::BigAllocation">
+    Trying to allocate an object too big.
+  </error>
+  <error id="Fault::Memory::DoubleDeallocation">
+    Trying to deallocate an object already deallocated.
+  </error>
+  <error id="Fault::Memory::MemoryCorrupt">
+    Memory corruption detected.
+  </error>
+</throwables>
+

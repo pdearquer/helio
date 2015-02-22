@@ -56,7 +56,7 @@
       Date out of the limits of precision.
     </msg>
     <msg id="Storage.Structure.LoopsNotAllowed">
-      This node container do not allow loops.
+      This node container does not allow loops.
     </msg>
     <msg id="Storage.Structure.InvalidContainer">
       The element does not belong to the container provided.
@@ -81,7 +81,7 @@
       Incompatible pointers mixed, they must work over the same window.
     </msg>
     <msg id="Storage.Structure.Text.BadPointer">
-      Pointer not allocated.
+      Window pointer not allocated.
     </msg>
     <msg id="Storage.Structure.Text.BadEscaping">
       Escaping not supported.

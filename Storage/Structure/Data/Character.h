@@ -77,37 +77,31 @@ public:
    
    /**
     * Returns the ASCII representation of the character.
-    * @throw Storage.Structure.InvalidCharacter
     */
    virtual _uint8 getAscii() const;
    
    /**
     * Set the charater from its ASCII representation.
-    * @throw Storage.Structure.InvalidCharacter
     */
    virtual void setAscii(_uint8 ascii);
    
    /**
     * Gets the character in UTF-16.
-    * @throw Storage.Structure.InvalidCharacter
     */
    virtual _uint16 getUtf16() const;
    
    /**
     * Sets the character in UTF-16.
-    * @throw Storage.Structure.InvalidCharacter
     */
    virtual void setUtf16(_uint16 utf16);
    
    /**
     * Gets the character in UTF-32.
-    * @throw Storage.Structure.InvalidCharacter
     */
    virtual _uint32 getUtf32() const;
    
    /**
     * Sets the character in UTF-32.
-    * @throw Storage.Structure.InvalidCharacter
     */
    virtual void setUtf32(_uint32 utf32);
    

@@ -179,6 +179,9 @@ Integer::operator int() const
 
 Integer::operator size_t() const
 {
+   if(_value < 0)
+      ERROR("Storage.Structure.Overflow");
+   
    return (size_t)_value;
 }
    
@@ -192,16 +195,25 @@ Integer::operator _uint8() const
    
 Integer::operator _uint16() const
 {
+   if(_value < __HELIO_TYPE_UINT16_MIN || _value > __HELIO_TYPE_UINT16_MAX)
+      ERROR("Storage.Structure.Overflow");
+      
    return (_uint16)_value;
 }
    
 Integer::operator _uint32() const
 {
+   if(_value < __HELIO_TYPE_UINT32_MIN || _value > __HELIO_TYPE_UINT32_MAX)
+      ERROR("Storage.Structure.Overflow");
+      
    return (_uint32)_value;
 }
    
 Integer::operator _uint64() const
 {
+   if(_value < 0)
+      ERROR("Storage.Structure.Overflow");
+      
    return (_uint64)_value;
 }
 

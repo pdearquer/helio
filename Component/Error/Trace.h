@@ -3,7 +3,7 @@
  * Licensed under the GPLv3 or higher (http://www.gnu.org/licenses)
  */
 
-/** Trace the error
+/** Trace the stack of an error.
  * Extract the trace of the stack where the error occur.
  * Must be created at the point that want to be traced.
  *

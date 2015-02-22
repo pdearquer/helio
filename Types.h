@@ -175,5 +175,6 @@ typedef __uint64  _uint64;
 using namespace Storage::Structure::Data;
 using namespace Storage::Structure::Text;
 using namespace Storage::Structure;
-using namespace Component::Error;
+
+class Exception;
 

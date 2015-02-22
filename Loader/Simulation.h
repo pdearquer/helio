@@ -19,10 +19,23 @@ private:
     */
    static Simulation _init;
    
-public:   
+   
+public:
+   /**
+    * Set or cancel an execution time out.
+    * @param seconds Time in seconds or 0 to cancel previous set.
+    */
+   static void setTimeOut(int seconds);
+   
+private:
    /**
     * Preps the runtime environment.
     */
    Simulation();
+   
+   /**
+    * Install the fault handlers.
+    */
+   void installFaults();
 };
 
