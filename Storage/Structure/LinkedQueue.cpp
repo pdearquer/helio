@@ -269,7 +269,7 @@ template <class T> T *LinkedQueue<T>::front() const
    return node->front();
 }
 
-template <class T> void LinkedQueue<T>::enqueue_front(T *el)
+template <class T> void LinkedQueue<T>::enqueueFront(T *el)
 {
    this->modified();
 
@@ -289,7 +289,7 @@ template <class T> void LinkedQueue<T>::enqueue_front(T *el)
    this->_count++;
 }
 
-template <class T> T *LinkedQueue<T>::dequeue_back()
+template <class T> T *LinkedQueue<T>::dequeueBack()
 {
    this->modified();
 

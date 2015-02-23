@@ -37,7 +37,7 @@ public:
     * Adds an element to the queue at the front, i.e. in reverse order.
     * The element is added at the beginning of the list.
     */
-   virtual void enqueue_front(T *el) = 0;
+   virtual void enqueueFront(T *el) = 0;
 
    /**
     * Returns and remove the element at the beginning of the queue, i.e. the last inserted in the normal order.
@@ -45,7 +45,7 @@ public:
     * The element is got from the end of the list.
     * If the list is empty, it throws an exception.
     */
-   virtual T *dequeue_back() = 0;
+   virtual T *dequeueBack() = 0;
 
    /**
     * Returns the last inserted element of the queue but doesn't remove it.
