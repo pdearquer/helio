@@ -3,7 +3,7 @@
  * Licensed under the GPLv3 or higher (http://www.gnu.org/licenses)
  */
 
-/** Window status descriptor for debug information
+/** Window status descriptor for debug information.
  * Keep trace of the line and characeter to better error reporting.
  */
 class WindowStatus :

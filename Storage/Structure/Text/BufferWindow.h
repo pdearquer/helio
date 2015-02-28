@@ -3,7 +3,7 @@
  * Licensed under the GPLv3 or higher (http://www.gnu.org/licenses)
  */
 
-/** Processing window over a Buffer of characters
+/** Processing window over a Buffer of characters.
  * Allows parsing a Buffer of characters using a Window.
  * This class does NOT create a buffer copy, uses the given (and does not delete it).
  */

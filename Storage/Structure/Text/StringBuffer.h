@@ -3,14 +3,13 @@
  * Licensed under the GPLv3 or higher (http://www.gnu.org/licenses)
  */
 
-/** Temporary static characters string
- * Character sequence based on Text::Buffer that allow text manipulation
+/** Temporary character string.
+ * Character sequence based on Text::Buffer that allows text manipulation
  * on an static object (using operators).
  *
- * This class is intended for one unique porpouse; String creation. It
- * implements an extensive addition operator to allow a behavior like this:
- *
- *  String text = "name = " + name + ", age = " + age;
+ * This class is intended for one unique purpose; String creation. It
+ * implements an extensive addition operator to allow a behaviour like this:
+ *   String text = "name = " + name + ", age = " + age;
  *
  * Static object.
  */

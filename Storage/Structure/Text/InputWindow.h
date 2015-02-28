@@ -3,7 +3,7 @@
  * Licensed under the GPLv3 or higher (http://www.gnu.org/licenses)
  */
 
-/** Moving window from an input
+/** Moving window from an input.
  * Keep a moving buffer over a character input.
  */
 class InputWindow : 

@@ -15,22 +15,7 @@ void Reporter::report(Throwable *error, _bool silently)
       
    while(error != null)
    {
-      if(error->is<Exception>())
-      {
-         PRINTLN("Exception: " + error->msg());
-      }
-      else if(error->is< ::Error>())
-      {
-         PRINTLN("Error: " + error->msg());
-      }
-      else if(error->is<Fault>())
-      {
-         PRINTLN("Fault: " + error->msg());
-      }
-      else
-      {
-         PRINTLN(error->getClass() + ": " + error->msg());
-      }
+      PRINTLN(error->getClass() + ": " + error->msg());
       
       _int pars = 0;
       const Table<String, String> *params = error->params();

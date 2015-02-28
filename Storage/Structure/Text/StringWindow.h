@@ -3,7 +3,7 @@
  * Licensed under the GPLv3 or higher (http://www.gnu.org/licenses)
  */
 
-/** Processing window over a StringBuffer
+/** Processing window over a StringBuffer.
  * Allows parsing a StringBuffer using a Window.
  * Implements a read-only window over a copy of the string.
  * It is always recommended to use BufferWindow instead

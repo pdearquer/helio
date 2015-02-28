@@ -3,7 +3,7 @@
  * Licensed under the GPLv3 or higher (http://www.gnu.org/licenses)
  */
 
-/** Abstract characters input
+/** Abstract characters input.
  * Abstract characters input.
  */
 class Input : 

@@ -52,23 +52,6 @@ protected:
     */
    TestReporter *_report;
 
-#ifdef __HELIO_STORAGE_MEMORY_MANAGER
-   /**
-    * Memory buffer for the tests to run.
-    */
-   _byte *_memBuffer;
-
-   /**
-    * Memory pages allocator.
-    */
-   ::Storage::Memory::BufferPageAllocator *_memPages;
-
-   /**
-    * Memory runner allocator
-    */
-   ::Storage::Memory::RunnerAllocator *_memRunner;
-#endif
-
 
 public:
    /**

@@ -9,7 +9,7 @@
   </class>
   <class>
     <name>StringBuffer</name>
-    <description>Temporary static characters string</description>
+    <description>Temporary character string</description>
   </class>
   <class>
     <name>Input</name>

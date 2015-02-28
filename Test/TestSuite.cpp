@@ -34,7 +34,7 @@ void TestSuite::add(Test *test)
       Test *t = _tests->get(i);
       if(t->name() == test->name())
       {
-         Exception *ex = MAKE_ERROR("Test.Duplicated");
+         Error *ex = MAKE_ERROR(Error::Test::Duplicated);
          ex->add("name", test->name());
          throw ex;
       }
@@ -45,7 +45,7 @@ void TestSuite::add(Test *test)
       TestSuite *ts = _suites->get(i);
       if(ts->name() == test->name())
       {
-         Exception *ex = MAKE_ERROR("Test.Duplicated");
+         Error *ex = MAKE_ERROR(Error::Test::Duplicated);
          ex->add("name", test->name());
          throw ex;
       }
@@ -62,7 +62,7 @@ void TestSuite::addSuite(TestSuite *suite)
       Test *t = _tests->get(i);
       if(t->name() == suite->name())
       {
-         Exception *ex = MAKE_ERROR("Test.Duplicated");
+         Error *ex = MAKE_ERROR(Error::Test::Duplicated);
          ex->add("name", suite->name());
          throw ex;
       }
@@ -73,7 +73,7 @@ void TestSuite::addSuite(TestSuite *suite)
       TestSuite *ts = _suites->get(i);
       if(ts->name() == suite->name())
       {
-         Exception *ex = MAKE_ERROR("Test.Duplicated");
+         Error *ex = MAKE_ERROR(Error::Test::Duplicated);
          ex->add("name", suite->name());
          throw ex;
       }
@@ -117,7 +117,7 @@ void TestSuite::appendTests(ArrayList<TestCase> *tests, const String &path, cons
       }
       else if(entity_len == 0)
       {
-         Exception *ex = MAKE_ERROR("Test.InvalidFilter");
+         Exception *ex = MAKE_ERROR(Exception::Test::IllegalFilter);
          ex->add("filter", filter);
          throw ex;
       }
@@ -142,12 +142,12 @@ void TestSuite::appendTests(ArrayList<TestCase> *tests, const String &path, cons
          TestSuite *ts = _suites->get(i);
          if(ts->name() == entity)
          {
-            appendTests(tests, path + ts->name() + ".", next_filter);
+            ts->appendTests(tests, path + ts->name() + ".", next_filter);
             return;
          }
       }
 
-      Exception *ex = MAKE_ERROR("Test.InvalidFilter");
+      Exception *ex = MAKE_ERROR(Exception::Test::IllegalFilter);
       ex->add("filter", filter);
       throw ex;
    }
@@ -179,7 +179,7 @@ void TestSuite::appendTest(ArrayList<TestCase> *tests, const String &path, Test 
    {
       if(filter.indexOf('.', 0) >= 0)
       {
-         Exception *ex = MAKE_ERROR("Test.InvalidFilter");
+         Exception *ex = MAKE_ERROR(Exception::Test::IllegalFilter);
          ex->add("filter", filter);
          throw ex;
       }
@@ -196,7 +196,7 @@ void TestSuite::appendTest(ArrayList<TestCase> *tests, const String &path, Test 
          }
       }
 
-      Exception *ex = MAKE_ERROR("Test.InvalidFilter");
+      Exception *ex = MAKE_ERROR(Exception::Test::IllegalFilter);
       ex->add("filter", filter);
       throw ex;
    }
@@ -214,3 +214,4 @@ void TestSuite::appendAllTest(ArrayList<TestCase> *tests, const String &path, Te
 }
 
 }
+

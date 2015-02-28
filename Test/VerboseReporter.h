@@ -37,6 +37,6 @@ protected:
    /**
     * Print an exception to the console.
     */
-   virtual void printEx(Exception *ex);
+   virtual void printEx(Component::Error::Throwable *ex);
 };
 

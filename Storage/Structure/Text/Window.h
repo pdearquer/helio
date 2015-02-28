@@ -3,7 +3,7 @@
  * Licensed under the GPLv3 or higher (http://www.gnu.org/licenses)
  */
 
-/** Characters processing window
+/** Characters processing window.
  * Allows process a window of characters from a String, Buffer or characters Input.
  * Create a lenght variable window work that moves when the characters are 
  * processed (always forwards).

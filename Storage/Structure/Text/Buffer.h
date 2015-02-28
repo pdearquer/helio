@@ -3,7 +3,7 @@
  * Licensed under the GPLv3 or higher (http://www.gnu.org/licenses)
  */
 
-/** Buffer of characters
+/** Buffer of characters.
  * Similar to String but with faster performance (no internal encoding).
  * Note that this buffer can contain '\0' characters inside.
  */
@@ -25,7 +25,7 @@ protected:
    __char *_data;
    
    /**
-    * Buffer size.
+    * Number of characters in the buffer.
     */
    _int _length;
    
@@ -37,12 +37,12 @@ protected:
    
 public:
    /**
-    * Creates an empty buffer with default capacity.
+    * Creates an empty buffer of the default capacity.
     */
    Buffer();
    
    /**
-    * Creates an empty buffer with the given initial capacity.
+    * Creates an empty buffer of the given initial capacity.
     * Overrides the default MIN_CAPACITY.
     */
    Buffer(_int cap);
@@ -315,19 +315,19 @@ public:
    
    
    /**
-    * Returns a pieze of the buffer from the beggining.
+    * Returns a piece of the buffer from the beggining.
     * @param length Number of characters to pick up.
-    *    If lenght is 0, returns all the string to the end.
-    *    If lenght is negative, returns all the string to the end less length given.
+    *    If length is 0, returns all the string until the end of the buffer.
+    *    If length is negative, returns all the string until the end minus the given length.
     */
    Buffer *sub(_int length) const;
    
    /**
-    * Returns a pieze of the buffer.
+    * Returns a piece of the buffer.
     * @param start The index of the first character included.
     * @param length Number of characters to pick up.
-    *    If lenght is 0, returns all the string to the end.
-    *    If lenght is negative, returns all the string to the end less length given.
+    *    If length is 0, returns all the string until the end of the buffer.
+    *    If length is negative, returns all the string until the end minus the given length.
     */
    Buffer *sub(_int start, _int length) const;
 

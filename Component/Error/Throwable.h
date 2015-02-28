@@ -47,19 +47,21 @@ protected:
     */    
    Throwable();
    
-   /**
-    * Initilaze the class.
-    * Must be called once and only once in the constructor.
-    */    
-   void init(String msg, Throwable *child, const String &source, _int line, const String &date);
-   
 public:
    /**
     * Destroy the trace and children exceptions.
     */
    ~Throwable();
-   
-   
+
+protected:   
+   /**
+    * Initilaze the class.
+    * Must be called once and only once in the constructor.
+    */    
+   void init(String msg, Throwable *child, const String &source, _int line, const String &date, _int traceDiscard);   
+
+
+public:
    /**
     * Returns the message of the error.
     */
@@ -83,11 +85,13 @@ public:
    
    /**
     * Reports the error to the user.
+    * Do NOT report confidential information.
     */
    void report();
    
    /**
     * Reports the error silently (e.g. to a log file).
+    * Do NOT report confidential information.
     */
    void reportSilenty();
    
@@ -139,14 +143,14 @@ public:
 #define RE_MAKE_ERROR(type, prev) \
       new type (prev, (String) __FILE__, __LINE__, (String) __TIMESTAMP__)
 
-#define ERROR(type) \
+#define THROW_ERROR(type) \
       throw MAKE_ERROR(type)
 
-#define RE_ERROR(type, prev) \
+#define RE_THROW_ERROR(type, prev) \
       throw RE_MAKE_ERROR(type, prev)  
             
 /*      
-   Exception *ex = MAKE_ERROR(Exception::Format);
+   Exception::Format *ex = MAKE_ERROR(Exception::Format);
    ex->add("param1", "value");
    throw ex;
 */

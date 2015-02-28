@@ -40,7 +40,7 @@ public:
    /**
     * Error found while preparing the fixture.
     */
-   virtual void fixtureError(TestCase *tc, Exception *ex);
+   virtual void fixtureError(TestCase *tc, Component::Error::Throwable *ex);
 
    /**
     * A test case is about to be run.
@@ -50,7 +50,7 @@ public:
    /**
     * Error found while running a test case.
     */
-   virtual void testError(TestCase *tc, Exception *ex);
+   virtual void testError(TestCase *tc, Component::Error::Throwable *ex);
 
    /**
     * A test case has finished.
@@ -63,5 +63,6 @@ protected:
    /**
     * Print an exception to the console.
     */
-   virtual void printEx(Exception *ex);
+   virtual void printEx(Component::Error::Throwable *ex);
 };
+

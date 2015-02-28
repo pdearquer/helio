@@ -62,10 +62,12 @@ void SelfTest::equalAsserts()
 void SelfTest::excepAsserts()
 {
    _int a = 1;
-   ASSERT_THROW(a++; ERROR("OperationNotAllowed"));
-   ASSERT_THROW_EX(a++; ERROR("OperationNotAllowed"), "Remember that a is " + a);
+   ASSERT_THROW(a++; ERROR(Exception::Test::TestException), Exception::Test::TestException);
+   ASSERT_THROW_EX(a++; ERROR(Exception::Test::TestException), Exception::Test::TestException,
+         "Remember that a is " + a);
 
-   //ERROR("OperationNotAllowed");
+   //ERROR(Exception::Test::TestException);
+   //ERROR(Error::Test::TestError);
    //throw std::bad_alloc();
    //throw "a stone";
 }
@@ -76,8 +78,8 @@ void SelfTest::timing()
    for(_int i = 0; i < Integer::MAX; i++)
       var++;
 
-   //for(;;) ;
-   //ASSERT_THROW(for(;;) ;);
+   //for(;;) { }
+   //ASSERT_THROW(for(;;) { }, Exception);
 }
 
 void SelfTest::memory()

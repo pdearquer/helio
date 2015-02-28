@@ -3,7 +3,7 @@
  * Licensed under the GPLv3 or higher (http://www.gnu.org/licenses)
  */
 
-/** Pointer into a window
+/** Pointer into a window.
  * Pointer to a character into a window.
  *
  * Static object.

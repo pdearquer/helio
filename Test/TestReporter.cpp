@@ -15,7 +15,7 @@ void TestReporter::runEnd(_bool error)
 {
 }
 
-void TestReporter::fixtureError(TestCase *tc, Exception *ex)
+void TestReporter::fixtureError(TestCase *tc, Component::Error::Throwable *ex)
 {
    PRINTLN("ERROR in fixture of: " + tc->fullName);
    printEx(ex);
@@ -25,7 +25,7 @@ void TestReporter::testStart(TestCase *tc)
 {
 }
 
-void TestReporter::testError(TestCase *tc, Exception *ex)
+void TestReporter::testError(TestCase *tc, Component::Error::Throwable *ex)
 {
    PRINTLN("ERROR running test: " + tc->fullName);
    printEx(ex);
@@ -36,32 +36,44 @@ void TestReporter::testEnd(TestCase *tc, _int millis)
 }
 
 
-void TestReporter::printEx(Exception *ex)
+void TestReporter::printEx(Component::Error::Throwable *ex)
 {
-   PRINTLN("   " + ex->msg() + " (" + ex->id() + ")");
+   PRINTLN(ex->getClass() + ": " + ex->msg());
 
-   if(ex->params.containsKey("debug.file"))
+   _int pars = 0;
+   const Table<String, String> *params = ex->params();
+   if(params->contains("debug.file"))
    {
-      StringBuffer res;
-      res.add("      " + ex->params.get("debug.file"));
+      PRINT(" from " + params->get("debug.file"));
+      pars++;
+      
+      if(params->contains("debug.line"))
+      {
+         PRINT(':' + params->get("debug.line"));
+         pars++;
+      }
+      
+      if(params->contains("debug.date"))
+      {
+         PRINT(" (" + params->get("debug.date") + ")");
+         pars++;
+      }
 
-      if(ex->params.containsKey("debug.line"))
-         res.add(':' + ex->params.get("debug.line"));
-
-      if(ex->params.containsKey("debug.date"))
-         res.add(" (" + ex->params.get("debug.date") + ")");
-
-      PRINTLN(res);
+      PRINT("\n");
    }
 
-   for(_int i = 0; i < ex->params.count(); i++)
+   if(params->count() > pars)
    {
-      String key = ex->params.getKey(i);
-      if(key != "debug.file" && key != "debug.line" && key != "debug.date")
+      for(_int i = 0; i < params->count(); i++)
       {
-         PRINTLN("      " + key + ": " + ex->params.get(key));
+         String key = params->getKey(i);
+         if(key != "debug.file" && key != "debug.line" && key != "debug.date")
+         {
+            PRINTLN("   " + key + ": " + params->get(key));
+         }
       }
    }
 }
 
 }
+

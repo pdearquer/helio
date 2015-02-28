@@ -11,17 +11,7 @@ namespace Error {
 Throwable::Throwable()
 {
    _child = null;
-   _trace = new Trace(1);
-}
-
-void Throwable::init(String msg, Throwable *child, const String &source, _int line, const String &date)
-{
-   _msg = msg;
-   _child = child;
-   
-   add("debug.file", source);
-   addInt("debug.line", line);
-   add("debug.date", date);
+   _trace = null;
 }
 
 Throwable::~Throwable()
@@ -30,6 +20,18 @@ Throwable::~Throwable()
       delete _child;
 
    delete _trace;
+}
+
+void Throwable::init(String msg, Throwable *child, const String &source, _int line, const String &date, _int traceDiscard)
+{
+   _msg = msg;
+   _child = child;
+   //_trace = new Trace(1 + traceDiscard);   // It doesn't work well with optimization enabled
+   _trace = new Trace(1);
+   
+   add("debug.file", source);
+   addInt("debug.line", line);
+   add("debug.date", date);
 }
 
 

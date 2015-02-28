@@ -36,7 +36,7 @@ void DataTest::object()
    ASSERT(obj->tryAs<Integer>() == null);
 
    ASSERT(obj->as<Object>() == obj);
-   ASSERT_THROW(obj->as<Integer>());
+   ASSERT_THROW(obj->as<Integer>(), Exception::InvalidClass);
 
    ASSERT(obj->is<Object>());
    ASSERT_NO(obj->is<Integer>());
@@ -153,26 +153,26 @@ void DataTest::integer()
 
 #ifdef __HELIO_TYPE_INT_IS_STATIC
    i = Integer::MAX;
-   ASSERT_THROW(i + 1);
-   ASSERT_THROW(1 + i);
-   ASSERT_THROW(i * 2);
-   ASSERT_THROW(2 * i);
+   ASSERT_THROW(i + 1, Error::Arithmetic::Overflow);
+   ASSERT_THROW(1 + i, Error::Arithmetic::Overflow);
+   ASSERT_THROW(i * 2, Error::Arithmetic::Overflow);
+   ASSERT_THROW(2 * i, Error::Arithmetic::Overflow);
    
    i = Integer::MIN;
-   ASSERT_THROW(i - 1);
-   ASSERT_THROW(-1 + i);
-   ASSERT_THROW(i * 2);
-   ASSERT_THROW(2 * i);
-   ASSERT_THROW(-i);
-   ASSERT_THROW(i / -1);
-   ASSERT_THROW(i % -1);
+   ASSERT_THROW(i - 1, Error::Arithmetic::Overflow);
+   ASSERT_THROW(-1 + i, Error::Arithmetic::Overflow);
+   ASSERT_THROW(i * 2, Error::Arithmetic::Overflow);
+   ASSERT_THROW(2 * i, Error::Arithmetic::Overflow);
+   ASSERT_THROW(-i, Error::Arithmetic::Overflow);
+   ASSERT_THROW(i / -1, Error::Arithmetic::Overflow);
+   ASSERT_THROW(i % -1, Error::Arithmetic::Overflow);
    
    i = 10;
-   ASSERT_THROW(i / 0);
-   ASSERT_THROW(i % 0);
+   ASSERT_THROW(i / 0, Error::Arithmetic::DivisionByCero);
+   ASSERT_THROW(i % 0, Error::Arithmetic::ModuloByCero);
    i = 0;
-   ASSERT_THROW(15 / i);
-   ASSERT_THROW(15 % i);
+   ASSERT_THROW(15 / i, Error::Arithmetic::DivisionByCero);
+   ASSERT_THROW(15 % i, Error::Arithmetic::ModuloByCero);
 #endif
 
    i = 1234;
@@ -257,23 +257,23 @@ void DataTest::floatClass()
    ASSERT(4.3 % f == 1.3);
    
    f = Float::MAX;
-   ASSERT_THROW(f + __HELIO_TYPE_FLOAT_MAX);
-   ASSERT_THROW(__HELIO_TYPE_FLOAT_MAX + f);
-   ASSERT_THROW(f * 2);
-   ASSERT_THROW(2 * f);
+   ASSERT_THROW(f + __HELIO_TYPE_FLOAT_MAX, Error::Arithmetic::Overflow);
+   ASSERT_THROW(__HELIO_TYPE_FLOAT_MAX + f, Error::Arithmetic::Overflow);
+   ASSERT_THROW(f * 2, Error::Arithmetic::Overflow);
+   ASSERT_THROW(2 * f, Error::Arithmetic::Overflow);
    
    f = -Float::MAX;
-   ASSERT_THROW(f - __HELIO_TYPE_FLOAT_MAX);
-   ASSERT_THROW(-__HELIO_TYPE_FLOAT_MAX + f);
-   ASSERT_THROW(f * 2);
-   ASSERT_THROW(2 * f);
+   ASSERT_THROW(f - __HELIO_TYPE_FLOAT_MAX, Error::Arithmetic::Overflow);
+   ASSERT_THROW(-__HELIO_TYPE_FLOAT_MAX + f, Error::Arithmetic::Overflow);
+   ASSERT_THROW(f * 2, Error::Arithmetic::Overflow);
+   ASSERT_THROW(2 * f, Error::Arithmetic::Overflow);
    
    f = 10.2;
-   ASSERT_THROW(f / 0);
-   ASSERT_THROW(f % 0);
+   ASSERT_THROW(f / 0, Error::Arithmetic::Overflow);
+   ASSERT_THROW(f % 0, Error::Arithmetic::Overflow);
    f = 0;
-   ASSERT_THROW(15.2 / f);
-   ASSERT_THROW(15.2 % f);
+   ASSERT_THROW(15.2 / f, Error::Arithmetic::Overflow);
+   ASSERT_THROW(15.2 % f, Error::Arithmetic::Overflow);
 #endif
 
    ASSERT(f2.toString() != "12.3");

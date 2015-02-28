@@ -52,7 +52,7 @@ void ArrayMapTest::container()
 
    map->add(new Integer(10), new Float(10));
 
-   ASSERT_THROW(it.next());
+   ASSERT_THROW(it.next(), Error::Structure::IterationEnded);
 
    delete map;
 }
@@ -63,7 +63,7 @@ void ArrayMapTest::basic()
    ASSERT_EQ(map->count(), 0);
    ASSERT(map->isEmpty());
 
-   ASSERT_THROW(map->add(null, null));
+   ASSERT_THROW(map->add(null, null), Error::NullObject);
 
    ASSERT(map->add(new String("abc"), new Integer(1)));
    ASSERT_EQ(map->count(), 1);

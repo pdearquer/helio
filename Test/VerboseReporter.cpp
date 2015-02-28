@@ -31,9 +31,10 @@ void VerboseReporter::testEnd(TestCase *tc, _int millis)
       PRINTLN(tc->fullName + ": finished OK in " + millis + " millis");
 }
 
-void VerboseReporter::printEx(Exception *ex)
+void VerboseReporter::printEx(Component::Error::Throwable *ex)
 {
-   PRINTLN(ex->dump());
+   ex->report();
 }
 
 }
+

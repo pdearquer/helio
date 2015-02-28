@@ -50,7 +50,7 @@ void ArrayListTest::container()
    ASSERT_NO(list->contains(i));
    delete i;
 
-   ASSERT_THROW(it.next());
+   ASSERT_THROW(it.next(), Error::Structure::IterationEnded);
 
    delete list;
 }
@@ -67,10 +67,10 @@ void ArrayListTest::basic()
    ASSERT_EQ(list->add(new Float(4.0)), 3);
    ASSERT_EQ(list->count(), 4);
 
-   ASSERT_THROW(list->get(-1));
-   ASSERT_THROW(list->get(4));
-   ASSERT_THROW(list->set(-1, null));
-   ASSERT_THROW(list->set(4, null));
+   ASSERT_THROW(list->get(-1), Error::Structure::OutOfBounds);
+   ASSERT_THROW(list->get(4), Error::Structure::OutOfBounds);
+   ASSERT_THROW(list->set(-1, null), Error::Structure::OutOfBounds);
+   ASSERT_THROW(list->set(4, null), Error::Structure::OutOfBounds);
 
    ASSERT(list->get(1)->getFloat() == -2.0);
    list->set(1, new Float(2.0));
@@ -82,7 +82,7 @@ void ArrayListTest::basic()
    ASSERT_EQ(list->indexOf(f), 2);
    ASSERT_EQ(list->indexOf(f, 2), 2);
    ASSERT_EQ(list->indexOf(f, 3), -1);
-   ASSERT_THROW(list->indexOf(f, 4));
+   ASSERT_THROW(list->indexOf(f, 4), Error::Structure::OutOfBounds);
 
    list->remove(f);
    ASSERT_NO(list->contains(f));
@@ -122,7 +122,7 @@ void ArrayListTest::redim()
    ASSERT_EQ(list->add(new Float(4.0)), 3);
    ASSERT_EQ(list->count(), 4);
 
-   ASSERT_THROW(list->setCount(5));
+   ASSERT_THROW(list->setCount(5), Error::Structure::InvalidLength);
    ASSERT_EQ(list->count(), 4);
    list->setCount(3);
    ASSERT_EQ(list->count(), 3);

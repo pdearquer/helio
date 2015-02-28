@@ -5,6 +5,13 @@
 
 /** Error reporter.
  * Report errors to the user/administrator in a safe way.
+ *
+ * The internal information should not be reported to the user,
+ * it could give clues to attackers. Use the flag "silently" for that.
+ *
+ * Never report confidencial information, not even silently. Personal
+ * information or passwords should not appear in log files, they must
+ * be stored encripted.
  */
 class Reporter : 
       public virtual Object
@@ -13,7 +20,7 @@ public:
    /**
     * Reports an error appropriately.
     * By now, prints it out through the console.
-    * @param silently If true reports to the user, if false to a log file.
+    * @param silently If true, it doesn't reports to the user, only to a log file.
     */
    static void report(Throwable *error, _bool silently);
 };

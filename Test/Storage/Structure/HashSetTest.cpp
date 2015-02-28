@@ -52,7 +52,7 @@ void HashSetTest::container()
 
    set->add(new Integer(10));
 
-   ASSERT_THROW(it.next());
+   ASSERT_THROW(it.next(), Error::Structure::IterationEnded);
 
    delete set;
 }
@@ -63,7 +63,7 @@ void HashSetTest::basic()
    ASSERT_EQ(set->count(), 0);
    ASSERT(set->isEmpty());
 
-   ASSERT_THROW(set->add(null));
+   ASSERT_THROW(set->add(null), Error::NullObject);
 
    ASSERT(set->add(new String("abc")));
    ASSERT_EQ(set->count(), 1);

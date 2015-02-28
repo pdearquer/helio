@@ -40,9 +40,9 @@ protected:
    
    /**
     * Minimum number of digits (padding with 0s).
-    * In decimal numbers this is only the integer part.
+    * In decimal numbers this is only for the integer part.
     */
-   _int _minDigits;      
+   _int _minDigits;
    
    /**
     * Say if print plus sign in positive values.

@@ -132,20 +132,25 @@ void sig_ill(int signal, siginfo_t *si, void *arg)
 
 /**
  * User interrupt (Ctrl C) signal handler.
+ * NOTE: There is no real G++ support for this signal, so it doesn't work.
  */
 void sig_int(int signal, siginfo_t *si, void *arg)
 {
    Error *ex = MAKE_ERROR(Error::UserInterrupt);
    ex->addPointer("address", si->si_addr);
+   ex->report();
    throw ex;
 }
 
 /**
  * Alarm or time out signal handler.
+ * NOTE: There is no real G++ support for this signal, so it doesn't work.
  */
 void sig_alarm(int signal, siginfo_t *si, void *arg)
 {
-   ERROR(Error::TimeOut);
+   Error *ex = MAKE_ERROR(Error::TimeOut);
+   ex->report();
+   throw ex;
 }
 
 

@@ -36,9 +36,9 @@ void FormatTest::boolean()
    ASSERT_NO(fmt->toBool("false"));
    ASSERT_NO(fmt->toBool("0"));
    
-   ASSERT_THROW(fmt->toBool(""));
-   ASSERT_THROW(fmt->toBool("2"));
-   ASSERT_THROW(fmt->toBool("bla"));
+   ASSERT_THROW(fmt->toBool(""), Exception::Format::EmptyBuffer);
+   ASSERT_THROW(fmt->toBool("2"), Exception::Format);
+   ASSERT_THROW(fmt->toBool("bla"), Exception::Format);
 }
 
 void FormatTest::binary()
@@ -49,10 +49,10 @@ void FormatTest::binary()
    ASSERT(fmt->toString(u) == "123456789");
    ASSERT(fmt->toUInt64("123456789") == u);
    ASSERT(fmt->toUInt64("+123456789") == u);
-   ASSERT_THROW(fmt->toUInt64(""));
-   ASSERT_THROW(fmt->toUInt64("-123456789"));
-   ASSERT_THROW(fmt->toUInt64("1234.56789"));
-   ASSERT_THROW(fmt->toUInt64("1234567890000000000000"));
+   ASSERT_THROW(fmt->toUInt64(""), Exception::Format::EmptyBuffer);
+   ASSERT_THROW(fmt->toUInt64("-123456789"), Exception::Format::InvalidCharacter);
+   ASSERT_THROW(fmt->toUInt64("1234.56789"), Exception::Format::InvalidCharacter);
+   ASSERT_THROW(fmt->toUInt64("1234567890000000000000"), Exception::Format::Overflow);
    u = 0xFEDCBA987654321ULL;
    ASSERT(fmt->toString(u, 16) == "FEDCBA987654321");
    u = __HELIO_TYPE_UINT64_MAX;
@@ -64,11 +64,11 @@ void FormatTest::binary()
    ASSERT(fmt->toString(s) == "-123456789");
    ASSERT(fmt->toSInt64("-123456789") == s);
    ASSERT(fmt->toSInt64("+123456789") == -s);
-   ASSERT_THROW(fmt->toSInt64(""));
-   ASSERT_THROW(fmt->toSInt64("-+123456789"));
-   ASSERT_THROW(fmt->toSInt64("1234.56789"));
-   ASSERT_THROW(fmt->toSInt64("-1234567890000000000000"));
-   ASSERT_THROW(fmt->toSInt64("-" + str));
+   ASSERT_THROW(fmt->toSInt64(""), Exception::Format::EmptyBuffer);
+   ASSERT_THROW(fmt->toSInt64("-+123456789"), Exception::Format::InvalidCharacter);
+   ASSERT_THROW(fmt->toSInt64("1234.56789"), Exception::Format::InvalidCharacter);
+   ASSERT_THROW(fmt->toSInt64("-1234567890000000000000"), Exception::Format::Overflow);
+   ASSERT_THROW(fmt->toSInt64("-" + str), Exception::Format::Overflow);
    s = __HELIO_TYPE_SINT64_MIN;
    str = fmt->toString(s);
    TEST_PRINTLN("SINT64_MIN: " + str);
@@ -91,12 +91,12 @@ void FormatTest::integer()
    ASSERT(fmt->toString(-i) == "-654");
    ASSERT(fmt->toInt("654") == i);
    ASSERT(fmt->toInt("-654") == -i);
-   ASSERT_THROW(fmt->toInt(""));
-   ASSERT_THROW(fmt->toInt("+"));
-   ASSERT_THROW(fmt->toInt("-"));
-   ASSERT_THROW(fmt->toInt("+a"));
-   ASSERT_THROW(fmt->toInt("1234567890000000000000"));
-   ASSERT_THROW(fmt->toInt("-1234567890000000000000"));
+   ASSERT_THROW(fmt->toInt(""), Exception::Format::EmptyBuffer);
+   ASSERT_THROW(fmt->toInt("+"), Exception::Format::UnexpectedEnd);
+   ASSERT_THROW(fmt->toInt("-"), Exception::Format::UnexpectedEnd);
+   ASSERT_THROW(fmt->toInt("+a"), Exception::Format::InvalidCharacter);
+   ASSERT_THROW(fmt->toInt("1234567890000000000000"), Exception::Format::Overflow);
+   ASSERT_THROW(fmt->toInt("-1234567890000000000000"), Exception::Format::Overflow);
    
    i = Integer::MAX;
    String str = fmt->toString(i);
@@ -123,14 +123,14 @@ void FormatTest::floatClass()
    ASSERT(fmt->toFloat("0.002") == f);
    ASSERT(fmt->toFloat("-0.002") == -f);
    
-   ASSERT_THROW(fmt->toFloat(""));
-   ASSERT_THROW(fmt->toFloat("."));
-   ASSERT_THROW(fmt->toFloat("+"));
-   ASSERT_THROW(fmt->toFloat("+."));
-   ASSERT_THROW(fmt->toFloat(".1"));
+   ASSERT_THROW(fmt->toFloat(""), Exception::Format::EmptyBuffer);
+   ASSERT_THROW(fmt->toFloat("."), Exception::Format::UnexpectedEnd);
+   ASSERT_THROW(fmt->toFloat("+"), Exception::Format::UnexpectedEnd);
+   ASSERT_THROW(fmt->toFloat("+."), Exception::Format::InvalidCharacter);
+   ASSERT_THROW(fmt->toFloat(".1"), Exception::Format::InvalidCharacter);
    ASSERT(fmt->toFloat("0.") == 0.0);
-   ASSERT_THROW(fmt->toFloat("0.+1"));
-   ASSERT_THROW(fmt->toFloat("0.-"));
+   ASSERT_THROW(fmt->toFloat("0.+1"), Exception::Format::InvalidCharacter);
+   ASSERT_THROW(fmt->toFloat("0.-"), Exception::Format::InvalidCharacter);
 }
 
 void FormatTest::character()
@@ -141,8 +141,8 @@ void FormatTest::character()
    ASSERT(fmt->toChar("A") == c);
    ASSERT(fmt->toString(c) == "A");
    
-   ASSERT_THROW(fmt->toChar(""));
-   ASSERT_THROW(fmt->toChar("aa"));
+   ASSERT_THROW(fmt->toChar(""), Exception::Format::EmptyBuffer);
+   ASSERT_THROW(fmt->toChar("aa"), Exception::Format::IllegalSequence);
 }
 
 void FormatTest::pointer()
@@ -158,8 +158,8 @@ void FormatTest::pointer()
    str = fmt->toString(p);
    ASSERT(fmt->toPointer(str) == p);
    
-   ASSERT_THROW(fmt->toPointer(""));
-   ASSERT_THROW(fmt->toPointer("0"));
+   ASSERT_THROW(fmt->toPointer(""), Exception::Format::EmptyBuffer);
+   ASSERT_THROW(fmt->toPointer("0"), Exception::Format::IllegalSequence);
 }
 
 } } }

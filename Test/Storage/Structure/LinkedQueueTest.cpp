@@ -51,7 +51,7 @@ void LinkedQueueTest::container()
    ASSERT_NO(list->contains(i));
    delete i;
 
-   ASSERT_THROW(it.next());
+   ASSERT_THROW(it.next(), Error::Structure::IterationEnded);
 
    delete list;
 }
@@ -68,10 +68,10 @@ void LinkedQueueTest::basic()
    ASSERT_EQ(list->add(new Float(4.0)), 3);
    ASSERT_EQ(list->count(), 4);
 
-   ASSERT_THROW(list->get(-1));
-   ASSERT_THROW(list->get(4));
-   ASSERT_THROW(list->set(-1, null));
-   ASSERT_THROW(list->set(4, null));
+   ASSERT_THROW(list->get(-1), Error::Structure::OutOfBounds);
+   ASSERT_THROW(list->get(4), Error::Structure::OutOfBounds);
+   ASSERT_THROW(list->set(-1, null), Error::Structure::OutOfBounds);
+   ASSERT_THROW(list->set(4, null), Error::Structure::OutOfBounds);
 
    ASSERT(list->get(1)->getFloat() == -2.0);
    list->set(1, new Float(2.0));
@@ -83,7 +83,7 @@ void LinkedQueueTest::basic()
    ASSERT_EQ(list->indexOf(f), 2);
    ASSERT_EQ(list->indexOf(f, 2), 2);
    ASSERT_EQ(list->indexOf(f, 3), -1);
-   ASSERT_THROW(list->indexOf(f, 4));
+   ASSERT_THROW(list->indexOf(f, 4), Error::Structure::OutOfBounds);
 
    list->remove(f);
    ASSERT_NO(list->contains(f));
@@ -128,7 +128,7 @@ void LinkedQueueTest::queue()
    ASSERT_EQ(list->count(), 199);
    delete el;
 
-   el = list->dequeue_back();
+   el = list->dequeueBack();
    ASSERT_EQ(el->getInt(), 199);
    ASSERT_EQ(list->front()->getInt(), 1);
    ASSERT_EQ(list->back()->getInt(), 198);
@@ -161,7 +161,7 @@ void LinkedQueueTest::redim()
 
    ASSERT_EQ(list->count(), 200);
 
-   ASSERT_THROW(list->setCount(201));
+   ASSERT_THROW(list->setCount(201), Error::Structure::InvalidLength);
    ASSERT_EQ(list->count(), 200);
    list->setCount(160);
    ASSERT_EQ(list->count(), 160);

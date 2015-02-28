@@ -180,7 +180,7 @@ public:
 #define ASSERT(cond) \
       do { \
          if( !(cond) ) { \
-            Exception *ex = MAKE_ERROR("Test.Assert"); \
+            Error *ex = MAKE_ERROR(Error::Test::Assertion); \
             ex->add("macro", "ASSERT"); \
             ex->add("condition", #cond); \
             throw ex; \
@@ -194,7 +194,7 @@ public:
 #define ASSERT_EX(cond, extra) \
       do { \
          if( !(cond) ) { \
-            ::Component::Error::Exception *ex = MAKE_ERROR("Test.Assert"); \
+            Error *ex = MAKE_ERROR(Error::Test::Assertion); \
             ex->add("macro", "ASSERT_EX"); \
             ex->add("extra", (::Storage::Structure::Text::StringBuffer) extra); \
             ex->add("condition", #cond); \
@@ -208,7 +208,7 @@ public:
 #define ASSERT_NO(cond) \
       do { \
          if( (cond) ) { \
-            ::Component::Error::Exception *ex = MAKE_ERROR("Test.Assert"); \
+            Error *ex = MAKE_ERROR(Error::Test::Assertion); \
             ex->add("macro", "ASSERT_NO"); \
             ex->add("condition", #cond); \
             throw ex; \
@@ -222,7 +222,7 @@ public:
 #define ASSERT_NO_EX(cond, extra) \
       do { \
          if( (cond) ) { \
-            ::Component::Error::Exception *ex = MAKE_ERROR("Test.Assert"); \
+            Error *ex = MAKE_ERROR(Error::Test::Assertion); \
             ex->add("macro", "ASSERT_NO_EX"); \
             ex->add("extra", (::Storage::Structure::Text::StringBuffer) extra); \
             ex->add("condition", #cond); \
@@ -238,7 +238,7 @@ public:
          _int e1 = (exp1); \
          _int e2 = (exp2); \
          if(e1 != e2) { \
-            ::Component::Error::Exception *ex = MAKE_ERROR("Test.Assert"); \
+            Error *ex = MAKE_ERROR(Error::Test::Assertion); \
             ex->add("macro", "ASSERT_EQ"); \
             ex->add("exp1", #exp1); \
             ex->addInt("exp1.value", e1); \
@@ -257,7 +257,7 @@ public:
          _int e1 = (exp1); \
          _int e2 = (exp2); \
          if(e1 != e2) { \
-            ::Component::Error::Exception *ex = MAKE_ERROR("Test.Assert"); \
+            Error *ex = MAKE_ERROR(Error::Test::Assertion); \
             ex->add("macro", "ASSERT_EQ_EX"); \
             ex->add("extra", (::Storage::Structure::Text::StringBuffer) extra); \
             ex->add("exp1", #exp1); \
@@ -276,7 +276,7 @@ public:
          _int e1 = (exp1); \
          _int e2 = (exp2); \
          if(e1 == e2) { \
-            ::Component::Error::Exception *ex = MAKE_ERROR("Test.Assert"); \
+            Error *ex = MAKE_ERROR(Error::Test::Assertion); \
             ex->add("macro", "ASSERT_NO_EQ"); \
             ex->add("exp1", #exp1); \
             ex->addInt("exp1.value", e1); \
@@ -295,7 +295,7 @@ public:
          _int e1 = (exp1); \
          _int e2 = (exp2); \
          if(e1 == e2) { \
-            ::Component::Error::Exception *ex = MAKE_ERROR("Test.Assert"); \
+            Error *ex = MAKE_ERROR(Error::Test::Assertion); \
             ex->add("macro", "ASSERT_NO_EQ_EX"); \
             ex->add("extra", (::Storage::Structure::Text::StringBuffer) extra); \
             ex->add("exp1", #exp1); \
@@ -307,23 +307,22 @@ public:
       } while(false)
 
 /**
- * Checks that the expression throws an exception. Otherwise aborts.
+ * Checks that the expression throws an especific exception. Otherwise aborts.
  */
-#define ASSERT_THROW(exp) \
+#define ASSERT_THROW(exp, except) \
       do { \
          _bool thrown = false; \
          try { \
             exp; \
-         } catch(::Component::Error::Exception *ex) { \
-            if(ex->id().startsWith("Component.Error.")) \
-               throw ex; \
+         } catch(except *ex) { \
             thrown = true; \
             delete ex; \
          } \
          if(!thrown) { \
-            ::Component::Error::Exception *ex = MAKE_ERROR("Test.Assert"); \
+            Error *ex = MAKE_ERROR(Error::Test::Assertion); \
             ex->add("macro", "ASSERT_THROW"); \
             ex->add("exp", #exp); \
+            ex->add("except", #except); \
             throw ex; \
          } \
       } while(false)
@@ -332,22 +331,21 @@ public:
  * Checks that the expression throws an exception. Otherwise aborts.
  * Adds extra information.
  */
-#define ASSERT_THROW_EX(exp, extra) \
+#define ASSERT_THROW_EX(exp, except, extra) \
       do { \
          _bool thrown = false; \
          try { \
             exp; \
-         } catch(::Component::Error::Exception *ex) { \
-            if(ex->id().startsWith("Component.Error.")) \
-               throw ex; \
+         } catch(except *ex) { \
             thrown = true; \
             delete ex; \
          } \
          if(!thrown) { \
-            ::Component::Error::Exception *ex = MAKE_ERROR("Test.Assert"); \
+            Error *ex = MAKE_ERROR(Error::Test::Assertion); \
             ex->add("macro", "ASSERT_THROW_EX"); \
             ex->add("extra", (::Storage::Structure::Text::StringBuffer) extra); \
             ex->add("exp", #exp); \
+            ex->add("except", #except); \
             throw ex; \
          } \
       } while(false)
