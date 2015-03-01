@@ -12,7 +12,7 @@
  * modulo operator (should we?).
  *
  * Note that the native type is double, not float. So that you don't have to write
- * the "f" everytime (e.g. 1.2f).
+ * the "f" every time (e.g. 1.2f).
  *
  * Static object.
  */
@@ -504,7 +504,7 @@ public:
 protected:
    /**
     * Check the limits of the given value to ensure that no overflow
-    * has occured.
+    * has occurred.
     * If the value is correct, it is assigned to _value.
     * If not, an exception is thrown.
     */

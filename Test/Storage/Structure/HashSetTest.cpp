@@ -52,7 +52,7 @@ void HashSetTest::container()
 
    set->add(new Integer(10));
 
-   ASSERT_THROW(it.next(), Error::Structure::IterationEnded);
+   ASSERT_THROW(it.next(), Error::Structure::IteratorInvalidated);
 
    delete set;
 }

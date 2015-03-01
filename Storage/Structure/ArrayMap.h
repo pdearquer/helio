@@ -4,7 +4,7 @@
  */
 
 /** Map implementation using an array.
- * Map implementation using an array of entries. It is not very effiecient, but only
+ * Map implementation using an array of entries. It is not very efficient, but only
  * require the keys to be Comparable.
  *
  * Implemented as a container of the key elements, so note that the iteration is done
@@ -63,7 +63,7 @@ public:
     * Returns the stored value of associated to the given key.
     * @return The value object or null if none.
     *    Note that a key can exist and contain a null value, in this case null is returned.
-    *    To check key existance, contains() must be used.
+    *    To check key existence, contains() must be used.
     */
    virtual V *get(K *key);
    
@@ -86,7 +86,7 @@ public:
     * Gets a dynamic iterator over the keys.
     * This iterator must be deleted by the user.
     * Do not modify the container while iterating or the iterator will
-    * be invalidated with indetermined behavior.
+    * be invalidated with undetermined behaviour.
     */
    virtual DynIterator<K> *dynIterate();
 };

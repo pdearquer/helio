@@ -10,187 +10,186 @@ namespace Structure {
 
 template <class T> Vector<T>::Vector()
 {
-   _length = 0;
-   _size = 10;
-   _elements = new T[_size];
+   this->_count = 0;
+   this->_size = 10;
+   this->_elements = new T[_size];
 }
 
 template <class T> Vector<T>::Vector(_int capacity)
 {
    if(capacity <= 0)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::IllegalCapacity);
+      MAKE_ERROR(ex, Error::Structure::IllegalCapacity);
       ex->addInt("capacity", capacity);
       throw ex;
    }
    
-   _length = 0;
-   _size = capacity;
-   _elements = new T[_size];
+   this->_count = 0;
+   this->_size = capacity;
+   this->_elements = new T[_size];
 }
 
 template <class T> Vector<T>::Vector(const Vector<T> &other)
 {
-   _length = other._length;
-   _size = _length;
-   if(_size < 10)
-      _size = 10;
-   _elements = new T[_size];
+   this->_count = other._count;
+   this->_size = _count;
+   if(this->_size < 10)
+      this->_size = 10;
+   this->_elements = new T[this->_size];
    
-   for(_int i = 0; i < _length; i++)
-      _elements[i] = other._elements[i];
+   for(_int i = 0; i < this->_count; i++)
+      this->_elements[i] = other._elements[i];
 }
 
 template <class T> Vector<T>::~Vector()
 {
-   delete[] _elements;
+   delete[] this->_elements;
 }
 
 
 template <class T> _int Vector<T>::count() const
 {
-   return _length;
+   return this->_count;
 }
 
-template <class T> _int Vector<T>::count(_int len)
+template <class T> void Vector<T>::setCount(_int num)
 {
-   if(len < 0)
+   if(num < 0)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::InvalidLength);
-      ex->addInt("length", len);
+      MAKE_ERROR(ex, Error::Structure::InvalidLength);
+      ex->addInt("count", num);
       throw ex;
    }
       
-   if(len > _length)
+   if(num > this->_count)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::InvalidLength);
-      ex->addInt("length", len);
-      ex->addInt("current", _length);
+      MAKE_ERROR(ex, Error::Structure::InvalidLength);
+      ex->addInt("count", num);
+      ex->addInt("current", this->_count);
       throw ex;
    }
       
-   _length = len;
-   return _length;
+   this->_count = num;
 }
 
 template <class T> _bool Vector<T>::isEmpty() const
 {
-   return (_length == 0);
+   return (this->_count == 0);
 }
 
 
 template <class T> _int Vector<T>::add(T obj)
 {
-   ensureSize(_length + 1);
+   this->ensureSize(this->_count + 1);
    
-   _elements[_length] = obj;
+   this->_elements[this->_count] = obj;
    
-   _int index = _length;
-   _length++;
+   _int index = this->_count;
+   this->_count++;
    return index;
 }
 
 template <class T> void Vector<T>::set(_int index, T obj)
 {
-   if(index < 0 || index >= _length)
+   if(index < 0 || index >= this->_count)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("index", index);
-      ex->addInt("length", _length);
+      ex->addInt("count", this->_count);
       throw ex;
    }
    
-   _elements[index] = obj;
+   this->_elements[index] = obj;
 }
 
 template <class T> T Vector<T>::get(_int index) const
 {
-   if(index < 0 || index >= _length)
+   if(index < 0 || index >= this->_count)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("index", index);
-      ex->addInt("length", _length);
+      ex->addInt("count", this->_count);
       throw ex;
    }
    
-   return _elements[index];
+   return this->_elements[index];
 }
 
 template <class T> T &Vector<T>::operator [](const _int index)
 {
-   if(index < 0 || index >= _length)
+   if(index < 0 || index >= this->_count)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("index", index);
-      ex->addInt("length", _length);
+      ex->addInt("count", this->_count);
       throw ex;
    }
    
-   return _elements[index];
+   return this->_elements[index];
 }
 
 
 template <class T> T Vector<T>::push(T obj)
 {
-   add(obj);
+   this->add(obj);
    return obj;
 }
    
 template <class T> T Vector<T>::pop()
 {
-   if(_length <= 0)
-      ERROR(Error::Structure::Empty);
+   if(this->_count <= 0)
+      THROW_ERROR(Error::Structure::Empty);
    
-   T obj = _elements[_length - 1];
-   _length--;
+   T obj = this->_elements[this->_count - 1];
+   this->_count--;
    return obj;
 }
    
 template <class T> T Vector<T>::peek() const
 {
-   if(_length <= 0)
-      ERROR(Error::Structure::Empty);
+   if(this->_count <= 0)
+      THROW_ERROR(Error::Structure::Empty);
    
-   return _elements[_length - 1];
+   return this->_elements[this->_count - 1];
 }
 
 
 template <class T> _bool Vector<T>::contains(T obj) const
 {
-   return (indexOf(obj) != -1);
+   return (this->indexOf(obj) != -1);
 }
 
 template <class T> _bool Vector<T>::remove(_int index)
 {
-   if(index < 0 || index >= _length)
+   if(index < 0 || index >= this->_count)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("index", index);
-      ex->addInt("length", _length);
+      ex->addInt("count", this->_count);
       throw ex;
    }
       
-   for(_int next = index + 1; next < _length; next++)
-      _elements[next - 1] = _elements[next];
-   _length--;
+   for(_int next = index + 1; next < this->_count; next++)
+      this->_elements[next - 1] = this->_elements[next];
+   this->_count--;
    return true;
 }
 
 template <class T> void Vector<T>::clear()
 {
-   delete[] _elements;
+   delete[] this->_elements;
    
-   _length = 0;
-   _size = 10;
-   _elements = new T[_size];
+   this->_count = 0;
+   this->_size = 10;
+   this->_elements = new T[this->_size];
 }
 
 
 template <class T> _int Vector<T>::indexOf(T obj) const
 {
-   for(_int i = 0; i < _length; i++)
+   for(_int i = 0; i < this->_count; i++)
    {
-      if(_elements[i] == obj)
+      if(this->_elements[i] == obj)
          return i;
    }
    
@@ -199,17 +198,17 @@ template <class T> _int Vector<T>::indexOf(T obj) const
 
 template <class T> _int Vector<T>::indexOf(T obj, _int start) const
 {
-   if(start < 0 || start >= _length)
+   if(start < 0 || start >= this->_count)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("start", start);
-      ex->addInt("length", _length);
+      ex->addInt("count", this->_count);
       throw ex;
    }
       
-   for(_int i = start; i < _length; i++)
+   for(_int i = start; i < _count; i++)
    {
-      if(_elements[i] == obj)
+      if(this->_elements[i] == obj)
          return i;
    }
    
@@ -219,11 +218,11 @@ template <class T> _int Vector<T>::indexOf(T obj, _int start) const
 
 template <class T> _bool Vector<T>::equals(const Vector<T> &other) const
 {
-   if(_length != other._length)
+   if(this->_count != other._count)
       return false;
       
-   for(_int i = 0; i < _length; i++)
-      if(!(_elements[i] == other._elements[i]))
+   for(_int i = 0; i < this->_count; i++)
+      if(!(this->_elements[i] == other._elements[i]))
          return false;
          
    return true;
@@ -234,9 +233,9 @@ template <class T> String Vector<T>::toString() const
 {
    StringBuffer ret = "{ ";
 
-   for(_int i = 0; i < _length; i++)
+   for(_int i = 0; i < this->_count; i++)
    {
-      ret.add(_elements[i]);
+      ret.add(this->_elements[i]);
       ret.add(" ");
    }
 
@@ -246,10 +245,10 @@ template <class T> String Vector<T>::toString() const
 
 template <class T> void Vector<T>::ensureSize(_int min)
 {
-   if(min <= _size)
+   if(min <= this->_size)
       return;
 
-   _int size2 = _size;
+   _int size2 = this->_size;
    if(size2 == 0)
       size2 = min;
       
@@ -262,12 +261,12 @@ template <class T> void Vector<T>::ensureSize(_int min)
    }
    
    T *elements2 = new T[size2];
-   for(_int i = 0; i < _length; i++)
-      elements2[i] = _elements[i];
-   delete[] _elements;
+   for(_int i = 0; i < this->_count; i++)
+      elements2[i] =this-> _elements[i];
+   delete[] this->_elements;
    
-   _elements = elements2;
-   _size = size2;
+   this->_elements = elements2;
+   this->_size = size2;
 }
 
 } }

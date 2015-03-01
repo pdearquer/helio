@@ -10,7 +10,7 @@ namespace Structure {
 namespace Data {
 
 /**
- * Types enforment:
+ * Types enforcement:
  * The internal type must support all the rest.
  */
 #ifndef __HELIO_TYPE_INT_IS_STATIC
@@ -180,7 +180,7 @@ Integer::operator int() const
 Integer::operator size_t() const
 {
    if(_value < 0)
-      ERROR(Error::Arithmetic::Overflow);
+      THROW_ERROR(Error::Arithmetic::Overflow);
    
    return (size_t)_value;
 }
@@ -188,7 +188,7 @@ Integer::operator size_t() const
 Integer::operator _uint8() const
 {
    if(_value < __HELIO_TYPE_UINT8_MIN || _value > __HELIO_TYPE_UINT8_MAX)
-      ERROR(Error::Arithmetic::Overflow);
+      THROW_ERROR(Error::Arithmetic::Overflow);
    
    return (_uint8)_value;
 }
@@ -196,7 +196,7 @@ Integer::operator _uint8() const
 Integer::operator _uint16() const
 {
    if(_value < __HELIO_TYPE_UINT16_MIN || _value > __HELIO_TYPE_UINT16_MAX)
-      ERROR(Error::Arithmetic::Overflow);
+      THROW_ERROR(Error::Arithmetic::Overflow);
       
    return (_uint16)_value;
 }
@@ -204,10 +204,10 @@ Integer::operator _uint16() const
 Integer::operator _uint32() const
 {
    if(_value < __HELIO_TYPE_UINT32_MIN)
-      ERROR(Error::Arithmetic::Overflow);
+      THROW_ERROR(Error::Arithmetic::Overflow);
       
    if(sizeof(__int) > sizeof(_uint32) && _value > (__int)__HELIO_TYPE_UINT32_MAX)
-      ERROR(Error::Arithmetic::Overflow);
+      THROW_ERROR(Error::Arithmetic::Overflow);
       
    return (_uint32)_value;
 }
@@ -215,7 +215,7 @@ Integer::operator _uint32() const
 Integer::operator _uint64() const
 {
    if(_value < 0)
-      ERROR(Error::Arithmetic::Overflow);
+      THROW_ERROR(Error::Arithmetic::Overflow);
       
    return (_uint64)_value;
 }
@@ -401,10 +401,10 @@ void Integer::operator *=(const Integer &other)
 void Integer::operator /=(const Integer &other)
 {
    if(other._value == 0)
-      ERROR(Error::Arithmetic::DivisionByCero);
+      THROW_ERROR(Error::Arithmetic::DivisionByCero);
    
    if(_value == MIN && other._value == -1)
-      ERROR(Error::Arithmetic::Overflow);
+      THROW_ERROR(Error::Arithmetic::Overflow);
    
    _value /= other._value;
 }
@@ -412,10 +412,10 @@ void Integer::operator /=(const Integer &other)
 void Integer::operator %=(const Integer &other)
 {
    if(other._value == 0)
-      ERROR(Error::Arithmetic::ModuloByCero);
+      THROW_ERROR(Error::Arithmetic::ModuloByCero);
    
    if(_value == MIN && other._value == -1)
-      ERROR(Error::Arithmetic::Overflow);
+      THROW_ERROR(Error::Arithmetic::Overflow);
    
    _value %= other._value;
 }
@@ -440,10 +440,10 @@ void Integer::operator *=(_int other)
 void Integer::operator /=(_int other)
 {
    if((__int)other == 0)
-      ERROR(Error::Arithmetic::DivisionByCero);
+      THROW_ERROR(Error::Arithmetic::DivisionByCero);
    
    if(_value == MIN && (__int)other == -1)
-      ERROR(Error::Arithmetic::Overflow);
+      THROW_ERROR(Error::Arithmetic::Overflow);
    
    checkOverflow(_value / (__int)other);
 }
@@ -451,10 +451,10 @@ void Integer::operator /=(_int other)
 void Integer::operator %=(_int other)
 {
    if((__int)other == 0)
-      ERROR(Error::Arithmetic::ModuloByCero);
+      THROW_ERROR(Error::Arithmetic::ModuloByCero);
       
    if(_value == MIN && (__int)other == -1)
-      ERROR(Error::Arithmetic::Overflow);
+      THROW_ERROR(Error::Arithmetic::Overflow);
       
    _value %= (__int)other;
 }
@@ -480,10 +480,10 @@ void Integer::operator *=(int other)
 void Integer::operator /=(int other)
 {
    if((__int)other == 0)
-      ERROR(Error::Arithmetic::DivisionByCero);
+      THROW_ERROR(Error::Arithmetic::DivisionByCero);
    
    if(_value == MIN && (__int)other == -1)
-      ERROR(Error::Arithmetic::Overflow);
+      THROW_ERROR(Error::Arithmetic::Overflow);
    
    checkOverflow(_value / (__int)other);
 }
@@ -491,10 +491,10 @@ void Integer::operator /=(int other)
 void Integer::operator %=(int other)
 {
    if((__int)other == 0)
-      ERROR(Error::Arithmetic::ModuloByCero);
+      THROW_ERROR(Error::Arithmetic::ModuloByCero);
       
    if(_value == MIN && (__int)other == -1)
-      ERROR(Error::Arithmetic::Overflow);
+      THROW_ERROR(Error::Arithmetic::Overflow);
       
    _value %= (__int)other;
 }
@@ -518,10 +518,10 @@ void Integer::operator *=(size_t other)
 void Integer::operator /=(size_t other)
 {
    if(other == 0)
-      ERROR(Error::Arithmetic::DivisionByCero);
+      THROW_ERROR(Error::Arithmetic::DivisionByCero);
    
    if(_value == MIN && (__int)other == -1)
-      ERROR(Error::Arithmetic::Overflow);
+      THROW_ERROR(Error::Arithmetic::Overflow);
 
    _value /= (__int)other;
 }
@@ -529,10 +529,10 @@ void Integer::operator /=(size_t other)
 void Integer::operator %=(size_t other)
 {
    if((__int)other == 0)
-      ERROR(Error::Arithmetic::ModuloByCero);
+      THROW_ERROR(Error::Arithmetic::ModuloByCero);
       
    if(_value == MIN && (__int)other == -1)
-      ERROR(Error::Arithmetic::Overflow);
+      THROW_ERROR(Error::Arithmetic::Overflow);
       
    _value %= (__int)other;
 }
@@ -561,7 +561,7 @@ void Integer::operator --()
 const Integer Integer::operator -() const
 {
    if(_value == MIN)
-      ERROR(Error::Arithmetic::Overflow);
+      THROW_ERROR(Error::Arithmetic::Overflow);
       
    Integer result;
    result.checkOverflow(-_value);
@@ -724,7 +724,7 @@ __int Integer::raw() const
 void Integer::checkOverflow(__int value)
 {
    if(value < MIN || value > MAX)
-      ERROR(Error::Arithmetic::Overflow);
+      THROW_ERROR(Error::Arithmetic::Overflow);
    
    _value = value;
 }

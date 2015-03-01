@@ -9,7 +9,7 @@
  * elements.
  *
  * A reference to the first and last node is kept to allow fast
- * insertion at both beginging and end. It is recommended to iterate
+ * insertion at both beginning and end. It is recommended to iterate
  * this list using first() and last() instead of the standard
  * iterator, it is faster and allows modification/removal.
  *

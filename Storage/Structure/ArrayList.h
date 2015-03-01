@@ -7,7 +7,7 @@
  * List implementation using a dynamic array.
  *
  * The stack interface is implemented by pushing elements at the end
- * of the list (as add do) and poping them from there.
+ * of the list (as add do) and popping them from there.
  */
 template<class T>
 class ArrayList : 

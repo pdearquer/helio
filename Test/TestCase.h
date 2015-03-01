@@ -42,7 +42,7 @@ public:
 
 
    /**
-    * Construct the test case information
+    * Constructs the test case information
     * @param name Test case name
     * @param method
     */
@@ -53,3 +53,4 @@ public:
     */
    virtual ~TestCase();
 };
+

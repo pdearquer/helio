@@ -5,7 +5,7 @@
 
 /** Bidirectional FIFO queue of elements.
  * First Input First Output queue of elements with efficient front insertion and back removal.
- * It supports reverse operation, compling with the double ended queue or deque model.
+ * It supports reverse operation, complying with the double ended queue or deque model.
  */
 template<class T>
 class Queue :
@@ -40,7 +40,8 @@ public:
    virtual void enqueueFront(T *el) = 0;
 
    /**
-    * Returns and remove the element at the beginning of the queue, i.e. the last inserted in the normal order.
+    * Returns and remove the element at the beginning of the queue, i.e. the last
+    * inserted in the normal order.
     * This method overrides the ownership as to NOT delete the element.
     * The element is got from the end of the list.
     * If the list is empty, it throws an exception.
@@ -54,3 +55,4 @@ public:
     */
    virtual T *back() const = 0;
 };
+

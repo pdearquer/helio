@@ -4,7 +4,7 @@
  */
 
 /** String tests
- * Tests the Storage.Strucutre.Data.String class.
+ * Tests the Storage.Structure.Data.String class.
  */
 class StringTest :
       public virtual Test
@@ -33,7 +33,7 @@ public:
    void addition();
 
    /**
-    * Edition of stringBuffers
+    * Edition of StringBuffers
     */
    void stringBufferEdit();
 };

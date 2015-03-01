@@ -17,19 +17,19 @@ protected:
 
 
    /**
-    * Hexadecimal escaping formater.
+    * Hexadecimal escaping formatter.
     */
    Format *fmt;
    
    
 public:
    /**
-    * Create a C Style escaping conversor.
+    * Create a C Style escaping converser.
     */
    CStyle();
 
    /**
-    * Release the conversor.
+    * Release the converser.
     */
    ~CStyle();
 

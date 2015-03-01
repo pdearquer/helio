@@ -12,18 +12,18 @@ namespace Structure {
 namespace Binary {
 namespace Encodings {
 
-ASCII::ASCII()
+Ascii::Ascii()
 {
    setName("ASCII");
 }
    
    
-_bool ASCII::canEncode(_char c)
+_bool Ascii::canEncode(_char c)
 {
    return isValid((__char)c);
 }
 
-_bool ASCII::isValid(__char c)
+_bool Ascii::isValid(__char c)
 {
    if(c <= 0x9F)
       return true;
@@ -31,7 +31,7 @@ _bool ASCII::isValid(__char c)
    return false;
 } 
    
-_int ASCII::decode(const Buffer *in, Text::Buffer *out, _bool finish)
+_int Ascii::decode(const Buffer *in, Text::Buffer *out, _bool finish)
 {   
    for(_int i = 0; i < in->length(); i++)
    {
@@ -42,7 +42,7 @@ _int ASCII::decode(const Buffer *in, Text::Buffer *out, _bool finish)
       }
       else
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
+         MAKE_ERROR(ex, Exception::Format::InvalidByte);
          ex->add("encoding", _name);
          ex->addByte("byte", (_byte)c);
          throw ex;
@@ -51,7 +51,7 @@ _int ASCII::decode(const Buffer *in, Text::Buffer *out, _bool finish)
    return in->length();
 }
    
-_int ASCII::encode(const Text::Buffer *in, Buffer *out, _bool finish)
+_int Ascii::encode(const Text::Buffer *in, Buffer *out, _bool finish)
 {
    for(_int i = 0; i < in->length(); i++)
    {
@@ -60,7 +60,7 @@ _int ASCII::encode(const Text::Buffer *in, Buffer *out, _bool finish)
          out->add((_byte) c);
       else
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::InvalidCharacter);
+         MAKE_ERROR(ex, Exception::Format::InvalidCharacter);
          ex->add("encoding", _name);
          ex->addUInt32("character", (_uint32)c);
          throw ex;

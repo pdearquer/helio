@@ -24,7 +24,7 @@ void FIFO::write(Buffer *buf, _int bytes, _int start)
 {
    if(start < 0 || bytes < 0 || start + bytes > buf->length())
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("bytes", bytes);
       ex->addInt("length", buf->length());
@@ -44,7 +44,7 @@ _int FIFO::read(Buffer *buf, _int bytes, _int start)
 {
    if(start < 0 || start > buf->length() || bytes < 0)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("bytes", bytes);
       ex->addInt("length", buf->length());

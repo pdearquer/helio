@@ -10,7 +10,7 @@ namespace Structure {
 namespace Data {
 
 /**
- * Types enforment:
+ * Types enforcement:
  * The internal type must support all the rest.
  */
 #ifndef __HELIO_TYPE_BOOL_IS_STATIC

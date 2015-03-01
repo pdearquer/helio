@@ -72,7 +72,7 @@ public:
    
    
    /**
-    * Asignment operator. Copy the position of the other pointer.
+    * Assignment operator. Copy the position of the other pointer.
     */
    WindowPointer &operator =(const WindowPointer &other);
    

@@ -49,7 +49,7 @@ template <class T> T *Object::as()
    T *obj = dynamic_cast<T*>(this);
    if(obj == null)
    {
-      Exception::InvalidClass *ex = MAKE_ERROR(Exception::InvalidClass);
+      MAKE_ERROR(ex, Exception::InvalidClass);
       ex->add("class", getClass());
       try
       {
@@ -71,7 +71,7 @@ template <class T> const T *Object::as() const
    const T *obj = dynamic_cast<const T*>(this);
    if(obj == null)
    {
-      Exception::InvalidClass *ex = MAKE_ERROR(Exception::InvalidClass);
+      MAKE_ERROR(ex, Exception::InvalidClass);
       ex->add("class", getClass());
       try
       {

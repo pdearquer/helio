@@ -12,7 +12,7 @@
     <description>C style strings escaping</description>
   </class>
   <class>
-    <name>HTML</name>
+    <name>Html</name>
     <description>HTML especial characters escaping</description>
   </class>
 </package>

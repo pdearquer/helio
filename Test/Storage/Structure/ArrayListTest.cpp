@@ -50,7 +50,7 @@ void ArrayListTest::container()
    ASSERT_NO(list->contains(i));
    delete i;
 
-   ASSERT_THROW(it.next(), Error::Structure::IterationEnded);
+   ASSERT_THROW(it.next(), Error::Structure::IteratorInvalidated);
 
    delete list;
 }

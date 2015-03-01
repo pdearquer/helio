@@ -17,7 +17,7 @@ void WritableWindow::set(const WindowPointer &p, String s)
    {
       if(hasFinished(p2))
       {
-         Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+         MAKE_ERROR(ex, Error::Structure::OutOfBounds);
          ex->addInt("pointer", p._index);
          ex->addInt("position", getPointer(p));
          ex->add("string", s);
@@ -55,7 +55,7 @@ void WritableWindow::erase(const WindowPointer &from, const WindowPointer &to)
       
    if(diff <= 0)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::InvalidLength);
+      MAKE_ERROR(ex, Error::Structure::InvalidLength);
       ex->addInt("difference", diff);
       throw ex;
    }
@@ -70,7 +70,7 @@ void WritableWindow::replace(_char c, const WindowPointer &from, const WindowPoi
    
    if(diff <= 0)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::InvalidLength);
+      MAKE_ERROR(ex, Error::Structure::InvalidLength);
       ex->addInt("difference", diff);
       throw ex;
    }
@@ -86,7 +86,7 @@ void WritableWindow::replace(const StringBuffer &s, const WindowPointer &from, c
    
    if(diff <= 0)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::InvalidLength);
+      MAKE_ERROR(ex, Error::Structure::InvalidLength);
       ex->addInt("difference", diff);
       throw ex;
    }
@@ -112,7 +112,7 @@ void WritableWindow::displace(const WindowPointer &p, _int chars)
    
    if(_pointers[POINTER_END] + chars < pos)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("pointer", p._index);
       ex->addInt("end", _pointers[POINTER_END]);
       ex->addInt("position", pos);

@@ -51,7 +51,7 @@ public:
    
    
    /**
-    * Assingment operator.
+    * Assignment operator.
     */
    const Iterator<T> &operator=(const Iterator<T> &other);
 
@@ -80,7 +80,7 @@ public:
      
    /**
     * Check if the iteration has finished.
-    * Not a real comparision, it only compares againts EndIterator.
+    * Not a real comparison, it only compares against EndIterator.
     */
    _bool operator!=(const Iterator<T> &otro) const;
    

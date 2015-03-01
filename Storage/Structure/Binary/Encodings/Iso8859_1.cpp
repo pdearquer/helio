@@ -10,18 +10,18 @@ namespace Structure {
 namespace Binary {
 namespace Encodings {
 
-ISO_8859_1::ISO_8859_1()
+Iso8859_1::Iso8859_1()
 {
    setName("ISO 8859-1");
 }
    
    
-_bool ISO_8859_1::canEncode(_char c)
+_bool Iso8859_1::canEncode(_char c)
 {
    return ((__char)c <= 0xFF);
 }
    
-_int ISO_8859_1::decode(const Buffer *in, Text::Buffer *out, _bool finish)
+_int Iso8859_1::decode(const Buffer *in, Text::Buffer *out, _bool finish)
 {   
    for(_int i = 0; i < in->length(); i++)
    {
@@ -30,7 +30,7 @@ _int ISO_8859_1::decode(const Buffer *in, Text::Buffer *out, _bool finish)
    return in->length();
 }
    
-_int ISO_8859_1::encode(const Text::Buffer *in, Buffer *out, _bool finish)
+_int Iso8859_1::encode(const Text::Buffer *in, Buffer *out, _bool finish)
 {
    for(_int i = 0; i < in->length(); i++)
    {
@@ -40,7 +40,7 @@ _int ISO_8859_1::encode(const Text::Buffer *in, Buffer *out, _bool finish)
          out->add((_byte) c);
       else
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::InvalidCharacter);
+         MAKE_ERROR(ex, Exception::Format::InvalidCharacter);
          ex->add("encoding", _name);
          ex->addUInt32("character", c);
          throw ex;

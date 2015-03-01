@@ -56,7 +56,7 @@ String::String(const _uint8 *utf8, _int length)
 {
    if(length < 0)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::InvalidLength);
+      MAKE_ERROR(ex, Error::Structure::InvalidLength);
       ex->addInt("length", length);
       throw ex;
    }
@@ -70,7 +70,7 @@ String::String(const _uint8 *utf8, _int length)
    }
    else
    {
-      _bytes = UTF_8::charbytes(utf8, _length);
+      _bytes = Utf8::charbytes(utf8, _length);
       _value = new _uint8[_bytes + 1];
       Binary::Buffer::memcpy(_value, utf8, _bytes);
       _value[_bytes] = 0;
@@ -89,13 +89,13 @@ String::String(const Storage::Structure::Text::Buffer *buf)
    else
    {
       for(_int i = 0; i < _length; i++)
-         _bytes += UTF_8::charlen(buf->get(i));
+         _bytes += Utf8::charlen(buf->get(i));
       
       _value = new _uint8[_bytes + 1];
       
       _int p = 0;
       for(_int i = 0; i < _length; i++)
-         p += UTF_8::charenc(buf->get(i), &_value[p]);
+         p += Utf8::charenc(buf->get(i), &_value[p]);
       _value[_bytes] = 0;
    }
 }
@@ -112,13 +112,13 @@ String::String(const Storage::Structure::Text::StringBuffer &buf)
    else
    {
       for(_int i = 0; i < _length; i++)
-         _bytes += UTF_8::charlen(buf.get(i));
+         _bytes += Utf8::charlen(buf.get(i));
       
       _value = new _uint8[_bytes + 1];
       
       _int p = 0;
       for(_int i = 0; i < _length; i++)
-         p += UTF_8::charenc(buf.get(i), &_value[p]);
+         p += Utf8::charenc(buf.get(i), &_value[p]);
       _value[_bytes] = 0;
    }
 }
@@ -137,9 +137,9 @@ String::String(const char *ascii)
       for(_int i = 0; i < _length; i++)
       {
          _uint32 utf32 = (_uint32)ascii[i];
-         if(!Storage::Structure::Binary::Encodings::ASCII::isValid(utf32))
+         if(!Storage::Structure::Binary::Encodings::Ascii::isValid(utf32))
          {
-            Exception *ex = MAKE_ERROR(Exception::Format::InvalidCharacter);
+            MAKE_ERROR(ex, Exception::Format::InvalidCharacter);
             ex->add("encoding", "ASCII");
             ex->addUInt32("character", utf32);
             throw ex;
@@ -155,9 +155,9 @@ String::String(const char *ascii)
 String::String(const Character &c)
 {
    _length = 1;
-   _bytes = UTF_8::charlen(c);
+   _bytes = Utf8::charlen(c);
    _value = new _uint8[_bytes + 1];
-   UTF_8::charenc(c, _value);
+   Utf8::charenc(c, _value);
    _value[_bytes] = 0;
 }  
 
@@ -167,9 +167,9 @@ String::String(_char ch)
 {
    Character c = ch;
    _length = 1;
-   _bytes = UTF_8::charlen(c);
+   _bytes = Utf8::charlen(c);
    _value = new _uint8[_bytes + 1];
-   UTF_8::charenc(c, _value);
+   Utf8::charenc(c, _value);
    _value[_bytes] = 0;
 }
 #endif
@@ -180,9 +180,9 @@ String::String(char ascii)
 {
    Character c = ascii;
    _length = 1;
-   _bytes = UTF_8::charlen(c);
+   _bytes = Utf8::charlen(c);
    _value = new _uint8[_bytes + 1];
-   UTF_8::charenc(c, _value);
+   Utf8::charenc(c, _value);
    _value[_bytes] = 0;
 }
 #endif
@@ -401,15 +401,15 @@ _char String::get(_int index) const
 {
    if(index < 0 || index >= _length)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("index", index);
       ex->addInt("length", _length);
       throw ex;
    }
       
    _char c;
-   _int p = UTF_8::charbytes(_value, index);
-   UTF_8::chardec(&c, &_value[p]);
+   _int p = Utf8::charbytes(_value, index);
+   Utf8::chardec(&c, &_value[p]);
    return c;
 }
 
@@ -434,8 +434,8 @@ _int String::compare(const String &other, _bool igncase) const
          return +1;
          
       _char c1, c2;
-      p1 += UTF_8::chardec(&c1, &_value[p1]);
-      p2 += UTF_8::chardec(&c2, &other._value[p2]);
+      p1 += Utf8::chardec(&c1, &_value[p1]);
+      p2 += Utf8::chardec(&c2, &other._value[p2]);
       
       if(!Character(c1).equals(c2, igncase))
       {
@@ -477,8 +477,8 @@ _bool String::equals(const String &other, _bool igncase) const
       for(_int i = 0; i < _length; i++)
       {
          _char c1, c2;
-         p1 += UTF_8::chardec(&c1, &_value[p1]);
-         p2 += UTF_8::chardec(&c2, &other._value[p2]);
+         p1 += Utf8::chardec(&c1, &_value[p1]);
+         p2 += Utf8::chardec(&c2, &other._value[p2]);
 
          if(!Character(c1).equals(c2, true))
             return false;
@@ -515,7 +515,7 @@ String String::sub(_int length) const
 
    if(actual_len < 0 || actual_len > _length)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("sub.length", length);
       ex->addInt("sub.actual", actual_len);
       ex->addInt("length", _length);
@@ -536,7 +536,7 @@ String String::sub(_int start, _int length) const
 
    if(start < 0 || actual_len < 0 || start + actual_len > _length)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("sub.length", length);
       ex->addInt("sub.actual", actual_len);
@@ -547,7 +547,7 @@ String String::sub(_int start, _int length) const
    if(actual_len == 0)
       return String();
          
-   _int p = UTF_8::charbytes(_value, start);
+   _int p = Utf8::charbytes(_value, start);
    return String(&_value[p], actual_len);
 }
    
@@ -559,7 +559,7 @@ String String::toLowerCase() const
    for(_int i = 0; i < _length; i++)
    {
       _char c;
-      p += UTF_8::chardec(&c, &_value[p]);
+      p += Utf8::chardec(&c, &_value[p]);
       buf.add(Character(c).toLowerCase());
    }
    
@@ -573,7 +573,7 @@ String String::toUpperCase() const
    for(_int i = 0; i < _length; i++)
    {
       _char c;
-      p += UTF_8::chardec(&c, &_value[p]);
+      p += Utf8::chardec(&c, &_value[p]);
       buf.add(Character(c).toUpperCase());
    }
    
@@ -590,7 +590,7 @@ _int String::indexOf(_char c, _int start) const
       
    if(start2 < 0 || start2 >= _length)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("length", _length);
       throw ex;
@@ -612,7 +612,7 @@ _int String::indexOf(const String &s, _int start) const
       
    if(start2 < 0 || start2 >= _length)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("length", _length);
       throw ex;
@@ -650,7 +650,7 @@ _int String::lastIndexOf(_char c, _int start) const
       
    if(start2 < 0 || start2 >= _length)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("length", _length);
       throw ex;
@@ -672,7 +672,7 @@ _int String::lastIndexOf(const String &s, _int start) const
       
    if(start2 < 0 || start2 >= _length)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("length", _length);
       throw ex;
@@ -783,9 +783,9 @@ void String::operator =(const char *ascii)
       for(_int i = 0; i < _length; i++)
       {
          _uint32 utf32 = (_uint32)ascii[i];
-         if(!Storage::Structure::Binary::Encodings::ASCII::isValid(utf32))
+         if(!Storage::Structure::Binary::Encodings::Ascii::isValid(utf32))
          {
-            Exception *ex = MAKE_ERROR(Exception::Format::InvalidCharacter);
+            MAKE_ERROR(ex, Exception::Format::InvalidCharacter);
             ex->add("encoding", "ASCII");
             ex->addUInt32("character", utf32);
             throw ex;

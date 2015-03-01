@@ -33,7 +33,7 @@ void Encoder::write(Text::Buffer *buf, _int chars, _int start)
 {
    if(start < 0 || chars < 0)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("characters", chars);
       throw ex;

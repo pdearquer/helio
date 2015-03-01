@@ -6,7 +6,14 @@
 /** Console user interface
  * Basic support for a console user interface.
  *
- * This class is only intented for debuging and will be deprecated.
+ * It is preferred to use the print macros defined below:
+ *  PRINT(msg)
+ *  PRINTLN(msg)
+ *
+ * For example:
+ *  PRINTLN("The result is " + distance + " meters.");
+ *
+ * This class is only intended for debugging and will be deprecated.
  * TODO: Get rid of platform dependency.
  */
 class Console :
@@ -15,7 +22,7 @@ class Console :
 public:
 
    /**
-    * Prints out a string.
+    * Prints out a string to the user.
     */
    static void write(StringBuffer str);
 
@@ -25,10 +32,19 @@ public:
    static String readLine();
 };
 
-
+/**
+ * Prints a message to the console.
+ * It makes a cast to StringBuffer to support uses like:
+ *  PRINT(12);
+ */
 #define PRINT(msg) \
       ::Component::Console::write((::Storage::Structure::Text::StringBuffer) msg)
 
+/**
+ * Prints a line (message plus line feed) to the console.
+ * It makes a cast to StringBuffer to support uses like:
+ *  PRINTLN(12);
+ */
 #define PRINTLN(msg) \
       ::Component::Console::write((::Storage::Structure::Text::StringBuffer) msg + "\n")
 

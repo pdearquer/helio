@@ -9,9 +9,9 @@
  * The internal information should not be reported to the user,
  * it could give clues to attackers. Use the flag "silently" for that.
  *
- * Never report confidencial information, not even silently. Personal
+ * Never report confidential information, not even silently. Personal
  * information or passwords should not appear in log files, they must
- * be stored encripted.
+ * be stored encrypted.
  */
 class Reporter : 
       public virtual Object

@@ -95,7 +95,7 @@ template <class T> _int List<T>::indexOf(T *el, _int start) const
    
    if(start < 0 || start >= length)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("count", length);
       throw ex;

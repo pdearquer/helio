@@ -33,7 +33,7 @@ _int Decoder::read(Text::Buffer *buf, _int chars, _int start)
 {
    if(start < 0 || start > buf->length() || chars < 0)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("characters", chars);
       ex->addInt("length", buf->length());
@@ -108,7 +108,7 @@ _int Decoder::step(_int step)
 {
    if(step < 1)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::InvalidLength);
+      MAKE_ERROR(ex, Error::Structure::InvalidLength);
       ex->addInt("step", step);
       throw ex;
    }

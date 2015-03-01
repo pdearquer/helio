@@ -12,7 +12,7 @@ class LineFeed :
 {
 public:
    /**
-    * Create a Line Feed escaping conversor.
+    * Create a Line Feed escaping converser.
     */
    LineFeed();
 

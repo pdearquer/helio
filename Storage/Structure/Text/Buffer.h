@@ -14,7 +14,7 @@ class Buffer :
    
 protected:
    /**
-    * Defines the default minimum capacity in contructors.
+    * Defines the default minimum capacity in constructors.
     */
    static_const_int MIN_CAPACITY = 16;
 
@@ -103,7 +103,7 @@ public:
    void setCount(_int len);
 
    /**
-    * Says if the buffer cointains no character.
+    * Says if the buffer contains no character.
     */
    _bool empty() const;   
    
@@ -315,7 +315,7 @@ public:
    
    
    /**
-    * Returns a piece of the buffer from the beggining.
+    * Returns a piece of the buffer from the beginning.
     * @param length Number of characters to pick up.
     *    If length is 0, returns all the string until the end of the buffer.
     *    If length is negative, returns all the string until the end minus the given length.
@@ -401,7 +401,7 @@ public:
    void padLeft(_int length, _char c);
       
    /**
-    * Reverse all the characters (first to last and last ot first).
+    * Reverse all the characters (first to last and last to first).
     */
    void reverse();
 

@@ -10,7 +10,7 @@ namespace Structure {
 namespace Binary {
 namespace Encodings {
 
-UTF_16::UTF_16()
+Utf16::Utf16()
 {
    setName("UTF-16");
 #ifdef __HELIO_TARGET_BIG_ENDIAN
@@ -21,7 +21,7 @@ UTF_16::UTF_16()
    _bom = false;
 }
   
-UTF_16::UTF_16(_bool bigEndian)
+Utf16::Utf16(_bool bigEndian)
 {
    setName("UTF-16");
    _endian = bigEndian;
@@ -29,12 +29,12 @@ UTF_16::UTF_16(_bool bigEndian)
 } 
    
    
-_bool UTF_16::canEncode(_char c)
+_bool Utf16::canEncode(_char c)
 {
    return true;
 }
    
-_int UTF_16::decode(const Buffer *in, Text::Buffer *out, _bool finish)
+_int Utf16::decode(const Buffer *in, Text::Buffer *out, _bool finish)
 {   
    _int len = (in->length() / 2) * 2;
      
@@ -53,7 +53,7 @@ _int UTF_16::decode(const Buffer *in, Text::Buffer *out, _bool finish)
          if(len - i < 4)
          {
             if(finish)
-               ERROR(Exception::Format::UnexpectedEnd);
+               THROW_ERROR(Exception::Format::UnexpectedEnd);
             return i;     
          }
          
@@ -66,12 +66,19 @@ _int UTF_16::decode(const Buffer *in, Text::Buffer *out, _bool finish)
             w2 = (__char)in->getUInt16LE(i);
          if((w2 & 0xDC00) != 0xDC00)
          {
-            Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
+            MAKE_ERROR(ex, Exception::Format::InvalidByte);
             ex->add("encoding",_name);
             ex->addUInt32("word", w2);
             throw ex;
          }
          w = w | (w2 & 0x3FF);
+         if(w < 0x10000)
+         {
+            MAKE_ERROR(ex, Exception::Format::InvalidByte);
+            ex->add("encoding",_name);
+            ex->addUInt32("word", w2);
+            throw ex;
+         }
       }
       
       if(w == 0xFEFF)
@@ -92,13 +99,11 @@ _int UTF_16::decode(const Buffer *in, Text::Buffer *out, _bool finish)
       }
       catch(Exception::Format::InvalidCharacter *e)
       {
-         throw e;
+         throw;
       }
       catch(Exception *e)
       {
-         delete e;
-
-         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
+         RE_MAKE_ERROR(ex, Exception::Format::InvalidByte, e);
          ex->add("encoding", _name);
          ex->addUInt32("code", w);
          throw ex;
@@ -108,12 +113,12 @@ _int UTF_16::decode(const Buffer *in, Text::Buffer *out, _bool finish)
    }
    
    if(finish && len != in->length())
-      ERROR(Exception::Format::UnexpectedEnd);
+      THROW_ERROR(Exception::Format::UnexpectedEnd);
       
    return len;
 }
    
-_int UTF_16::encode(const Text::Buffer *in, Buffer *out, _bool finish)
+_int Utf16::encode(const Text::Buffer *in, Buffer *out, _bool finish)
 {
    if(_bom)
    {
@@ -132,7 +137,7 @@ _int UTF_16::encode(const Text::Buffer *in, Buffer *out, _bool finish)
       
       if(!Character::isValid(c))
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::InvalidCharacter);
+         MAKE_ERROR(ex, Exception::Format::InvalidCharacter);
          ex->add("encoding", _name);
          ex->addUInt32("character", c);
          throw ex;
@@ -167,23 +172,23 @@ _int UTF_16::encode(const Text::Buffer *in, Buffer *out, _bool finish)
 }
 
 
-_bool UTF_16::bigEndian()
+_bool Utf16::bigEndian()
 {
    return _endian;
 }
    
-_bool UTF_16::littleEndian()
+_bool Utf16::littleEndian()
 {
    return !_endian;
 }
    
 
-_bool UTF_16::bom()
+_bool Utf16::bom()
 {
    return _bom;
 }
    
-void UTF_16::setBom(_bool bom)
+void Utf16::setBom(_bool bom)
 {
    _bom = bom;
 }

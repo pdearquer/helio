@@ -6,9 +6,9 @@
 /** Format numbers into text and vice versa.
  * Format numbers (and some other primitive types) into text and
  * analyse text back to extract numbers.
- * This class also stored the convertion configuration.
+ * This class also stored the conversion configuration.
  *
- * For normal formating you can make use of the default formatter:
+ * For normal formatting you can make use of the default formatter:
  *    String my_str_var = Format::def()->toString(my_int_var);
  *
  * TODO: Implement native types?
@@ -18,7 +18,7 @@ class Format :
 {
 protected:
    /**
-    * Default formater.
+    * Default formatter.
     */
    static Format *_default;
 
@@ -34,7 +34,7 @@ protected:
    StringBuffer _digits;
    
    /**
-    * Say if ignore case in digit recorgition.
+    * Say if ignore case in digit recognition.
     */
    _bool _igncase;
    
@@ -57,7 +57,7 @@ protected:
 
 public:
    /**
-    * Create a formater with the default configuration.
+    * Create a formatter with the default configuration.
     */
    Format();
    
@@ -68,7 +68,7 @@ public:
    
    
    /**
-    * Returns a reference to the default formater.
+    * Returns a reference to the default formatter.
     */
    static Format *def();
    
@@ -109,35 +109,35 @@ public:
    
    
    /**
-    * Parse a string to extract a bynary number.
+    * Parse a string to extract a binary number.
     */
    virtual __uint64 toUInt64(const String &str);
    
    /**
-    * Parse a bynary number from a window starting at the given pointer.
+    * Parse a binary number from a window starting at the given pointer.
     * If successful, the pointer will point to the last character processed.
     */
    virtual __uint64 toUInt64(Window *win, WindowPointer &p);
    
    /**
-    * Parse a bynary number in a region of a window.
+    * Parse a binary number in a region of a window.
     */
    virtual __uint64 toUInt64(Window *win, const WindowPointer &from, const WindowPointer &to);
    
 
    /**
-    * Parse a string to extract a signed bynary number.
+    * Parse a string to extract a signed binary number.
     */
    virtual __sint64 toSInt64(const String &str);
    
    /**
-    * Parse a signed bynary number from a window starting at the given pointer.
+    * Parse a signed binary number from a window starting at the given pointer.
     * If successful, the pointer will point to the last character processed.
     */
    virtual __sint64 toSInt64(Window *win, WindowPointer &p);
    
    /**
-    * Parse a signed bynary number in a region of a window.
+    * Parse a signed binary number in a region of a window.
     */
    virtual __sint64 toSInt64(Window *win, const WindowPointer &from, const WindowPointer &to);
 
@@ -303,7 +303,7 @@ public:
    
    
    /**
-    * C style print formated function.
+    * C style print formatted function.
     * Only valid compiler primitive arguments.
     */
    static String printf(String fmt, ...);
@@ -330,12 +330,12 @@ public:
    String digits(String dig);
 
    /**
-    * Say if ignore case in digit recorgition.
+    * Say if ignore case in digit recognition.
     */
    _bool igncase();
 
    /**
-    * Say if ignore case in digit recorgition.
+    * Say if ignore case in digit recognition.
     */
    _bool igncase(_bool ignore);
    

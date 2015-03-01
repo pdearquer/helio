@@ -10,18 +10,18 @@ namespace Structure {
 namespace Binary {
 namespace Encodings {
 
-UTF_8::UTF_8()
+Utf8::Utf8()
 {
    setName("UTF-8");
 }
    
    
-_bool UTF_8::canEncode(_char c)
+_bool Utf8::canEncode(_char c)
 {
    return true;
 }
    
-_int UTF_8::decode(const Buffer *in, Text::Buffer *out, _bool finish)
+_int Utf8::decode(const Buffer *in, Text::Buffer *out, _bool finish)
 {  
    const _byte *data = in->data();
    _int i = 0;
@@ -33,7 +33,7 @@ _int UTF_8::decode(const Buffer *in, Text::Buffer *out, _bool finish)
       if(in->length() - i < len)
       {
          if(finish)
-            ERROR(Exception::Format::UnexpectedEnd);
+            THROW_ERROR(Exception::Format::UnexpectedEnd);
          return i;
       }
       
@@ -45,7 +45,7 @@ _int UTF_8::decode(const Buffer *in, Text::Buffer *out, _bool finish)
    return i;
 }
    
-_int UTF_8::encode(const Text::Buffer *in, Buffer *out, _bool finish)
+_int Utf8::encode(const Text::Buffer *in, Buffer *out, _bool finish)
 {
    _int pos = out->length();
    
@@ -65,7 +65,7 @@ _int UTF_8::encode(const Text::Buffer *in, Buffer *out, _bool finish)
 }
 
 
-_int UTF_8::charlen(const _uint8 *buf)
+_int Utf8::charlen(const _uint8 *buf)
 {
    _uint8 b = *buf;
    
@@ -83,14 +83,14 @@ _int UTF_8::charlen(const _uint8 *buf)
       return 6;
    else
    {
-      Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
+      MAKE_ERROR(ex, Exception::Format::InvalidByte);
       ex->add("encoding", "UTF-8");
       ex->addByte("byte", b);
       throw ex;
    }
 }
    
-_int UTF_8::charlen(_char ch)
+_int Utf8::charlen(_char ch)
 {
    __char c = ch;
    if(c <= 0x7F)
@@ -107,12 +107,12 @@ _int UTF_8::charlen(_char ch)
       return 6;
 }
    
-_int UTF_8::charenc(_char ch, _uint8 *buf)
+_int Utf8::charenc(_char ch, _uint8 *buf)
 {
    __char c = (__char)ch;
    if(!Character::isValid(c))
    {
-      Exception *ex = MAKE_ERROR(Exception::Format::InvalidCharacter);
+      MAKE_ERROR(ex, Exception::Format::InvalidCharacter);
       ex->add("encoding", "UTF-8");
       ex->addUInt32("character", c);
       throw ex;
@@ -165,7 +165,7 @@ _int UTF_8::charenc(_char ch, _uint8 *buf)
    }
 }
  
-_int UTF_8::chardec(_char *c, const _uint8 *buf)
+_int Utf8::chardec(_char *c, const _uint8 *buf)
 {
    __char b = (__char) buf[0];
    __char b2;
@@ -174,7 +174,7 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
    {
       if(!Character::isValid(b))
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
+         MAKE_ERROR(ex, Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b);
          throw ex;
@@ -189,7 +189,7 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
       b2 = (__char) buf[1];
       if((b2 & 0xC0) != 0x80)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
+         MAKE_ERROR(ex, Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b2);
          throw ex;
@@ -198,7 +198,7 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
       
       if(!Character::isValid(b) || b <= 0x7F)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
+         MAKE_ERROR(ex, Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b);
          throw ex;
@@ -213,7 +213,7 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
       b2 = (__char) buf[1];
       if((b2 & 0xC0) != 0x80)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
+         MAKE_ERROR(ex, Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b2);
          throw ex;
@@ -223,7 +223,7 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
       b2 = (__char) buf[2];
       if((b2 & 0xC0) != 0x80)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
+         MAKE_ERROR(ex, Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b2);
          throw ex;
@@ -232,7 +232,7 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
       
       if(!Character::isValid(b) || b <= 0x7FF)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
+         MAKE_ERROR(ex, Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b);
          throw ex;
@@ -247,7 +247,7 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
       b2 = (__char) buf[1];
       if((b2 & 0xC0) != 0x80)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
+         MAKE_ERROR(ex, Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b2);
          throw ex;
@@ -257,7 +257,7 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
       b2 = (__char) buf[2];
       if((b2 & 0xC0) != 0x80)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
+         MAKE_ERROR(ex, Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b2);
          throw ex;
@@ -267,7 +267,7 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
       b2 = (__char) buf[3];
       if((b2 & 0xC0) != 0x80)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
+         MAKE_ERROR(ex, Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b2);
          throw ex;
@@ -276,7 +276,7 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
       
       if(!Character::isValid(b) || b <= 0xFFFF)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
+         MAKE_ERROR(ex, Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b);
          throw ex;
@@ -291,7 +291,7 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
       b2 = (__char) buf[1];
       if((b2 & 0xC0) != 0x80)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
+         MAKE_ERROR(ex, Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b2);
          throw ex;
@@ -301,7 +301,7 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
       b2 = (__char) buf[2];
       if((b2 & 0xC0) != 0x80)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
+         MAKE_ERROR(ex, Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b2);
          throw ex;
@@ -311,7 +311,7 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
       b2 = (__char) buf[3];
       if((b2 & 0xC0) != 0x80)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
+         MAKE_ERROR(ex, Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b2);
          throw ex;
@@ -321,7 +321,7 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
       b2 = (__char) buf[4];
       if((b2 & 0xC0) != 0x80)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
+         MAKE_ERROR(ex, Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b2);
          throw ex;
@@ -330,7 +330,7 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
       
       if(!Character::isValid(b) || b <= 0x1FFFFF)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
+         MAKE_ERROR(ex, Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b);
          throw ex;
@@ -345,7 +345,7 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
       b2 = (__char) buf[1];
       if((b2 & 0xC0) != 0x80)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
+         MAKE_ERROR(ex, Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b2);
          throw ex;
@@ -355,7 +355,7 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
       b2 = (__char) buf[2];
       if((b2 & 0xC0) != 0x80)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
+         MAKE_ERROR(ex, Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b2);
          throw ex;
@@ -365,7 +365,7 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
       b2 = (__char) buf[3];
       if((b2 & 0xC0) != 0x80)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
+         MAKE_ERROR(ex, Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b2);
          throw ex;
@@ -375,7 +375,7 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
       b2 = (__char) buf[4];
       if((b2 & 0xC0) != 0x80)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
+         MAKE_ERROR(ex, Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b2);
          throw ex;
@@ -385,7 +385,7 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
       b2 = (__char) buf[5];
       if((b2 & 0xC0) != 0x80)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
+         MAKE_ERROR(ex, Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b2);
          throw ex;
@@ -394,7 +394,7 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
 
       if(!Character::isValid(b) || b <= 0x3FFFFFF)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
+         MAKE_ERROR(ex, Exception::Format::InvalidByte);
          ex->add("encoding", "UTF-8");
          ex->addByte("byte", b);
          throw ex;
@@ -404,34 +404,34 @@ _int UTF_8::chardec(_char *c, const _uint8 *buf)
    }
    else
    {
-      Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
+      MAKE_ERROR(ex, Exception::Format::InvalidByte);
       ex->add("encoding", "UTF-8");
       ex->addByte("byte", b);
       throw ex;
    }        
 }
 
-_int UTF_8::charcount(const _uint8 *buf, _int bytes)
+_int Utf8::charcount(const _uint8 *buf, _int bytes)
 {
    _int count = 0;
    _int i = 0;
    while(i < bytes)
    {
-      i += UTF_8::charlen(&buf[i]);
+      i += Utf8::charlen(&buf[i]);
       count++;
    }
    
    if(i != bytes)
-      ERROR(Exception::Format::UnexpectedEnd);
+      THROW_ERROR(Exception::Format::UnexpectedEnd);
    
    return count;
 }
 
-_int UTF_8::charbytes(const _uint8 *buf, _int len)
+_int Utf8::charbytes(const _uint8 *buf, _int len)
 {
    _int b = 0;
    for(_int i = 0; i < len; i++)
-      b += UTF_8::charlen(&buf[b]);
+      b += Utf8::charlen(&buf[b]);
       
    return b;
 }

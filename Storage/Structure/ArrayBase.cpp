@@ -8,13 +8,13 @@
 namespace Storage {
 namespace Structure {
 
-template <class T> const_int ArrayBase<T>::INICIAL_CAPACITY;
+template <class T> const_int ArrayBase<T>::INITIAL_CAPACITY;
 
 
 template <class T> ArrayBase<T>::ArrayBase()
 {
    this->_count = 0;
-   this->_size = this->INICIAL_CAPACITY;
+   this->_size = this->INITIAL_CAPACITY;
    this->_elements = new T*[this->_size];
 }
    
@@ -59,7 +59,7 @@ template <class T> void ArrayBase<T>::eraseElements(_int start, _int end)
 {
    if(0 > start || start > end || end >= this->_count)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("end", end);
       ex->addInt("count", this->_count);

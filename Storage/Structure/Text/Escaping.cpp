@@ -93,10 +93,10 @@ Escaping *Escaping::get(String name)
 
 #ifdef __HELIO_STORAGE_STRUCTURE_TEXT_ESCAPINGS_HTML
    if(name.equals("HTML", true))
-      return new Escapings::HTML();
+      return new Escapings::Html();
 #endif
 
-   Exception *ex = MAKE_ERROR(Exception::Structure::EscapingNotSupported);
+   MAKE_ERROR(ex, Exception::Structure::EscapingNotSupported);
    ex->add("escaping", name);
    throw ex;
 }

@@ -8,7 +8,7 @@
  * The key objects must be Hashables.
  *
  * Implemented as a container of the key elements, so note that the iteration is done
- * over the keys. No order is guarantied when iterating.
+ * over the keys. No order is warranted when iterating.
  */
 template<class K, class V>
 class HashMap : 
@@ -20,9 +20,9 @@ class HashMap :
 
 protected:
    /**
-    * Inicial size of the table.
+    * Initial size of the table.
     */
-   static_const_int INICIAL_CAPACITY = 13;
+   static_const_int INITIAL_CAPACITY = 13;
    
    /**
     * Table load factor; Relation elements to buckets that
@@ -87,7 +87,7 @@ public:
     * Returns the stored value of associated to the given key.
     * @return The value object or null if none.
     *    Note that a key can exist and contain a null value, in this case null is returned.
-    *    To check key existance, contains() must be used.
+    *    To check key existence, contains() must be used.
     */
    virtual V *get(K *key);
    
@@ -110,7 +110,7 @@ public:
     * Gets a dynamic iterator over the keys.
     * This iterator must be deleted by the user.
     * Do not modify the container while iterating or the iterator will
-    * be invalidated with indetermined behavior.
+    * be invalidated with undetermined behaviour.
     */
    virtual DynIterator<K> *dynIterate();
    

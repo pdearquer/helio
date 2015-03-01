@@ -42,8 +42,8 @@ public:
    Date(_uint32 secs);
    
    /**
-    * Create a new date from a unix time (seconds from 01/01/1970).
-    * When the date is out of bounds and saturate is true, the neares value
+    * Create a new date from a Unix time (seconds from 01/01/1970).
+    * When the date is out of bounds and saturate is true, the nearest value
     * is get, else an exception is thrown.
     */
    Date(_uint32 utime, _bool saturate);
@@ -61,15 +61,15 @@ public:
    
    
    /**
-    * Sets the date from a unix time (seconds from 01/01/1970).
-    * When the date is out of bounds and saturate is true, the neares value
+    * Sets the date from a Unix time (seconds from 01/01/1970).
+    * When the date is out of bounds and saturate is true, the nearest value
     * is get, else an exception is thrown.
     */
    _uint32 setUnix(_uint32 utime, _bool saturate = false);
    
    /**
-    * Returns the date in unix format (seconds from 01/01/1970).
-    * When the date is out of bounds and saturate is true, the neares value
+    * Returns the date in Unix format (seconds from 01/01/1970).
+    * When the date is out of bounds and saturate is true, the nearest value
     * is get, else an exception is thrown.
     */
    _uint32 getUnix(_bool saturate = false) const;

@@ -6,7 +6,7 @@
 /** UTF-8 encoding
  * UCS Transformation Format to 8 bit words
  */
-class UTF_8 : 
+class Utf8 : 
       public virtual Encoding
 {
    friend class Storage::Structure::Data::String;
@@ -15,9 +15,9 @@ class UTF_8 :
 public:
 
    /**
-    * Create an UTF_8 encoding.
+    * Create an UTF-8 encoding.
     */
-   UTF_8();
+   Utf8();
    
    
    /**
@@ -53,7 +53,7 @@ protected:
    
    /**
     * Encode a single character in a UTF-8 raw buffer.
-    * Returns the number of bytes writen.
+    * Returns the number of bytes written.
     */
    static _int charenc(_char ch, _uint8 *buf);
    

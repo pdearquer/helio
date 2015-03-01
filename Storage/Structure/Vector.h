@@ -18,12 +18,12 @@ protected:
    T *_elements;
    
    /**
-    * Number of elements.
+    * Number of elements of the container.
     */
-   _int _length;
+   _int _count;
    
    /**
-    * Array total lenght.
+    * Number of elements allocated in the array.
     */
    _int _size;
    
@@ -58,7 +58,7 @@ public:
    /**
     * Sets the total number of elements. Remove the remaining
     */
-   _int count(_int len);
+   void setCount(_int num);
    
    /**
     * Says if the vector has no element.
@@ -128,7 +128,7 @@ public:
    _int indexOf(T obj) const;
    
    /**
-    * Returns the position of an object, starting after an indicated elemnt.
+    * Returns the position of an object, starting after an indicated element.
     * Returns -1 if the object isn't in the list.
     */
    _int indexOf(T obj, _int start) const;   

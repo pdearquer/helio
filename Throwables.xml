@@ -4,7 +4,7 @@
 
 If in doubt, use an Exception (e.g. *NotFound or *NotSupported)
 
-  Invalid = inapropriate for this porpuse (use by default)
+  Invalid = inappropriate for this purpose (use by default)
   Illegal = incorrect by itself
 -->
 
@@ -60,7 +60,7 @@ If in doubt, use an Exception (e.g. *NotFound or *NotSupported)
     No default device available of this type.
   </error>
   <error id="Exception::Test::UnknownException">
-    Catched unknown exception.
+    Caught unknown exception.
   </error>
   <error id="Exception::Test::IllegalFilter">
     Illegal test filtering pattern.
@@ -85,7 +85,7 @@ If in doubt, use an Exception (e.g. *NotFound or *NotSupported)
     Unexpected null object.
   </error>
   <error id="Error::Internal">
-    Internal error occured.
+    Internal error occurred.
   </error>  
   <error id="Error::IllegalClass">
     The pointer given is not a legal Object.
@@ -94,13 +94,13 @@ If in doubt, use an Exception (e.g. *NotFound or *NotSupported)
     Last arithmetic operation has overflown.
   </error>
   <error id="Error::Arithmetic::DivisionByCero">
-    Trying to calculate a division by cero.
+    Trying to calculate a division by zero.
   </error>
   <error id="Error::Arithmetic::ModuloByCero">
-    Trying to calculate a modulo by cero.
+    Trying to calculate a modulo by zero.
   </error>
   <error id="Error::Structure::IllegalCapacity">
-    The capacity must be higher than cero.
+    The capacity must be higher than zero.
   </error>
   <error id="Error::Structure::OutOfBounds">
     Index or interval out of bounds.

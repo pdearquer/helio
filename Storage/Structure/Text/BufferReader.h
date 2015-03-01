@@ -29,7 +29,7 @@ public:
    
    
    /**
-    * Read some characters to the buffer (increase capacity if necesary).
+    * Read some characters to the buffer (increase capacity if necessary).
     * Returns the number of characters read.
     * If chars is zero, buffer capacity is the requested size.
     * Argument start is the start of the buffer where place bytes.

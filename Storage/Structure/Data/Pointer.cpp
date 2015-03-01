@@ -10,7 +10,7 @@ namespace Structure {
 namespace Data {
 
 /**
- * Types enforment:
+ * Types enforcement:
  * The internal type must support all the rest.
  */
 #ifndef __HELIO_TYPE_POINTER_IS_STATIC
@@ -83,12 +83,15 @@ _bool Pointer::isNull() const
 
 void Pointer::move(_int bytes)
 {
-   _value += bytes;
+   if(bytes > 0)
+      _value += (__pointer)bytes;
+   else
+      _value -= (__pointer)-bytes;
 }
 
 _int Pointer::diff(const Pointer &to) const
 {
-   return (_int)((__pointer)to._value - _value);
+   return (_int)(to._value - _value);
 }
 
 #ifndef __HELIO_TYPE_POINTER_IS_STATIC   
@@ -273,7 +276,10 @@ void Pointer::setRaw(__pointer value)
 Pointer Pointer::move(const Pointer &p, _int bytes)
 {
    Pointer ptr = p;
-   ptr._value += bytes;
+   if(bytes > 0)
+      ptr._value += (__pointer)bytes;
+   else
+      ptr._value -= (__pointer)-bytes;
    return ptr;
 }
 
@@ -281,7 +287,10 @@ Pointer Pointer::move(const Pointer &p, _int bytes)
 _pointer Pointer::move(_pointer p, _int bytes)
 {
    __pointer ptr = (__pointer)p;
-   ptr += bytes;
+   if(bytes > 0)
+      ptr += (__pointer)bytes;
+   else
+      ptr -= (__pointer)-bytes;
    return (_pointer)ptr;
 }
 #endif

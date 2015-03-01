@@ -16,7 +16,7 @@ ProcessWindow::ProcessWindow(Input *in, Output *out, _int step)
    _finish = false;
    if(step < 1)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::InvalidLength);
+      MAKE_ERROR(ex, Error::Structure::InvalidLength);
       ex->addInt("step", step);
       throw ex;
    }
@@ -54,7 +54,7 @@ _int ProcessWindow::step(_int step)
 {
    if(step < 1)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::InvalidLength);
+      MAKE_ERROR(ex, Error::Structure::InvalidLength);
       ex->addInt("step", step);
       throw ex;
    }
@@ -94,7 +94,7 @@ void ProcessWindow::moveEnd(_int chars)
 {
    if(chars < 0)
    {
-      Error *ex = MAKE_ERROR(Error::Text::NoBackward);
+      MAKE_ERROR(ex, Error::Text::NoBackward);
       ex->add("pointer", "end");
       ex->addInt("move", chars);
       throw ex;

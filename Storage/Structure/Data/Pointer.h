@@ -54,7 +54,7 @@ public:
 #ifndef __HELIO_TYPE_POINTER_IS_STATIC   
    /**
     * Creates a pointer from the address and move it some
-    * bytes forward (positive) orbackward (negative).
+    * bytes forward (positive) or backward (negative).
     */
    Pointer(_pointer p, _int bytes);
 #endif
@@ -62,7 +62,7 @@ public:
 #ifndef __HELIO_TYPE_POINTER_IS_NATIVE
    /**
     * Creates a pointer from the address and move it some
-    * bytes forward (positive) orbackward (negative).
+    * bytes forward (positive) or backward (negative).
     */
    Pointer(const void *p, _int bytes);
 #endif
@@ -275,7 +275,7 @@ public:
    virtual void setRaw(__pointer value);
    
 
-   /* Static operatorions */
+   /* Static operations */
    
    /**
     * Moves the pointer a number of bytes forward (positive) or

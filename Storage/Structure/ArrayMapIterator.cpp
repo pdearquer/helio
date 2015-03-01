@@ -27,7 +27,7 @@ template<class K, class V> K *ArrayMapIterator<K, V>::get()
 {
    if(!hasMore())
    {
-      Error *ex = MAKE_ERROR(Error::Structure::IterationEnded);
+      MAKE_ERROR(ex, Error::Structure::IterationEnded);
       ex->addInt("position", this->_position);
       ex->addInt("count", this->_map->_count);
       throw ex;
@@ -40,7 +40,7 @@ template<class K, class V> K *ArrayMapIterator<K, V>::next()
 {
    if(!hasMore())
    {
-      Error *ex = MAKE_ERROR(Error::Structure::IterationEnded);
+      MAKE_ERROR(ex, Error::Structure::IterationEnded);
       ex->addInt("position", this->_position);
       ex->addInt("count", this->_map->_count);
       throw ex;

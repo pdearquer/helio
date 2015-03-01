@@ -21,7 +21,7 @@ protected:
    Buffer _buffer;
    
    /**
-    * If has been riched the end of the input.
+    * If has been reached the end of the input.
     */
    _bool _finish;
    
@@ -47,7 +47,7 @@ public:
 
 
    /**
-    * Returns true if the end pointer is in the last character to proccess.
+    * Returns true if the end pointer is in the last character to process.
     */
    virtual _bool hasFinished();
    using Window::hasFinished;

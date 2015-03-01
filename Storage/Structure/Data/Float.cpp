@@ -13,7 +13,7 @@ namespace Structure {
 namespace Data {
 
 /**
- * Types enforment:
+ * Types enforcement:
  * The internal type must support all the rest.
  */
 #ifndef __HELIO_TYPE_FLOAT_IS_STATIC
@@ -528,7 +528,7 @@ void Float::checkOverflow(__float value)
       default:
       case FP_INFINITE:
       case FP_NAN:
-         ERROR(Error::Arithmetic::Overflow);
+         THROW_ERROR(Error::Arithmetic::Overflow);
          break;
       
       case FP_ZERO:      
@@ -539,7 +539,7 @@ void Float::checkOverflow(__float value)
       case FP_NORMAL:
          __float positive = value < 0 ? -value : value;
          if(positive < MIN || positive > MAX)
-            ERROR(Error::Arithmetic::Overflow);
+            THROW_ERROR(Error::Arithmetic::Overflow);
             
          _value = value;
          break;

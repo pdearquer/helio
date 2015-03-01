@@ -8,7 +8,7 @@
  * The values can be null.
  *
  * Implemented as a container of the key elements, so note that the iteration is done
- * over the keys. No order is guarantied when iterating.
+ * over the keys. No order is warranted when iterating.
  */
 template<class K, class V>
 class Map : 
@@ -36,7 +36,7 @@ public:
     * Returns the stored value of associated to the given key.
     * @return The value object or null if none.
     *    Note that a key can exist and contain a null value, in this case null is returned.
-    *    To check key existance, contains() must be used.
+    *    To check key existence, contains() must be used.
     */
    virtual V *get(K *key) = 0;
 };

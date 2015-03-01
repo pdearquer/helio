@@ -62,12 +62,12 @@ void SelfTest::equalAsserts()
 void SelfTest::excepAsserts()
 {
    _int a = 1;
-   ASSERT_THROW(a++; ERROR(Exception::Test::TestException), Exception::Test::TestException);
-   ASSERT_THROW_EX(a++; ERROR(Exception::Test::TestException), Exception::Test::TestException,
+   ASSERT_THROW(a++; THROW_ERROR(Exception::Test::TestException), Exception::Test::TestException);
+   ASSERT_THROW_EX(a++; THROW_ERROR(Exception::Test::TestException), Exception::Test::TestException,
          "Remember that a is " + a);
 
-   //ERROR(Exception::Test::TestException);
-   //ERROR(Error::Test::TestError);
+   //THROW_ERROR(Exception::Test::TestException);
+   //THROW_ERROR(Error::Test::TestError);
    //throw std::bad_alloc();
    //throw "a stone";
 }

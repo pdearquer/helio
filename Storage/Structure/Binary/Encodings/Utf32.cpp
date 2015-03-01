@@ -10,7 +10,7 @@ namespace Structure {
 namespace Binary {
 namespace Encodings {
 
-UTF_32::UTF_32()
+Utf32::Utf32()
 {
    setName("UTF-32");
 #ifdef __HELIO_TARGET_BIG_ENDIAN
@@ -21,7 +21,7 @@ UTF_32::UTF_32()
    _bom = false;
 }
   
-UTF_32::UTF_32(_bool bigEndian)
+Utf32::Utf32(_bool bigEndian)
 {
    setName("UTF-32");
    _endian = bigEndian;
@@ -29,12 +29,12 @@ UTF_32::UTF_32(_bool bigEndian)
 } 
    
    
-_bool UTF_32::canEncode(_char c)
+_bool Utf32::canEncode(_char c)
 {
    return true;
 }
    
-_int UTF_32::decode(const Buffer *in, Text::Buffer *out, _bool finish)
+_int Utf32::decode(const Buffer *in, Text::Buffer *out, _bool finish)
 {  
    _int len = (in->length() / 4) * 4;
      
@@ -70,9 +70,7 @@ _int UTF_32::decode(const Buffer *in, Text::Buffer *out, _bool finish)
       }
       catch(Exception *e)
       {
-         delete e;
-
-         Exception *ex = MAKE_ERROR(Exception::Format::InvalidByte);
+         RE_MAKE_ERROR(ex, Exception::Format::InvalidByte, e);
          ex->add("encoding", _name);
          ex->addUInt32("code", w);
          throw ex;
@@ -82,12 +80,12 @@ _int UTF_32::decode(const Buffer *in, Text::Buffer *out, _bool finish)
    }
    
    if(finish && len != in->length())
-      ERROR(Exception::Format::UnexpectedEnd);
+      THROW_ERROR(Exception::Format::UnexpectedEnd);
       
    return len;
 }
    
-_int UTF_32::encode(const Text::Buffer *in, Buffer *out, _bool finish)
+_int Utf32::encode(const Text::Buffer *in, Buffer *out, _bool finish)
 {
    if(_bom)
    {
@@ -104,7 +102,7 @@ _int UTF_32::encode(const Text::Buffer *in, Buffer *out, _bool finish)
       __char c = (__char)in->get(i);
       if(!Character::isValid(c))
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::InvalidCharacter);
+         MAKE_ERROR(ex, Exception::Format::InvalidCharacter);
          ex->add("encoding", _name);
          ex->addUInt32("character", c);
          throw ex;
@@ -119,23 +117,23 @@ _int UTF_32::encode(const Text::Buffer *in, Buffer *out, _bool finish)
 }
 
 
-_bool UTF_32::bigEndian()
+_bool Utf32::bigEndian()
 {
    return _endian;
 }
    
-_bool UTF_32::littleEndian()
+_bool Utf32::littleEndian()
 {
    return !_endian;
 }
    
 
-_bool UTF_32::bom()
+_bool Utf32::bom()
 {
    return _bom;
 }
    
-void UTF_32::setBom(_bool bom)
+void Utf32::setBom(_bool bom)
 {
    _bom = bom;
 }

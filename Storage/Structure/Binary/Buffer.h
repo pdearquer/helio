@@ -108,19 +108,19 @@ public:
    
    /**
     * Sets a byte to the buffer.
-    * In index is higher than lenght a exception is thrown.
+    * In index is higher than length a exception is thrown.
     */
    void set(_int index, _byte value);
    
    /**
     * Sets some bytes to the buffer.
-    * In index is higher than lenght a exception is thrown.
+    * In index is higher than length a exception is thrown.
     */
    void set(_int index, _byte *b, _int count);
    
    /**
     * Sets some bytes to the buffer from other buffer.
-    * In index is higher than lenght a exception is thrown.
+    * In index is higher than length a exception is thrown.
     */
    void set(_int index, Buffer *b);
    
@@ -343,3 +343,4 @@ protected:
     */
    static _int strcmp(const void *buf1, const void *buf2); 
 };
+

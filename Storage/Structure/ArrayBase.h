@@ -12,9 +12,9 @@ class ArrayBase :
 {
 protected:
    /**
-    * Inicial size of the array allocated.
+    * Initial size of the array allocated.
     */
-   static_const_int INICIAL_CAPACITY = 16;
+   static_const_int INITIAL_CAPACITY = 16;
 
 
    /**

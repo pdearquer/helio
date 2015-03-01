@@ -3,43 +3,40 @@
  * Licensed under the GPLv3 or higher (http://www.gnu.org/licenses)
  */
 
-/** UTF-16 encoding
- * UCS Transformation Format to 16 bit words
+/** ISO/IEC 8859-2 (Latin-2) encoding
+ * Eastern European intended character set.
+ * This implementation include C0 and C1 control codes.
  */
-class UTF_16 : 
+class Iso8859_2 : 
       public virtual Encoding
 {
 protected:
    /**
-    * Say if byte order is Big Endian (true) or Little Endian (false).
-    */   
-   _bool _endian;   
-   
-   /**
-    * Say if send the BOM character.
+    * A0 to FF codes translation table.
     */
-   _bool _bom;
+   static const _uint16 _table[0x60];
    
    
 public:
 
    /**
-    * Create an UTF-16 encoding.
-    * Use target endianness (at least BOM found)
+    * Create an ISO/IEC 8859-2 encoding.
     */
-   UTF_16();
-   
-   /**
-    * Create an UTF-16 encoding forcing Big or Little Endian.
-    */
-   UTF_16(_bool bigEndian);
+   Iso8859_2();
    
    
    /**
     * Check if a character is in the set of valid characters for this encode.
     */
    virtual _bool canEncode(_char c);
-    
+   
+protected:   
+   /**
+    * Gets the code for the given character or -1 if does not exist.
+    */
+   _int getCode(__char c);
+   
+public:   
    /**
     * Decode a buffer of bytes and append it to a string of characters.
     * Returns the actual number of bytes decoded (processed).
@@ -53,27 +50,5 @@ public:
     * If finish is true, all characters are forced to be encoded.
     */
    virtual _int encode(const Text::Buffer *in, Buffer *out, _bool finish = true);
-   
-   
-   /** 
-    * Gets if the byte order is or not Big Endian.
-    */
-   _bool bigEndian();
-   
-   /** 
-    * Gets if the byte order is or not Little Endian.
-    */
-   _bool littleEndian();
-   
-   
-   /**
-    * Gets if send the BOM character or if it has been found.
-    */
-   _bool bom();
-   
-   /**
-    * Sets if send the BOM character (when sent the flag is disabled).
-    */
-   void setBom(_bool bom);
 };
 

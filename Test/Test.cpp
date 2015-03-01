@@ -40,7 +40,7 @@ void Test::add(const String &name, Function<> *method, _int seconds)
       TestCase *tc = _cases->get(i);
       if(tc->name == name)
       {
-         Error *ex = MAKE_ERROR(Error::Test::Duplicated);
+         MAKE_ERROR(ex, Error::Test::Duplicated);
          ex->add("name", name);
          throw ex;
       }

@@ -104,7 +104,7 @@ public:
 
 #ifndef __HELIO_TYPE_BOOL_IS_NATIVE
    /**
-    * Operator cast to navite bool.
+    * Operator cast to native bool.
     */
    operator bool() const;
 #endif

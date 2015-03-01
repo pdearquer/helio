@@ -6,9 +6,9 @@
 /** Container of non-duplicated elements.
  * Container of non-duplicated and non-null elements.
  *
- * The elements stored must be Comparable<> with themsleves.
+ * The elements stored must be Comparable<> with themselves.
  *
- * No order is guarantied when iterating.
+ * No order is warranted when iterating.
  */
 template<class T>
 class Set : 

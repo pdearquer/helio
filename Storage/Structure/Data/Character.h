@@ -81,7 +81,7 @@ public:
    virtual _uint8 getAscii() const;
    
    /**
-    * Set the charater from its ASCII representation.
+    * Set the character from its ASCII representation.
     */
    virtual void setAscii(_uint8 ascii);
    
@@ -193,7 +193,7 @@ public:
 
 #ifndef __HELIO_TYPE_CHAR_IS_NATIVE
    /**
-    * Operator cast to navite.
+    * Operator cast to native.
     */
    operator char() const;
 #endif   
@@ -331,6 +331,5 @@ public:
     */
    _bool operator >=(char other) const;
 #endif
-
 };
 

@@ -44,7 +44,7 @@ public:
    virtual T *front();
 
    /**
-    * Tries to add an element at the beggining of the array.
+    * Tries to add an element at the beginning of the array.
     * @return false if there is no room for it.
     */
    virtual _bool add_front(T *el);
@@ -81,3 +81,4 @@ public:
     */
    virtual void erase(_int start, _int end, _bool deleting);
 };
+

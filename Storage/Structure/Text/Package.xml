@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <package>
   <name>Text</name>
-  <description>Character level operations: formating, parsing and escaping</description>
+  <description>Character level operations: formatting, parsing and escaping</description>
     
   <class>
     <name>Buffer</name>

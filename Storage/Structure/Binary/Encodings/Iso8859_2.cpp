@@ -10,7 +10,7 @@ namespace Structure {
 namespace Binary {
 namespace Encodings {
 
-const _uint16 ISO_8859_2::_table[0x60] =
+const _uint16 Iso8859_2::_table[0x60] =
 {
    0x00A0, 0x0104, 0x02D8, 0x0141, 0x00A4, 0x013D, 0x015A, 0x00A7,
    0x00A8, 0x0160, 0x015E, 0x0164, 0x0179, 0x00AD, 0x017D, 0x017B,
@@ -32,18 +32,18 @@ const _uint16 ISO_8859_2::_table[0x60] =
 };
 
 
-ISO_8859_2::ISO_8859_2()
+Iso8859_2::Iso8859_2()
 {
    setName("ISO 8859-2");
 }
    
    
-_bool ISO_8859_2::canEncode(_char c)
+_bool Iso8859_2::canEncode(_char c)
 {
    return (getCode((__char)c) >= 0);
 }
 
-_int ISO_8859_2::getCode(__char c)
+_int Iso8859_2::getCode(__char c)
 {
    if(c < 0xA0)
       return (_int) c;
@@ -55,7 +55,7 @@ _int ISO_8859_2::getCode(__char c)
    return -1;
 } 
    
-_int ISO_8859_2::decode(const Buffer *in, Text::Buffer *out, _bool finish)
+_int Iso8859_2::decode(const Buffer *in, Text::Buffer *out, _bool finish)
 {   
    for(_int i = 0; i < in->length(); i++)
    {
@@ -68,7 +68,7 @@ _int ISO_8859_2::decode(const Buffer *in, Text::Buffer *out, _bool finish)
    return in->length();
 }
    
-_int ISO_8859_2::encode(const Text::Buffer *in, Buffer *out, _bool finish)
+_int Iso8859_2::encode(const Text::Buffer *in, Buffer *out, _bool finish)
 {
    for(_int i = 0; i < in->length(); i++)
    {
@@ -78,7 +78,7 @@ _int ISO_8859_2::encode(const Text::Buffer *in, Buffer *out, _bool finish)
          out->add((_byte) c);
       else
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::InvalidCharacter);
+         MAKE_ERROR(ex, Exception::Format::InvalidCharacter);
          ex->add("encoding", _name);
          ex->addUInt32("character", (__char)in->get(i));
          throw ex;

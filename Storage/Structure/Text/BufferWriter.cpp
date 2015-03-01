@@ -19,7 +19,7 @@ void BufferWriter::write(Buffer *buf, _int chars, _int start)
 {
    if(start < 0 || chars < 0 || start + chars > buf->length())
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("characters", chars);
       ex->addInt("length", buf->length());

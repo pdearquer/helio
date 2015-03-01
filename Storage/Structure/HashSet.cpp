@@ -8,14 +8,14 @@
 namespace Storage {
 namespace Structure {
 
-template <class T> const_int HashSet<T>::INICIAL_CAPACITY;
+template <class T> const_int HashSet<T>::INITIAL_CAPACITY;
 
 template <class T> const_float HashSet<T>::LOAD_FACTOR;
 
 
 template <class T> HashSet<T>::HashSet()
 {
-   _capacity = INICIAL_CAPACITY;
+   _capacity = INITIAL_CAPACITY;
    _count = 0;
    
    _table = new HashSetNode<T>*[_capacity];
@@ -25,7 +25,7 @@ template <class T> HashSet<T>::HashSet()
 
 template <class T> HashSet<T>::HashSet(_bool owner)
 {
-   _capacity = INICIAL_CAPACITY;
+   _capacity = INITIAL_CAPACITY;
    _count = 0;
    
    _table = new HashSetNode<T>*[_capacity];
@@ -54,7 +54,7 @@ template <class T> _bool HashSet<T>::add(T *el, _bool deleting)
 
    if(el == null)
    {
-      Error *ex = MAKE_ERROR(Error::NullObject);
+      MAKE_ERROR(ex, Error::NullObject);
       ex->add("reason", "The Set containers do not allow null elements");
       throw ex;
    }

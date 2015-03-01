@@ -38,7 +38,7 @@ template <class T> _bool ArraySet<T>::add(T *el, _bool deleting)
 
    if(el == null)
    {
-      Error *ex = MAKE_ERROR(Error::NullObject);
+      MAKE_ERROR(ex, Error::NullObject);
       ex->add("reason", "The Set containers do not allow null elements");
       throw ex;
    }

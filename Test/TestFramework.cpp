@@ -106,7 +106,7 @@ _bool TestFramework::setup(int argc, char **argv)
                   {
                      _repeat = Format::def()->toInt(value);
                      if(_repeat < 0)
-                        ERROR(Error::Structure::InvalidLength);
+                        THROW_ERROR(Error::Structure::InvalidLength);
                   }
                   catch(Exception *ex)
                   {
@@ -153,8 +153,8 @@ _bool TestFramework::setup(int argc, char **argv)
    }
    catch(Exception::Test::IllegalFilter *ex)
    {
-      PRINTLN("Test filter \"" + run + "\" not valid.");
       delete ex;
+      PRINTLN("Test filter \"" + run + "\" not valid.");      
       return false;
    }
    if(_tests->count() == 0)
@@ -228,7 +228,7 @@ _bool TestFramework::run()
       catch(std::exception &stdex)
       {
          tc->error = true;
-         Exception *ex = MAKE_ERROR(Exception::Test::UnknownException);
+         MAKE_ERROR(ex, Exception::Test::UnknownException);
          ex->add("std.class", typeid(stdex).name());
          ex->add("std.what", stdex.what());
          _report->fixtureError(tc, ex);
@@ -237,7 +237,7 @@ _bool TestFramework::run()
       catch(...)
       {
          tc->error = true;
-         Exception *ex = MAKE_ERROR(Exception::Test::UnknownException);
+         MAKE_ERROR(ex, Exception::Test::UnknownException);
          _report->fixtureError(tc, ex);
          delete ex;
       }
@@ -277,7 +277,7 @@ _bool TestFramework::run()
             catch(std::exception &stdex)
             {
                tc->error = true;
-               Exception *ex = MAKE_ERROR(Exception::Test::UnknownException);
+               MAKE_ERROR(ex, Exception::Test::UnknownException);
                ex->add("std.class", typeid(stdex).name());
                ex->add("std.what", stdex.what());
                _report->fixtureError(tc, ex);
@@ -286,7 +286,7 @@ _bool TestFramework::run()
             catch(...)
             {
                tc->error = true;
-               Exception *ex = MAKE_ERROR(Exception::Test::UnknownException);
+               MAKE_ERROR(ex, Exception::Test::UnknownException);
                _report->fixtureError(tc, ex);
                delete ex;
             }
@@ -333,7 +333,7 @@ _bool TestFramework::run()
                   Simulation::setTimeOut(0);
 
                   tc->error = true;
-                  Exception *ex = MAKE_ERROR(Exception::Test::UnknownException);
+                  MAKE_ERROR(ex, Exception::Test::UnknownException);
                   ex->add("std.class", typeid(stdex).name());
                   ex->add("std.what", stdex.what());
                   _report->testError(tc, ex);
@@ -344,7 +344,7 @@ _bool TestFramework::run()
                   Simulation::setTimeOut(0);
 
                   tc->error = true;
-                  Exception *ex = MAKE_ERROR(Exception::Test::UnknownException);
+                  MAKE_ERROR(ex, Exception::Test::UnknownException);
                   _report->testError(tc, ex);
                   delete ex;
                }
@@ -376,7 +376,7 @@ _bool TestFramework::run()
                catch(std::exception &stdex)
                {
                   tc->error = true;
-                  Exception *ex = MAKE_ERROR(Exception::Test::UnknownException);
+                  MAKE_ERROR(ex, Exception::Test::UnknownException);
                   ex->add("std.class", typeid(stdex).name());
                   ex->add("std.what", stdex.what());
                   _report->fixtureError(tc, ex);
@@ -385,7 +385,7 @@ _bool TestFramework::run()
                catch(...)
                {
                   tc->error = true;
-                  Exception *ex = MAKE_ERROR(Exception::Test::UnknownException);
+                  MAKE_ERROR(ex, Exception::Test::UnknownException);
                   _report->fixtureError(tc, ex);
                   delete ex;
                }
@@ -426,7 +426,7 @@ _bool TestFramework::run()
       catch(std::exception &stdex)
       {
          tc->error = true;
-         Exception *ex = MAKE_ERROR(Exception::Test::UnknownException);
+         MAKE_ERROR(ex, Exception::Test::UnknownException);
          ex->add("std.class", typeid(stdex).name());
          ex->add("std.what", stdex.what());
          _report->fixtureError(tc, ex);
@@ -435,7 +435,7 @@ _bool TestFramework::run()
       catch(...)
       {
          tc->error = true;
-         Exception *ex = MAKE_ERROR(Exception::Test::UnknownException);
+         MAKE_ERROR(ex, Exception::Test::UnknownException);
          _report->fixtureError(tc, ex);
          delete ex;
       }

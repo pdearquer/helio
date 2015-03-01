@@ -7,7 +7,7 @@
  * HTML especial characters escaping.
  * Entities used can be added or removed.
  */
-class HTML : 
+class Html : 
       public virtual Escaping
 {
 protected:
@@ -19,9 +19,9 @@ protected:
 
 public:
    /**
-    * Create a HTML escaping conversor.
+    * Create a HTML escaping converser.
     */
-   HTML();
+   Html();
 
 
    /**

@@ -23,7 +23,7 @@ protected:
       int number;
 
       /**
-       * Fast contructor.
+       * Fast constructor.
        */
       TestLinkedNode(int num)
       {

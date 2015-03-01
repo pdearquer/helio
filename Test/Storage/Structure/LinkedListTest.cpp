@@ -63,7 +63,7 @@ void LinkedListTest::container()
    ASSERT_EQ(list->countReverse(), 3);
    delete node;
 
-   ASSERT_THROW(it.next(), Error::Structure::IterationEnded);
+   ASSERT_THROW(it.next(), Error::Structure::IteratorInvalidated);
 
    delete list;
 }

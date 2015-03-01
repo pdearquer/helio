@@ -50,9 +50,9 @@ public:
    
    
    /**
-    * Read some characters to the buffer (increase capacity if necesary).
+    * Read some characters to the buffer (increase capacity if necessary).
     * Returns the number of characters read.
-    * If chars is zero, buffer lenght is the requested size.
+    * If chars is zero, buffer length is the requested size.
     * Argument start is the start of the buffer where place characters.
     */
    virtual _int read(Text::Buffer *buf, _int chars = 0, _int start = 0);

@@ -12,7 +12,7 @@ class Output :
 public:
    /**
     * Write a buffer of characters.
-    * If chars is zero, buffer lenght is the requested size.
+    * If chars is zero, buffer length is the requested size.
     * Argument start is the start of the buffer where get characters.
     */
    virtual void write(Buffer *buf, _int chars = 0, _int start = 0) = 0;

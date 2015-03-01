@@ -52,14 +52,14 @@ public:
    /**
     * Remove this node from the list.
     * Warning, after calling this method, the object may not
-    * exist anymore (depending on the LinkedList nodes ownership).
+    * exist any more (depending on the LinkedList nodes ownership).
     */
    void removeThis();
 
    /**
     * Remove this node from the list using the given deleting flag.
     * Warning, if deleting is true, after calling this method, the object
-    * will not exist anymore.
+    * will not exist any more.
     */
    void removeThis(_bool deleting);
 
@@ -98,7 +98,7 @@ public:
    void swapWithNext();
 
    /**
-    * Swaps positions with another ndoe of the list.
+    * Swaps positions with another node of the list.
     */
    void swap(N *other);
 
@@ -106,7 +106,7 @@ public:
 protected:
    /**
     * Notification of being added to a container.
-    * An exception is thrown if any restrictioin applies.
+    * An exception is thrown if any restriction applies.
     * This event is called before the actual operation, so an exception will
     * abort the process.
     * Static restrictions to the container are also necessary.
@@ -129,3 +129,4 @@ public:
     */
    virtual _bool hasLink(N *other);
 };
+

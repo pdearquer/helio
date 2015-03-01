@@ -12,7 +12,7 @@ class Clock :
 {
 protected:
    /**
-    * Default clock devide.
+    * Default clock device.
     */
    static Clock *_default;
    

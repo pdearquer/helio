@@ -4,7 +4,7 @@
  */
 
 /** Window status descriptor for debug information.
- * Keep trace of the line and characeter to better error reporting.
+ * Keep trace of the line and character to improve the error reporting.
  */
 class WindowStatus :
       public virtual Object

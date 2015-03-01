@@ -10,7 +10,7 @@ namespace Structure {
 namespace Text {
 namespace Escapings {
 
-HTML::HTML()
+Html::Html()
 {
    setName("HTML");
  
@@ -36,13 +36,13 @@ HTML::HTML()
 }
 
 
-void HTML::addEntity(Character c, String name)
+void Html::addEntity(Character c, String name)
 {
    _entities.add(c, name);
 }
 
 
-void HTML::escape(WritableWindow *w)
+void Html::escape(WritableWindow *w)
 {
    WindowPointer start = w->start();
 
@@ -67,7 +67,7 @@ void HTML::escape(WritableWindow *w)
    }
 }
    
-void HTML::unescape(WritableWindow *w)
+void Html::unescape(WritableWindow *w)
 {
    WindowPointer start = w->start();
    WindowPointer result = w->result();
@@ -78,7 +78,7 @@ void HTML::unescape(WritableWindow *w)
       
       if(!w->find(';'))
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::IllegalSequence);
+         MAKE_ERROR(ex, Exception::Format::IllegalSequence);
          ex->add("escaping", _name);
          ex->add("expected", ";");
          if(start.diff(result) < 64)
@@ -98,7 +98,7 @@ void HTML::unescape(WritableWindow *w)
       }
       catch(Exception *ex)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::IllegalSequence);
+         MAKE_ERROR(ex, Exception::Format::IllegalSequence);
          ex->add("escaping", _name);
          ex->add("entity", name);
          throw ex;

@@ -72,7 +72,7 @@ public:
     * Gets a dynamic iterator over the container elements.
     * This iterator must be deleted by the user.
     * Do not modify the container while iterating or the iterator will
-    * be invalidated with indetermined behavior.
+    * be invalidated with undetermined behaviour.
     */
    virtual DynIterator<T> *dynIterate();
 };

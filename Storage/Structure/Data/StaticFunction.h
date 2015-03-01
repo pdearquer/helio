@@ -12,7 +12,7 @@
  * // Let a static method be as:
  * // static _int MyClass::myFunc(String input);
  * Function<_int, String> *fun = new StaticFunction<_int, String>(&MyClass::myFunc);
- * _int ret = fun->invoke("example");   // Excute the method
+ * _int ret = fun->invoke("example");   // Execute the method
  * delete fun;
  */
 // Return and 7 arguments implementation
@@ -37,8 +37,8 @@ private:
 
 public:
    /**
-    * Keep a pointer to the function for future invokations.
-    * Remenber the indirection:
+    * Keep a pointer to the function for future invocations.
+    * Remember the indirection:
     *  new StaticFunction<...>(&MyClass:staticFun);
     */
    StaticFunction(proto ptr);
@@ -70,8 +70,8 @@ private:
 
 public:
    /**
-    * Keep a pointer to the function for future invokations.
-    * Remenber the indirection:
+    * Keep a pointer to the function for future invocations.
+    * Remember the indirection:
     *  new StaticFunction<...>(&MyClass:staticFun);
     */
    StaticFunction(proto ptr);
@@ -103,8 +103,8 @@ private:
 
 public:
    /**
-    * Keep a pointer to the function for future invokations.
-    * Remenber the indirection:
+    * Keep a pointer to the function for future invocations.
+    * Remember the indirection:
     *  new StaticFunction<...>(&MyClass:staticFun);
     */
    StaticFunction(proto ptr);
@@ -136,8 +136,8 @@ private:
 
 public:
    /**
-    * Keep a pointer to the function for future invokations.
-    * Remenber the indirection:
+    * Keep a pointer to the function for future invocations.
+    * Remember the indirection:
     *  new StaticFunction<...>(&MyClass:staticFun);
     */
    StaticFunction(proto ptr);
@@ -168,8 +168,8 @@ private:
 
 public:
    /**
-    * Keep a pointer to the function for future invokations.
-    * Remenber the indirection:
+    * Keep a pointer to the function for future invocations.
+    * Remember the indirection:
     *  new StaticFunction<...>(&MyClass:staticFun);
     */
    StaticFunction(proto ptr);
@@ -200,8 +200,8 @@ private:
 
 public:
    /**
-    * Keep a pointer to the function for future invokations.
-    * Remenber the indirection:
+    * Keep a pointer to the function for future invocations.
+    * Remember the indirection:
     *  new StaticFunction<...>(&MyClass:staticFun);
     */
    StaticFunction(proto ptr);
@@ -232,8 +232,8 @@ private:
 
 public:
    /**
-    * Keep a pointer to the function for future invokations.
-    * Remenber the indirection:
+    * Keep a pointer to the function for future invocations.
+    * Remember the indirection:
     *  new StaticFunction<...>(&MyClass:staticFun);
     */
    StaticFunction(proto ptr);
@@ -263,8 +263,8 @@ private:
 
 public:
    /**
-    * Keep a pointer to the function for future invokations.
-    * Remenber the indirection:
+    * Keep a pointer to the function for future invocations.
+    * Remember the indirection:
     *  new StaticFunction<...>(&MyClass:staticFun);
     */
    StaticFunction(proto ptr);

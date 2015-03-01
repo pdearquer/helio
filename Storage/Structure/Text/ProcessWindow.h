@@ -5,7 +5,7 @@
 
 /** Processing window from an input to an output.
  * Window that gets characters from an input, store them in a buffer,
- * proccess them and send the result to an output.
+ * process them and send the result to an output.
  */
 class ProcessWindow : 
       public virtual WritableWindow
@@ -27,7 +27,7 @@ protected:
    Buffer _buffer;
    
    /**
-    * If has been riched the end of the input.
+    * If has been reached the end of the input.
     */
    _bool _finish;
    
@@ -58,7 +58,7 @@ public:
 
 
    /**
-    * Returns true if the end pointer is in the last character to proccess.
+    * Returns true if the end pointer is in the last character to process.
     */
    virtual _bool hasFinished();
    using Window::hasFinished;

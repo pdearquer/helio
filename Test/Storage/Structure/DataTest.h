@@ -4,7 +4,7 @@
  */
 
 /** Data package tests
- * Tests all the Storage.Strucutre.Data package except the String.
+ * Tests all the Storage.Structure.Data package, except the String.
  */
 class DataTest :
       public virtual Test

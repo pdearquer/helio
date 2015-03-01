@@ -17,7 +17,7 @@ _bool Number::equals(const Number *other) const
 _int Number::compare(const Number *other) const
 {
    if(other == null)
-      ERROR(Error::NullObject);
+      THROW_ERROR(Error::NullObject);
 
    _float val = other->getFloat();
    _float me = getFloat();

@@ -16,7 +16,7 @@
  * // Let a method be as:
  * // int MyClass::myFunc(String input);
  * Function<_int, String> *fun = new MemberFunction<_int, MyClass, String>(myObj, &MyClass::myFunc);
- * _int ret = fun->invoke("example");   // Excute the method
+ * _int ret = fun->invoke("example");   // Execute the method
  * delete fun;
  */
 // Return and 7 arguments implementation

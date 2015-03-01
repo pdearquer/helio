@@ -4,7 +4,7 @@
  */
 
 /** Base of any graph node.
- * Any element inserted into a graph must devire from this class.
+ * Any element inserted into a graph must derive from this class.
  * In fact every graph have a specific Node associated with the functionality
  * required for this container, and this is the class which must be derived.
  *
@@ -25,7 +25,7 @@ class Node :
 protected:
    /**
     * Notification of being added to a container.
-    * An exception is thrown if any restrictioin applies.
+    * An exception is thrown if any restriction applies.
     * This event is called before the actual operation, so an exception will
     * abort the process.
     * Static restrictions to the container are also necessary.
@@ -35,7 +35,7 @@ protected:
    /**
     * Notification of being removed from a container.
     * This event is called after the actual operation, so all the references
-    * can be nulled.
+    * can be cleared.
     * Static restrictions to the container can be applied.
     */
    virtual void removed(Object *container);
@@ -54,3 +54,4 @@ public:
     */
    virtual _bool hasLink(N *other) = 0;
 };
+

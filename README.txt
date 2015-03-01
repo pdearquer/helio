@@ -7,7 +7,7 @@ This program is distributed under the GPLv3 or higher, see above.
 
 If you plan to play with it, I'd recommend you to start reading the project documentation:
   https://code.google.com/p/helio/
-Check out the wiki, 10 minutes reading it will save you many hours diging through
+Check out the wiki, 10 minutes reading it will save you many hours digging through
 the code...
 
 If there is something else you have doubts or problems with, send me an email to the

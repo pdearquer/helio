@@ -44,13 +44,20 @@ Format *Format::def()
 
 _bool Format::toBool(const String &str)
 {
+   if(str.isEmpty())
+   {
+      MAKE_ERROR(ex, Exception::Format::EmptyBuffer);
+      ex->add("convertion", "toBool");
+      throw ex;
+   }
+
    if(str.equals("true", _igncase) || str.equals("1"))
       return true;
       
    if(str.equals("false", _igncase) || str.equals("0"))
       return false;
       
-   Exception *ex = MAKE_ERROR(Exception::Format);
+   MAKE_ERROR(ex, Exception::Format);
    ex->add("convertion", "toBool");
    ex->add("string", str);
    throw ex;
@@ -58,6 +65,13 @@ _bool Format::toBool(const String &str)
    
 _bool Format::toBool(Window *win, WindowPointer &p)
 {
+   if(win->hasFinished(p))
+   {
+      MAKE_ERROR(ex, Exception::Format::EmptyBuffer);
+      ex->add("convertion", "toBool");
+      throw ex;
+   }
+   
    if(win->is("true", p, _igncase))
    {
       p += 4;
@@ -82,7 +96,7 @@ _bool Format::toBool(Window *win, WindowPointer &p)
       return false;
    }
       
-   Exception *ex = MAKE_ERROR(Exception::Format);
+   MAKE_ERROR(ex, Exception::Format);
    ex->add("convertion", "toBool");
    ex->add("string", win->getString(p, win->end()));
    throw ex;
@@ -92,6 +106,14 @@ _bool Format::toBool(Window *win, const WindowPointer &from, const WindowPointer
 {
    switch(from.diff(to))
    {
+      case 0:
+         {
+            MAKE_ERROR(ex, Exception::Format::EmptyBuffer);
+            ex->add("convertion", "toBool");
+            throw ex;
+         }
+         break;
+         
       case 1:
          if(win->is("1", from))
             return true;
@@ -110,7 +132,7 @@ _bool Format::toBool(Window *win, const WindowPointer &from, const WindowPointer
          break;
    }
    
-   Exception *ex = MAKE_ERROR(Exception::Format);
+   MAKE_ERROR(ex, Exception::Format);
    ex->add("convertion", "toBool");
    ex->add("string", win->getString(from, to));
    throw ex;
@@ -129,7 +151,7 @@ _int Format::toInt(const String &str)
    catch(Exception *ex)
    {
       delete sw;
-      throw ex;
+      throw;
    }
    return ret;
 }
@@ -143,17 +165,16 @@ _int Format::toInt(Window *win, WindowPointer &p)
    {
       num = toSInt64(win, p2);
    }
-   catch(Exception *ex2)
+   catch(Exception *ex)
    {
-      Exception *ex = RE_MAKE_ERROR(Exception::Format, ex2);
       ex->add("convertion", "toInt");
       ex->add("string", win->getString(p, p + 20));
-      throw ex;
+      throw;
    }
    
    if(num < (__sint64)__HELIO_TYPE_INT_MIN || num > (__sint64)__HELIO_TYPE_INT_MAX)
    {
-      Exception *ex = MAKE_ERROR(Exception::Format::Overflow);
+      MAKE_ERROR(ex, Exception::Format::Overflow);
       ex->add("convertion", "toInt");
       ex->add("string", win->getString(p, p2));
       throw ex;
@@ -165,22 +186,28 @@ _int Format::toInt(Window *win, WindowPointer &p)
    
 _int Format::toInt(Window *win, const WindowPointer &from, const WindowPointer &to)
 {
+   if(from > to)
+   {
+      MAKE_ERROR(ex, Exception::Format::EmptyBuffer);
+      ex->add("convertion", "toPointer");
+      throw ex;
+   }
+   
    __sint64 num;
    try
    {
       num = toSInt64(win, from, to);
    }
-   catch(Exception *ex2)
+   catch(Exception *ex)
    {
-      Exception *ex = RE_MAKE_ERROR(Exception::Format, ex2);
       ex->add("convertion", "toInt");
       ex->add("string", win->getString(from, to));
-      throw ex;
+      throw;
    }
    
    if(num < (__sint64)__HELIO_TYPE_INT_MIN || num > (__sint64)__HELIO_TYPE_INT_MAX)
    {
-      Exception *ex = MAKE_ERROR(Exception::Format::Overflow);
+      MAKE_ERROR(ex, Exception::Format::Overflow);
       ex->add("convertion", "toInt");
       ex->add("string", win->getString(from, to));
       throw ex;
@@ -202,7 +229,7 @@ __uint64 Format::toUInt64(const String &str)
    catch(Exception *ex)
    {
       delete sw;
-      throw ex;
+      throw;
    }
    return ret;
 }
@@ -215,7 +242,7 @@ __uint64 Format::toUInt64(Window *win, WindowPointer &p)
    {      
       if(win->hasFinished(p2))
       {
-         Exception *ex = MAKE_ERROR(Exception::Format);
+         MAKE_ERROR(ex, Exception::Format);
          ex->add("convertion", "toUInt64");
          ex->add("reason", "No digit");
          ex->add("string", win->getString(p, p + 10));
@@ -247,7 +274,7 @@ __uint64 Format::toUInt64(Window *win, WindowPointer &p)
          {
             if(!found)
             {
-               Exception *ex = MAKE_ERROR(Exception::Format);
+               MAKE_ERROR(ex, Exception::Format::UnexpectedEnd);
                ex->add("convertion", "toUInt64");
                ex->add("string", win->getString(p, p2));
                throw ex;
@@ -264,7 +291,7 @@ __uint64 Format::toUInt64(Window *win, WindowPointer &p)
       
       if(num > mult_limit)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::Overflow);
+         MAKE_ERROR(ex, Exception::Format::Overflow);
          ex->add("convertion", "toUInt64");
          ex->add("string", win->getString(p, p2));
          throw ex;
@@ -274,7 +301,7 @@ __uint64 Format::toUInt64(Window *win, WindowPointer &p)
       __uint64 udig = (__uint64)dig;
       if(num > __HELIO_TYPE_UINT64_MAX - udig)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::Overflow);
+         MAKE_ERROR(ex, Exception::Format::Overflow);
          ex->add("convertion", "toUInt64");
          ex->add("string", win->getString(p, p2));
          throw ex;
@@ -292,13 +319,20 @@ __uint64 Format::toUInt64(Window *win, WindowPointer &p)
    
 __uint64 Format::toUInt64(Window *win, const WindowPointer &from, const WindowPointer &to)
 {
+   if(from > to)
+   {
+      MAKE_ERROR(ex, Exception::Format::EmptyBuffer);
+      ex->add("convertion", "toPointer");
+      throw ex;
+   }
+   
    WindowPointer p = from.dup();
    
    if(win->is("+", p))
    {
       if(p == to)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format);
+         MAKE_ERROR(ex, Exception::Format);
          ex->add("convertion", "toUInt64");
          ex->add("reason", "No digit");
          ex->add("string", win->getString(from, to));
@@ -324,7 +358,7 @@ __uint64 Format::toUInt64(Window *win, const WindowPointer &from, const WindowPo
          dig++;
          if(dig >= _base)
          {
-            Exception *ex = MAKE_ERROR(Exception::Format);
+            MAKE_ERROR(ex, Exception::Format::InvalidCharacter);
             ex->add("convertion", "toUInt64");
             ex->add("string", win->getString(from, to));
             throw ex;
@@ -333,7 +367,7 @@ __uint64 Format::toUInt64(Window *win, const WindowPointer &from, const WindowPo
       
       if(num > mult_limit)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::Overflow);
+         MAKE_ERROR(ex, Exception::Format::Overflow);
          ex->add("convertion", "toUInt64");
          ex->add("string", win->getString(from, to));
          throw ex;
@@ -343,7 +377,7 @@ __uint64 Format::toUInt64(Window *win, const WindowPointer &from, const WindowPo
       __uint64 udig = (__uint64)dig;
       if(num > __HELIO_TYPE_UINT64_MAX - udig)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::Overflow);
+         MAKE_ERROR(ex, Exception::Format::Overflow);
          ex->add("convertion", "toUInt64");
          ex->add("string", win->getString(from, to));
          throw ex;
@@ -371,7 +405,7 @@ __sint64 Format::toSInt64(const String &str)
    catch(Exception *ex)
    {
       delete sw;
-      throw ex;
+      throw;
    }
    return ret;
 }
@@ -388,7 +422,7 @@ __sint64 Format::toSInt64(Window *win, WindowPointer &p)
       
       if(win->hasFinished(p2))
       {
-         Exception *ex = MAKE_ERROR(Exception::Format);
+         MAKE_ERROR(ex, Exception::Format);
          ex->add("convertion", "toSInt64");
          ex->add("reason", "No digit");
          ex->add("string", win->getString(p, p + 10));
@@ -400,7 +434,7 @@ __sint64 Format::toSInt64(Window *win, WindowPointer &p)
    
    if(win->is('+', p2))
    {
-      Exception *ex = MAKE_ERROR(Exception::Format);
+      MAKE_ERROR(ex, Exception::Format);
       ex->add("convertion", "toSInt64");
       ex->add("reason", "Sign duplicated");
       ex->add("string", win->getString(p, p + 10));
@@ -412,12 +446,11 @@ __sint64 Format::toSInt64(Window *win, WindowPointer &p)
    {
       unum = toUInt64(win, p2);
    }
-   catch(Exception *ex2)
+   catch(Exception *ex)
    {
-      Exception *ex = RE_MAKE_ERROR(Exception::Format, ex2);
       ex->add("convertion", "toSInt64");
       ex->add("string", win->getString(p, p + 20));
-      throw ex;
+      throw;
    }
    
    __sint64 num;
@@ -425,7 +458,7 @@ __sint64 Format::toSInt64(Window *win, WindowPointer &p)
    {
       if(unum > (__uint64)__HELIO_TYPE_SINT64_MIN)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::Overflow);
+         MAKE_ERROR(ex, Exception::Format::Overflow);
          ex->add("convertion", "toSInt64");
          ex->add("string", win->getString(p, p2));
          throw ex;
@@ -439,7 +472,7 @@ __sint64 Format::toSInt64(Window *win, WindowPointer &p)
    {
       if(unum > (__uint64)__HELIO_TYPE_SINT64_MAX)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::Overflow);
+         MAKE_ERROR(ex, Exception::Format::Overflow);
          ex->add("convertion", "toSInt64");
          ex->add("string", win->getString(p, p2));
          throw ex;
@@ -454,6 +487,13 @@ __sint64 Format::toSInt64(Window *win, WindowPointer &p)
    
 __sint64 Format::toSInt64(Window *win, const WindowPointer &from, const WindowPointer &to)
 {
+   if(from > to)
+   {
+      MAKE_ERROR(ex, Exception::Format::EmptyBuffer);
+      ex->add("convertion", "toPointer");
+      throw ex;
+   }
+   
    WindowPointer p = from.dup();
 
    _bool neg = false;   
@@ -464,7 +504,7 @@ __sint64 Format::toSInt64(Window *win, const WindowPointer &from, const WindowPo
       
       if(p == to)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format);
+         MAKE_ERROR(ex, Exception::Format::UnexpectedEnd);
          ex->add("convertion", "toSInt64");
          ex->add("reason", "No digit");
          ex->add("string", win->getString(from, to));
@@ -476,7 +516,7 @@ __sint64 Format::toSInt64(Window *win, const WindowPointer &from, const WindowPo
    
    if(win->is('+', p))
    {
-      Exception *ex = MAKE_ERROR(Exception::Format);
+      MAKE_ERROR(ex, Exception::Format::InvalidCharacter);
       ex->add("convertion", "toSInt64");
       ex->add("reason", "Sign duplicated");
       ex->add("string", win->getString(from, to));
@@ -488,12 +528,11 @@ __sint64 Format::toSInt64(Window *win, const WindowPointer &from, const WindowPo
    {
       unum = toUInt64(win, p, to);
    }
-   catch(Exception *ex2)
+   catch(Exception *ex)
    {
-      Exception *ex = RE_MAKE_ERROR(Exception::Format, ex2);
       ex->add("convertion", "toSInt64");
       ex->add("string", win->getString(from, to));
-      throw ex;
+      throw;
    }
    
    __sint64 num;
@@ -501,7 +540,7 @@ __sint64 Format::toSInt64(Window *win, const WindowPointer &from, const WindowPo
    {
       if(unum > (__uint64)__HELIO_TYPE_SINT64_MIN)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::Overflow);
+         MAKE_ERROR(ex, Exception::Format::Overflow);
          ex->add("convertion", "toSInt64");
          ex->add("string", win->getString(from, to));
          throw ex;
@@ -515,7 +554,7 @@ __sint64 Format::toSInt64(Window *win, const WindowPointer &from, const WindowPo
    {
       if(unum > (__uint64)__HELIO_TYPE_SINT64_MAX)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::Overflow);
+         MAKE_ERROR(ex, Exception::Format::Overflow);
          ex->add("convertion", "toSInt64");
          ex->add("string", win->getString(from, to));
          throw ex;
@@ -540,7 +579,7 @@ _float Format::toFloat(const String &str)
    catch(Exception *ex)
    {
       delete sw;
-      throw ex;
+      throw;
    }
    return ret;
 }
@@ -559,7 +598,7 @@ _float Format::toFloat(Window *win, WindowPointer &p)
       
       if(win->hasFinished(p2))
       {
-         Exception *ex = MAKE_ERROR(Exception::Format);
+         MAKE_ERROR(ex, Exception::Format);
          ex->add("convertion", "toFloat");
          ex->add("reason", "No digit");
          ex->add("string", win->getString(p, p + 10));
@@ -583,7 +622,7 @@ _float Format::toFloat(Window *win, WindowPointer &p)
          if(found)
             break;
 
-         Exception *ex = MAKE_ERROR(Exception::Format);
+         MAKE_ERROR(ex, Exception::Format);
          ex->add("convertion", "toFloat");
          ex->add("string", win->getString(p, p + 10));
          throw ex;
@@ -603,7 +642,7 @@ _float Format::toFloat(Window *win, WindowPointer &p)
          {
             if(!found)
             {
-               Exception *ex = MAKE_ERROR(Exception::Format);
+               MAKE_ERROR(ex, Exception::Format);
                ex->add("convertion", "toFloat");
                ex->add("string", win->getString(p, p + 10));
                throw ex;
@@ -623,7 +662,7 @@ _float Format::toFloat(Window *win, WindowPointer &p)
     
       if(num > mult_limit)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::Overflow);
+         MAKE_ERROR(ex, Exception::Format::Overflow);
          ex->add("convertion", "toFloat");
          ex->add("string", win->getString(p, p2));
          throw ex;
@@ -633,7 +672,7 @@ _float Format::toFloat(Window *win, WindowPointer &p)
       _uint64 udig = (_uint64)dig;
       if(num > __HELIO_TYPE_UINT64_MAX - udig)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::Overflow);
+         MAKE_ERROR(ex, Exception::Format::Overflow);
          ex->add("convertion", "toFloat");
          ex->add("string", win->getString(p, p2));
          throw ex;
@@ -682,7 +721,7 @@ _float Format::toFloat(Window *win, WindowPointer &p)
     
       if(pre > mult_limit)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::Overflow);
+         MAKE_ERROR(ex, Exception::Format::Overflow);
          ex->add("convertion", "toFloat");
          ex->add("string", win->getString(p, p2));
          throw ex;
@@ -691,7 +730,7 @@ _float Format::toFloat(Window *win, WindowPointer &p)
       
       if(dec > mult_limit)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::Overflow);
+         MAKE_ERROR(ex, Exception::Format::Overflow);
          ex->add("convertion", "toFloat");
          ex->add("string", win->getString(p, p2));
          throw ex;
@@ -701,7 +740,7 @@ _float Format::toFloat(Window *win, WindowPointer &p)
       _uint64 udig = (_uint64)dig;
       if(dec > __HELIO_TYPE_UINT64_MAX - udig)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::Overflow);
+         MAKE_ERROR(ex, Exception::Format::Overflow);
          ex->add("convertion", "toFloat");
          ex->add("string", win->getString(p, p2));
          throw ex;
@@ -726,6 +765,13 @@ _float Format::toFloat(Window *win, const WindowPointer &from, const WindowPoint
 {
    // TODO: Use Precision utilities instead
 
+   if(from > to)
+   {
+      MAKE_ERROR(ex, Exception::Format::EmptyBuffer);
+      ex->add("convertion", "toPointer");
+      throw ex;
+   }
+   
    WindowPointer p = from.dup();
 
    _bool neg = false;   
@@ -736,7 +782,7 @@ _float Format::toFloat(Window *win, const WindowPointer &from, const WindowPoint
       
       if(p == to)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format);
+         MAKE_ERROR(ex, Exception::Format::UnexpectedEnd);
          ex->add("convertion", "toFloat");
          ex->add("reason", "No digit");
          ex->add("string", win->getString(from, to));
@@ -760,7 +806,7 @@ _float Format::toFloat(Window *win, const WindowPointer &from, const WindowPoint
          if(found)
             break;
 
-         Exception *ex = MAKE_ERROR(Exception::Format);
+         MAKE_ERROR(ex, Exception::Format::InvalidCharacter);
          ex->add("convertion", "toFloat");
          ex->add("string", win->getString(from, to));
          throw ex;
@@ -778,7 +824,7 @@ _float Format::toFloat(Window *win, const WindowPointer &from, const WindowPoint
          dig++;
          if(dig >= _base)
          {
-            Exception *ex = MAKE_ERROR(Exception::Format);
+            MAKE_ERROR(ex, Exception::Format::InvalidCharacter);
             ex->add("convertion", "toFloat");
             ex->add("string", win->getString(from, to));
             throw ex;
@@ -787,7 +833,7 @@ _float Format::toFloat(Window *win, const WindowPointer &from, const WindowPoint
       
       if(num > mult_limit)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::Overflow);
+         MAKE_ERROR(ex, Exception::Format::Overflow);
          ex->add("convertion", "toFloat");
          ex->add("string", win->getString(from, to));
          throw ex;
@@ -797,7 +843,7 @@ _float Format::toFloat(Window *win, const WindowPointer &from, const WindowPoint
       _uint64 udig = (_uint64)dig;
       if(num > __HELIO_TYPE_UINT64_MAX - udig)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::Overflow);
+         MAKE_ERROR(ex, Exception::Format::Overflow);
          ex->add("convertion", "toFloat");
          ex->add("string", win->getString(from, to));
          throw ex;
@@ -834,7 +880,7 @@ _float Format::toFloat(Window *win, const WindowPointer &from, const WindowPoint
          dig++;
          if(dig >= _base)
          {
-            Exception *ex = MAKE_ERROR(Exception::Format);
+            MAKE_ERROR(ex, Exception::Format::InvalidCharacter);
             ex->add("convertion", "toFloat");
             ex->add("string", win->getString(from, to));
             throw ex;
@@ -843,7 +889,7 @@ _float Format::toFloat(Window *win, const WindowPointer &from, const WindowPoint
     
       if(pre > mult_limit)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::Overflow);
+         MAKE_ERROR(ex, Exception::Format::Overflow);
          ex->add("convertion", "toFloat");
          ex->add("string", win->getString(from, to));
          throw ex;
@@ -852,7 +898,7 @@ _float Format::toFloat(Window *win, const WindowPointer &from, const WindowPoint
       
       if(dec > mult_limit)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::Overflow);
+         MAKE_ERROR(ex, Exception::Format::Overflow);
          ex->add("convertion", "toFloat");
          ex->add("string", win->getString(from, to));
          throw ex;
@@ -862,7 +908,7 @@ _float Format::toFloat(Window *win, const WindowPointer &from, const WindowPoint
       _uint64 udig = (_uint64)dig;
       if(dec > __HELIO_TYPE_UINT64_MAX - udig)
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::Overflow);
+         MAKE_ERROR(ex, Exception::Format::Overflow);
          ex->add("convertion", "toFloat");
          ex->add("string", win->getString(from, to));
          throw ex;
@@ -885,9 +931,16 @@ _float Format::toFloat(Window *win, const WindowPointer &from, const WindowPoint
    
 Character Format::toChar(const String &str)
 {
+   if(str.isEmpty())
+   {
+      MAKE_ERROR(ex, Exception::Format::EmptyBuffer);
+      ex->add("convertion", "toChar");
+      throw ex;
+   }
+
    if(str.length() != 1)
    {
-      Exception *ex = MAKE_ERROR(Exception::Format);
+      MAKE_ERROR(ex, Exception::Format::IllegalSequence);
       ex->add("convertion", "toChar");
       ex->add("string", str);
       throw ex;
@@ -909,7 +962,7 @@ _pointer Format::toPointer(const String &str)
    catch(Exception *ex)
    {
       delete sw;
-      throw ex;
+      throw;
    }
    return ret;
 }
@@ -920,7 +973,7 @@ _pointer Format::toPointer(Window *win, WindowPointer &p)
    
    if(!win->is("0x", p2))
    {
-      Exception *ex = MAKE_ERROR(Exception::Format);
+      MAKE_ERROR(ex, Exception::Format::InvalidCharacter);
       ex->add("convertion", "toPointer");
       ex->add("string", win->getString(p2, p2 + 10));
       throw ex;
@@ -934,13 +987,12 @@ _pointer Format::toPointer(Window *win, WindowPointer &p)
    {
       num = f->toUInt64(win, p2);
    }
-   catch(Exception *ex2)
+   catch(Exception *ex)
    {
       delete f;
-      Exception *ex = RE_MAKE_ERROR(Exception::Format, ex2);
       ex->add("convertion", "toPointer");
       ex->add("string", win->getString(p2, p2 + 20));
-      throw ex;
+      throw;
    }
    delete f;
    
@@ -953,11 +1005,18 @@ _pointer Format::toPointer(Window *win, WindowPointer &p)
    
 _pointer Format::toPointer(Window *win, const WindowPointer &from, const WindowPointer &to)
 {
+   if(from > to)
+   {
+      MAKE_ERROR(ex, Exception::Format::EmptyBuffer);
+      ex->add("convertion", "toPointer");
+      throw ex;
+   }
+
    WindowPointer p = from.dup();
    
    if(!win->is("0x", p))
    {
-      Exception *ex = MAKE_ERROR(Exception::Format);
+      MAKE_ERROR(ex, Exception::Format::IllegalSequence);
       ex->add("convertion", "toPointer");
       ex->add("string", win->getString(p, p + 10));
       throw ex;
@@ -971,13 +1030,12 @@ _pointer Format::toPointer(Window *win, const WindowPointer &from, const WindowP
    {
       num = f->toUInt64(win, p, to);
    }
-   catch(Exception *ex2)
+   catch(Exception *ex)
    {
       delete f;
-      Exception *ex = RE_MAKE_ERROR(Exception::Format, ex2);
       ex->add("convertion", "toPointer");
       ex->add("string", win->getString(from, to));
-      throw ex;
+      throw;
    }
    delete f;
    
@@ -1034,7 +1092,7 @@ Buffer *Format::toBuffer(_int num, _int base)
 {
    if(base < 2 || base > _digits.length())
    {
-      Exception *ex = MAKE_ERROR(Exception::Format::InvalidBase);
+      MAKE_ERROR(ex, Exception::Format::InvalidBase);
       ex->addInt("base", base);
       ex->add("digits", _digits);
       throw ex;
@@ -1101,7 +1159,7 @@ Buffer *Format::toBuffer(__uint64 num, _int base)
 {
    if(base < 2 || base > _digits.length())
    {
-      Exception *ex = MAKE_ERROR(Exception::Format::InvalidBase);
+      MAKE_ERROR(ex, Exception::Format::InvalidBase);
       ex->addInt("base", base);
       ex->add("digits", _digits);
       throw ex;
@@ -1161,7 +1219,7 @@ Buffer *Format::toBuffer(__sint64 num, _int base)
 {
    if(base < 2 || base > _digits.length())
    {
-      Exception *ex = MAKE_ERROR(Exception::Format::InvalidBase);
+      MAKE_ERROR(ex, Exception::Format::InvalidBase);
       ex->addInt("base", base);
       ex->add("digits", _digits);
       throw ex;
@@ -1309,7 +1367,7 @@ Buffer *Format::toBuffer(_pointer p)
    catch(Exception *ex)
    {
       delete f;
-      throw ex;
+      throw;
    }
    delete f;
    
@@ -1326,7 +1384,7 @@ String Format::toString(const Date &date)
 #ifdef __HELIO_DEVICE_TIME_UNIXCLOCK
    return Device::Time::UnixClock::format(&date);
 #else
-   ERROR(Error::NotImplemented);
+   THROW_ERROR(Error::NotImplemented);
 #endif
 }
 
@@ -1528,7 +1586,7 @@ _int Format::base(_int b)
 {
    if(b < 2 || b > _digits.length())
    {
-      Exception *ex = MAKE_ERROR(Exception::Format::InvalidBase);
+      MAKE_ERROR(ex, Exception::Format::InvalidBase);
       ex->addInt("base", b);
       ex->add("digits", _digits);
       throw ex;
@@ -1547,7 +1605,7 @@ String Format::digits(String dig)
 {
    if(dig.length() < 2 || dig.length() < _base)
    {
-      Exception *ex = MAKE_ERROR(Exception::Format::InvalidDigits);
+      MAKE_ERROR(ex, Exception::Format::InvalidDigits);
       ex->add("digits", dig);
       ex->addInt("base", _base);
       throw ex;

@@ -5,7 +5,7 @@
 
 /** Interface for objects that can clone themselves
  * Interface for objects that can clone themselves, that is
- * makeing a copy in a different instance that contains the same
+ * making a copy in a different instance that contains the same
  * information.
  */
 class Cloneable : 

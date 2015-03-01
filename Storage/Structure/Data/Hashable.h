@@ -7,10 +7,10 @@
  * Interface for any object able to generate a hash of the information
  * that contains.
  *
- * This interface implies comparability because it has to keep as especific
+ * This interface implies comparability because it has to keep as specific
  * relation with the equality;
  *    a->equals(B) --> A->makeHash() == B->makeHash()
- * But not the oposite (different classes could generate the same hash).
+ * But not the opposite (different classes could generate the same hash).
  *
  * The way of using this template is as:
  *    class MyClass : public virtual Hashable<MyClass> { ...

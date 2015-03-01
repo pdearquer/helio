@@ -29,42 +29,42 @@ Encoding *Encoding::get(String name)
 {
 #ifdef __HELIO_STORAGE_STRUCTURE_BINARY_ENCODINGS_ASCII
    if(name.equals("ASCII", true) || name.equals("US-ASCII", true))
-      return new Encodings::ASCII();
+      return new Encodings::Ascii();
 #endif
    
 #ifdef __HELIO_STORAGE_STRUCTURE_BINARY_ENCODINGS_UTF_8
    if(name.equals("UTF-8", true) || name.equals("UTF8", true))
-      return new Encodings::UTF_8();
+      return new Encodings::Utf8();
 #endif
       
 #ifdef __HELIO_STORAGE_STRUCTURE_BINARY_ENCODINGS_UTF_16
    if(name.equals("UTF-16", true) || name.equals("UTF16", true) || name.equals("UCS2", true))
-      return new Encodings::UTF_16();
+      return new Encodings::Utf16();
    if(name.equals("UTF-16BE", true) || name.equals("UTF16BE", true))
-      return new Encodings::UTF_16(true);
+      return new Encodings::Utf16(true);
    if(name.equals("UTF-16LE", true) || name.equals("UTF16LE", true))
-      return new Encodings::UTF_16(false);
+      return new Encodings::Utf16(false);
 #endif
       
 #ifdef __HELIO_STORAGE_STRUCTURE_BINARY_ENCODINGS_UTF_32
    if(name.equals("UTF-32", true) || name.equals("UTF32", true))
-      return new Encodings::UTF_32();
+      return new Encodings::Utf32();
    if(name.equals("UTF-32BE", true) || name.equals("UTF32BE", true))
-      return new Encodings::UTF_32(true);
+      return new Encodings::Utf32(true);
    if(name.equals("UTF-32LE", true) || name.equals("UTF32LE", true))
-      return new Encodings::UTF_32(false);
+      return new Encodings::Utf32(false);
 #endif
       
 #ifdef __HELIO_STORAGE_STRUCTURE_BINARY_ENCODINGS_ISO_8859_1
    if(name.equals("ISO 8859-1", true) || name.equals("ISO/IEC 8859-1", true)
          || name .equals("Latin-1", true) || name.equals("ISO-8859-1", true))
-      return new Encodings::ISO_8859_1();
+      return new Encodings::Iso8859_1();
 #endif
       
 #ifdef __HELIO_STORAGE_STRUCTURE_BINARY_ENCODINGS_ISO_8859_2
    if(name.equals("ISO 8859-2", true) || name.equals("ISO/IEC 8859-2", true)
          || name.equals("Latin-2", true) || name.equals("ISO-8859-2", true))
-      return new Encodings::ISO_8859_2();
+      return new Encodings::Iso8859_2();
 #endif
    
 #ifdef __HELIO_STORAGE_STRUCTURE_BINARY_ENCODINGS_WINDOWS1250
@@ -82,7 +82,7 @@ Encoding *Encoding::get(String name)
       return new Encodings::Base64();
 #endif
    
-   Exception *ex = MAKE_ERROR(Exception::Structure::EncodingNotSupported);
+   MAKE_ERROR(ex, Exception::Structure::EncodingNotSupported);
    ex->add("encoding", name);
    throw ex;
 }

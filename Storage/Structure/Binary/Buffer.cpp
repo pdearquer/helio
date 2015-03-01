@@ -21,7 +21,7 @@ Buffer::Buffer(_int cap)
 {
    if(cap <= 0)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::IllegalCapacity);
+      MAKE_ERROR(ex, Error::Structure::IllegalCapacity);
       ex->addInt("capacity", cap);
       throw ex;
    }
@@ -36,7 +36,7 @@ Buffer::Buffer(const _byte *data, _int len)
 {
    if(len < 0)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::InvalidLength);
+      MAKE_ERROR(ex, Error::Structure::InvalidLength);
       ex->addInt("length", len);
       throw ex;
    }
@@ -55,14 +55,14 @@ Buffer::Buffer(const _byte *data, _int len, _int cap)
 {
    if(len < 0)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::InvalidLength);
+      MAKE_ERROR(ex, Error::Structure::InvalidLength);
       ex->addInt("length", len);
       throw ex;
    }
       
    if(cap < len)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::InvalidLength);
+      MAKE_ERROR(ex, Error::Structure::InvalidLength);
       ex->addInt("length", len);
       ex->addInt("capacity", cap);
       throw ex;
@@ -98,7 +98,7 @@ _byte Buffer::get(_int index) const
 {
    if(index < 0 || index >= _length)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("index", index);
       ex->addInt("length", _length);
       throw ex;
@@ -111,7 +111,7 @@ _uint16 Buffer::getUInt16BE(_int index) const
 {
    if(index < 0 || index + 1 >= _length)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("index", index);
       ex->addInt("length", _length);
       throw ex;
@@ -130,7 +130,7 @@ _uint16 Buffer::getUInt16LE(_int index) const
 {
    if(index < 0 || index + 1 >= _length)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("index", index);
       ex->addInt("length", _length);
       throw ex;
@@ -149,7 +149,7 @@ _uint16 Buffer::getUInt16(_int index) const
 {
    if(index < 0 || index + 1 >= _length)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("index", index);
       ex->addInt("length", _length);
       throw ex;
@@ -162,7 +162,7 @@ _uint32 Buffer::getUInt32BE(_int index) const
 {
    if(index < 0 || index + 3 >= _length)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("index", index);
       ex->addInt("length", _length);
       throw ex;
@@ -183,7 +183,7 @@ _uint32 Buffer::getUInt32LE(_int index) const
 {
    if(index < 0 || index + 3 >= _length)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("index", index);
       ex->addInt("length", _length);
       throw ex;
@@ -204,7 +204,7 @@ _uint32 Buffer::getUInt32(_int index) const
 {
    if(index < 0 || index + 3 >= _length)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("index", index);
       ex->addInt("length", _length);
       throw ex;
@@ -218,7 +218,7 @@ void Buffer::set(_int index, _byte value)
 {
    if(index < 0 || index >= _length)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("index", index);
       ex->addInt("length", _length);
       throw ex;
@@ -231,7 +231,7 @@ void Buffer::set(_int index, _byte *b, _int count)
 {
    if(index < 0 || count < 0 || index + count > _length)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("index", index);
       ex->addInt("count", count);
       ex->addInt("length", _length);
@@ -245,7 +245,7 @@ void Buffer::set(_int index, Buffer *b)
 {
    if(index < 0 || b->_length < 0 || index + b->_length > _length)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("index", index);
       ex->addInt("length", _length);
       ex->addInt("buffer.length", b->_length);
@@ -259,7 +259,7 @@ _byte &Buffer::operator [](const _int index)
 {
    if(index < 0 || index >= _length)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("index", index);
       ex->addInt("length", _length);
       throw ex;
@@ -281,7 +281,7 @@ void Buffer::add(_byte *b, _int count)
 {
    if(count < 0)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::InvalidLength);
+      MAKE_ERROR(ex, Error::Structure::InvalidLength);
       ex->addInt("count", count);
       throw ex;
    }
@@ -304,7 +304,7 @@ void Buffer::add(Buffer *b, _int count, _int start)
 {
    if(count < 0 || count > b->_length)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("count", count);
       ex->addInt("buffer.length", b->_length);
       throw ex;
@@ -312,7 +312,7 @@ void Buffer::add(Buffer *b, _int count, _int start)
       
    if(start < 0 || start > b->_length)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("buffer.length", b->_length);
       throw ex;
@@ -327,7 +327,7 @@ void Buffer::add(_int start, Buffer *b)
 {
    if(start < 0 || start >= _length)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("length", _length);
       throw ex;
@@ -345,7 +345,7 @@ void Buffer::add(_int start, Buffer *b, _int count)
 {
    if(start < 0 || start > _length)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("length", _length);
       throw ex;
@@ -353,7 +353,7 @@ void Buffer::add(_int start, Buffer *b, _int count)
       
    if(count < 0 || count > b->_length)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("count", count);
       ex->addInt("length", _length);
       throw ex;
@@ -371,7 +371,7 @@ void Buffer::add(_int start, Buffer *b, _int count, _int start2)
 {
    if(start < 0 || start > _length)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("length", _length);
       throw ex;
@@ -379,7 +379,7 @@ void Buffer::add(_int start, Buffer *b, _int count, _int start2)
       
    if(start2 < 0 || start2 > b->_length)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("buffer.start", start2);
       ex->addInt("buffer.length", b->_length);
       throw ex;
@@ -387,7 +387,7 @@ void Buffer::add(_int start, Buffer *b, _int count, _int start2)
       
    if(count < 0 || start2 + count > b->_length)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("count", count);
       ex->addInt("buffer.start", start2);
       ex->addInt("buffer.length", b->_length);
@@ -515,7 +515,7 @@ _int Buffer::capacity(_int cap)
 {
    if(cap <= 0 || _length > cap)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::IllegalCapacity);
+      MAKE_ERROR(ex, Error::Structure::IllegalCapacity);
       ex->addInt("capacity", cap);
       ex->addInt("length", _length);
       throw ex;
@@ -536,14 +536,14 @@ Binary::Buffer *Buffer::sub(_int len) const
 {
    if(len < 0)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::InvalidLength);
+      MAKE_ERROR(ex, Error::Structure::InvalidLength);
       ex->addInt("length", len);
       throw ex;
    }
       
    if(len > _length)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("count", len);
       ex->addInt("length", _length);
       throw ex;
@@ -556,7 +556,7 @@ Binary::Buffer *Buffer::sub(_int start, _int len) const
 {
    if(start < 0 || len < 0 || start + len > _length)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("count", len);
       ex->addInt("length", _length);
@@ -589,7 +589,7 @@ void Buffer::erase(_int index, _int count)
       
    if(index < 0 || index >= _length)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("index", index);
       ex->addInt("length", _length);
       throw ex;
@@ -599,7 +599,7 @@ void Buffer::erase(_int index, _int count)
    {
       if(index + count > _length)
       {
-         Error *ex = MAKE_ERROR(Error::Structure::InvalidLength);
+         MAKE_ERROR(ex, Error::Structure::InvalidLength);
          ex->addInt("count", count);
          ex->addInt("index", index);
          ex->addInt("length", _length);
@@ -644,7 +644,7 @@ void Buffer::replace(_byte find, _byte other, _int start)
       
    if(start2 < 0 || start2 >= _length)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("length", _length);
       throw ex;
@@ -664,7 +664,7 @@ void Buffer::replace(Buffer *find, Buffer *other, _int start)
       
    if(start2 < 0 || start2 >= _length)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("length", _length);
       throw ex;

@@ -11,6 +11,7 @@
  * implements an extensive addition operator to allow a behaviour like this:
  *   String text = "name = " + name + ", age = " + age;
  *
+ * TODO: Reimplement using an UTF-8 buffer, which has a quick concatenation.
  * Static object.
  */
 class StringBuffer : 
@@ -131,19 +132,19 @@ public:
 
    
    /**
-    * Returns a pieze of the buffer.
+    * Returns a piece of the buffer.
     * @param length Number of characters to pick up.
-    *    If lenght is 0, returns all the string to the end.
-    *    If lenght is negative, returns all the string to the end less length given.
+    *    If length is 0, returns all the string to the end.
+    *    If length is negative, returns all the string to the end less length given.
     */
    StringBuffer sub(_int length) const;
    
    /**
-    * Returns a pieze of the buffer.
+    * Returns a piece of the buffer.
     * @param start The index of the first character included.
     * @param length Number of characters to pick up.
-    *    If lenght is 0, returns all the string to the end.
-    *    If lenght is negative, returns all the string to the end less length given.
+    *    If length is 0, returns all the string to the end.
+    *    If length is negative, returns all the string to the end less length given.
     */
    StringBuffer sub(_int start, _int length) const;
    

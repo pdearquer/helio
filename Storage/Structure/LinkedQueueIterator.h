@@ -22,7 +22,7 @@ protected:
    LinkedQueueNode<T> *_node;
 
    /**
-    * Index of fhe element within the node.
+    * Index of the element within the node.
     */
    _int _index;
 

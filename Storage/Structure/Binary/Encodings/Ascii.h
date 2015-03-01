@@ -2,25 +2,36 @@
  * Copyright 2015 Pablo de Arquer
  * Licensed under the GPLv3 or higher (http://www.gnu.org/licenses)
  */
-/** ISO/IEC 8859-1 (Latin-1) encoding
- * Western European intended character set.
+
+/** ASCII encoding
+ * American Standard Code for Information Interchange.
  * This implementation include C0 and C1 control codes.
  */
-class ISO_8859_1 : 
+class Ascii : 
       public virtual Encoding
-{  
+{
+   friend class Storage::Structure::Data::Character;
+   friend class Storage::Structure::Data::String;
+   
 public:
    /**
-    * Create an ISO/IEC 8859-1 encoding.
+    * Create an ASCII encoding.
     */
-   ISO_8859_1();
+   Ascii();
    
    
    /**
     * Check if a character is in the set of valid characters for this encode.
     */
    virtual _bool canEncode(_char c);
-     
+   
+protected:   
+   /**
+    * Check if a character is in the set of valid characters for this encode.
+    */
+   static _bool isValid(__char c);
+   
+public:   
    /**
     * Decode a buffer of bytes and append it to a string of characters.
     * Returns the actual number of bytes decoded (processed).

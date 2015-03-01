@@ -7,7 +7,7 @@
  * Function implementation to handle member functions or methods
  * of a class.
  *
- * NEVER delete the object refered before this handler.
+ * NEVER delete the object referred before this handler.
  *
  * Use example:
  *
@@ -15,7 +15,7 @@
  * // _int MyClass::myFunc(String input);
  * MyClass *myObj = new MyClass();
  * Function<_int, String> *fun = new MemberFunction<MyClass, _int, String>(myObj, &MyClass::myFunc);
- * _int ret = fun->invoke("example");   // Excute the method
+ * _int ret = fun->invoke("example");   // Execute the method
  * delete fun;
  *
  * The object modification is not allowed in purpose.
@@ -36,7 +36,7 @@ public:
 
 private:
    /**
-    * Object refence.
+    * Object reference.
     */
    C *_obj;
    
@@ -48,7 +48,7 @@ private:
 public:
    /**
     * Keep the object reference and method.
-    * Remenber the indirection:
+    * Remember the indirection:
     *  new MemberFunction<...>(myObj, &MyClass:myMethod);
     */
    MemberFunction(C *obj, proto ptr);
@@ -79,7 +79,7 @@ public:
 
 private:
    /**
-    * Object refence.
+    * Object reference.
     */
    C *_obj;
 
@@ -91,7 +91,7 @@ private:
 public:
    /**
     * Keep the object reference and method.
-    * Remenber the indirection:
+    * Remember the indirection:
     *  new MemberFunction<...>(myObj, &MyClass:myMethod);
     */
    MemberFunction(C *obj, proto ptr);
@@ -122,7 +122,7 @@ public:
 
 private:
    /**
-    * Object refence.
+    * Object reference.
     */
    C *_obj;
 
@@ -134,7 +134,7 @@ private:
 public:
    /**
     * Keep the object reference and method.
-    * Remenber the indirection:
+    * Remember the indirection:
     *  new MemberFunction<...>(myObj, &MyClass:myMethod);
     */
    MemberFunction(C *obj, proto ptr);
@@ -165,7 +165,7 @@ public:
 
 private:
    /**
-    * Object refence.
+    * Object reference.
     */
    C *_obj;
 
@@ -177,7 +177,7 @@ private:
 public:
    /**
     * Keep the object reference and method.
-    * Remenber the indirection:
+    * Remember the indirection:
     *  new MemberFunction<...>(myObj, &MyClass:myMethod);
     */
    MemberFunction(C *obj, proto ptr);
@@ -207,7 +207,7 @@ public:
 
 private:
    /**
-    * Object refence.
+    * Object reference.
     */
    C *_obj;
 
@@ -219,7 +219,7 @@ private:
 public:
    /**
     * Keep the object reference and method.
-    * Remenber the indirection:
+    * Remember the indirection:
     *  new MemberFunction<...>(myObj, &MyClass:myMethod);
     */
    MemberFunction(C *obj, proto ptr);
@@ -249,7 +249,7 @@ public:
 
 private:
    /**
-    * Object refence.
+    * Object reference.
     */
    C *_obj;
 
@@ -261,7 +261,7 @@ private:
 public:
    /**
     * Keep the object reference and method.
-    * Remenber the indirection:
+    * Remember the indirection:
     *  new MemberFunction<...>(myObj, &MyClass:myMethod);
     */
    MemberFunction(C *obj, proto ptr);
@@ -291,7 +291,7 @@ public:
 
 private:
    /**
-    * Object refence.
+    * Object reference.
     */
    C *_obj;
 
@@ -303,7 +303,7 @@ private:
 public:
    /**
     * Keep the object reference and method.
-    * Remenber the indirection:
+    * Remember the indirection:
     *  new MemberFunction<...>(myObj, &MyClass:myMethod);
     */
    MemberFunction(C *obj, proto ptr);
@@ -332,7 +332,7 @@ public:
 
 private:
    /**
-    * Object refence.
+    * Object reference.
     */
    C *_obj;
 
@@ -344,7 +344,7 @@ private:
 public:
    /**
     * Keep the object reference and method.
-    * Remenber the indirection:
+    * Remember the indirection:
     *  new MemberFunction<...>(myObj, &MyClass:myMethod);
     */
    MemberFunction(C *obj, proto ptr);
@@ -373,7 +373,7 @@ public:
 
 private:
    /**
-    * Object refence.
+    * Object reference.
     */
    C *_obj;
 
@@ -385,7 +385,7 @@ private:
 public:
    /**
     * Keep the object reference and method.
-    * Remenber the indirection:
+    * Remember the indirection:
     *  new MemberFunction<...>(myObj, &MyClass:myMethod);
     */
    MemberFunction(C *obj, proto ptr);

@@ -9,12 +9,12 @@
  * By default, the container takes ownership of all the elements
  * added. This means that the container delete all the elements on
  * it when it is deleted and the elements removed are also deleted.
- * The onwership can be disable with the setOnwership() method.
+ * The ownership can be disable with the setOwnership() method.
  *
  * Every container have an attribute called version which is incremented
  * on every modification of the container. It is used by the iterators
  * to ensure that the container has not changed and throw an
- * InvalidatedIterator exception.
+ * Error::Structure::IteratorInvalidated exception.
  *
  * Make sure of calling modified() on every change to the container.
  */
@@ -47,16 +47,16 @@ public:
    /**
     * Returns true if the container is taken ownership of its elements.
     */
-   virtual _bool ownership();
+   _bool ownership();
 
    /**
     * Set or unsets the ownership of this container.
     */
-   virtual void setOwnership(_bool owner);
+   void setOwnership(_bool owner);
 
    /**
     * Notify the container of a modification.
-    * This method must be called before modifing or attempting to modify
+    * This method must be called before modifying or attempting to modify
     * the container. It doesn't matter if the action fails and the container
     * is actually not modified or if it is called more than once.
     * This method invalidates all the iterators.

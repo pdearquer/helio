@@ -46,12 +46,12 @@ public:
    
    
    /**
-    * Proccess the escaping over a String.
+    * Processes the escaping over a String.
     */
    virtual String escString(String input);
    
    /**
-    * Proccess the unescaping over a String.
+    * Processes the unescaping over a String.
     */
    virtual String unescString(String input);
    

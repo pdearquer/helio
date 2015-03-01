@@ -5,7 +5,7 @@
 
 /** Dynamic elements iterator
  * Provide a method to run over all elements of a container.
- * This iterator is intended to be used as dynamic tipe, so it must be deleted.
+ * This iterator is intended to be used as dynamic type, so it must be deleted.
  *
  * Remember to call startVersion() in your constructor and checkVersion()
  * on hasMore(), get() and next().
@@ -37,7 +37,7 @@ protected:
     * Saves the container current version.
     * This method must be called once in the constructor.
     */
-   virtual void startVersion(Container<T> *container);
+   void startVersion(Container<T> *container);
 
    /**
     * Checks that the container version has not changed.
@@ -68,14 +68,14 @@ public:
    
    /**
     * Returns the current element in the container.
-    * If hasMore() is false, this method will throw an IterationEnd exception.
+    * If hasMore() is false, this method will throw an Error::Structure::IterationEnded exception.
     * Remember to call checkVersion() first thing.
     */
    virtual T *get() = 0;
    
    /**
     * Moves to the next element returning the current one.
-    * If hasMore() is false, this method will throw an IterationEnd exception.
+    * If hasMore() is false, this method will throw an Error::Structure::IterationEnded exception.
     * Remember to call checkVersion() first thing.
     */
    virtual T *next() = 0;

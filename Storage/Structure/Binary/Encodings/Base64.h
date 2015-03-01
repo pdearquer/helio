@@ -25,7 +25,7 @@ protected:
    _bool _padding;
    
    /**
-    * Line lenght or -1 if no insert line feeds.
+    * Line length or -1 if no insert line feeds.
     */
    _int _line;
    
@@ -36,7 +36,7 @@ protected:
    
 
    /**
-    * Last two symbol characters (indeces 62 and 63).
+    * Last two symbol characters (indices 62 and 63).
     */
    _char _char62;
    _char _char63;
@@ -99,12 +99,12 @@ public:
    
    
    /**
-    * Gets the line lenght or -1 if no insert line feeds.
+    * Gets the line length or -1 if no insert line feeds.
     */
    _int line();
    
    /**
-    * Sets the line lenght or -1 if no insert line feeds.
+    * Sets the line length or -1 if no insert line feeds.
     */
    _int line(_int lin);
    
@@ -136,11 +136,11 @@ public:
    /**
     * Set URL symbols ('-' and '_').
     */
-   void modeURL();
+   void modeUrl();
    
    /**
     * Set XML symbols ('.' and '-').
     */
-   void modeXML();
+   void modeXml();
 };
 

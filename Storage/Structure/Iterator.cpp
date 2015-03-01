@@ -70,7 +70,7 @@ template <class T> _bool Iterator<T>::operator!=(const Iterator<T> &otro) const
 {
    if(otro._it != null)
    {
-      Exception *ex = MAKE_ERROR(Exception::NotSupported);
+      MAKE_ERROR(ex, Exception::NotSupported);
       ex->add("reason", "Only end iterator supported for comparison");
       throw ex;
    }

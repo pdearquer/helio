@@ -171,13 +171,13 @@ public:
 
 #ifndef __HELIO_TYPE_INT_IS_NATIVE
    /**
-    * Operator cast to navite int.
+    * Operator cast to native int.
     */
    explicit operator int() const;
 #endif
 
    /**
-    * Operator cast to navite size_t to allow expressions like:
+    * Operator cast to native size_t to allow expressions like:
     *   _int *a = new _int[b];
     */
    operator size_t() const;
@@ -615,7 +615,7 @@ public:
 protected:
    /**
     * Check the limits of the given value to ensure that no overflow
-    * has occured.
+    * has occurred.
     * If the value is correct, it is assigned to _value.
     * If not, an exception is thrown.
     */

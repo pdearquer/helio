@@ -5,12 +5,12 @@
 
 /** Characters processing window.
  * Allows process a window of characters from a String, Buffer or characters Input.
- * Create a lenght variable window work that moves when the characters are 
+ * Create a length variable window work that moves when the characters are 
  * processed (always forwards).
  * There are at least two pointers in the window: start and end. You can
  * create others but they are always within this two.
  *
- * TODO: Put limits
+ * TODO: Set limits
  */
 class Window :
       public virtual Object
@@ -44,24 +44,24 @@ public:
    
    /**
 
-    * String containing all the alfabetic characters (whether upper or lower case).
+    * String containing all the alphabetic characters (whether upper or lower case).
     */
-   static_const_String ALFA = "abcdefghijklmnopqrstuvwxyz" "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+   static_const_String ALPHA = "abcdefghijklmnopqrstuvwxyz" "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
    
    /**
-    * String containing all the alfabetic and number characters.
+    * String containing all the alphabetic and number characters.
     */
-   static_const_String ALFANUMERIC = "abcdefghijklmnopqrstuvwxyz" "ABCDEFGHIJKLMNOPQRSTUVWXYZ" "0123456789";
+   static_const_String ALPHANUMERIC = "abcdefghijklmnopqrstuvwxyz" "ABCDEFGHIJKLMNOPQRSTUVWXYZ" "0123456789";
    
    /**
-    * String containing all the uppercase alfabetic characters.
+    * String containing all the upper-case alphabetic characters.
     */
-   static_const_String UPPER_ALFA = "abcdefghijklmnopqrstuvwxyz";
+   static_const_String UPPER_ALPHA = "abcdefghijklmnopqrstuvwxyz";
    
    /**
-    * String containing all the lowercase alfabetic characters.
+    * String containing all the lower-case alphabetic characters.
     */
-   static_const_String LOWER_ALFA = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+   static_const_String LOWER_ALPHA = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
    
    
 protected:
@@ -115,9 +115,9 @@ public:
    
    
    /**
-    * Window lenght in characters (from start to end).
+    * Window length in characters (from start to end).
     */
-   _int lenght();
+   _int length();
    
    
    /**
@@ -184,18 +184,18 @@ public:
    
 
    /**
-    * Check if the start points to any of the characers of the string.
+    * Check if the start points to any of the characters of the string.
     */
    _bool isAny(const StringBuffer &valid, _bool igncase = false);
    
    /**
-    * Check if the given pointer points to any of the characers of the string.
+    * Check if the given pointer points to any of the characters of the string.
     */
    _bool isAny(const StringBuffer &valid, const WindowPointer &p, _bool igncase = false);
 
 
    /**
-    * Check if the start points to none of the characers of the string.
+    * Check if the start points to none of the characters of the string.
     */
    _bool isNone(const StringBuffer &invalid, _bool igncase = false);
    
@@ -289,25 +289,25 @@ public:
     * Look ahead for any strings NOT contained in the vector.
     * If success returns true and store the string start position in the result pointer.
     * The window may grow up until find it or to the limit.
-    * Note that overlaping is not consider, that means that the invalid strings "abc"
+    * Note that overlapping is not consider, that means that the invalid strings "abc"
     * and "abcdef" could fail processing "abcdef" ("abc" found and "def" not).
     */
    //_bool findNone(const Vector<String> &invalid);
    
    
    /**
-    * Move the end pointer to the last character to proccess (or to the limit).
+    * Move the end pointer to the last character to process (or to the limit).
     */
    virtual void finish();
    
    /**
-    * Returns true if the end pointer is in the last character to proccess.
+    * Returns true if the end pointer is in the last character to process.
     */
 
    virtual _bool hasFinished() = 0;
    
    /**
-    * Returns true if the given pointer is in the last character to proccess.
+    * Returns true if the given pointer is in the last character to process.
     */
    virtual _bool hasFinished(const WindowPointer &p);
    

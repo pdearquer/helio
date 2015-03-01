@@ -53,7 +53,7 @@ public:
    virtual _int absolute(const WindowPointer &pos);   
    
    /**
-    * Returns true if the end pointer is in the last character to proccess.
+    * Returns true if the end pointer is in the last character to process.
     */
    virtual _bool hasFinished();
    using Window::hasFinished;

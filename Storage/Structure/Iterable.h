@@ -7,10 +7,12 @@
  * It allows the iteration over an enumeration of elements of generic type.
  *
  * This class allows C++ 11 foreach iteration:
- *    for(Integer *i : list)
- *    {
- *       // Do something with i
- *    }
+ *  for(Integer *i : list)
+ *  {
+ *     // Do something with i
+ *  }
+ * This iteration pattern is preferred to the classical based on index because
+ * prevents any off-by-one bugs.
  */
 template<class T>
 class Iterable :
@@ -21,7 +23,7 @@ public:
     * Gets a dynamic iterator over the elements.
     * This iterator must be deleted by the user.
     * Do not modify the container while iterating or the iterator will
-    * be invalidated with indetermined behavior.
+    * be invalidated with undetermined behaviour.
     */
    virtual DynIterator<T> *dynIterate() = 0;
 
@@ -29,7 +31,7 @@ public:
     * Gets a static iterator over the elements.
     * The iterator must not be deleted.
     * Do not modify the container while iterating or the iterator will
-    * be invalidated with indetermined behavior.
+    * be invalidated with undetermined behaviour.
     */
    virtual Iterator<T> iterate();
 };
@@ -46,3 +48,4 @@ Iterator<T> begin(const Iterable<T> *cont);
  */
 template<class T>
 Iterator<T> end(const Iterable<T> *cont);
+

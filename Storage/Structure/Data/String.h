@@ -224,8 +224,8 @@ public:
    /**
     * Create the sub string between the start and the given end.
     * @param length Number of characters to pick up.
-    *    If lenght is 0, returns all the string to the end.
-    *    If lenght is negative, returns all the string to the end less length given.
+    *    If length is 0, returns all the string until the end of the string.
+    *    If length is negative, returns all the string to the end less given length.
     */
    virtual String sub(_int length) const;
    
@@ -233,8 +233,8 @@ public:
     * Create the sub string between the given limits.
     * @param start The index of the first character included.
     * @param length Number of characters to pick up.
-    *    If lenght is 0, returns all the string to the end.
-    *    If lenght is negative, returns all the string to the end less length given.
+    *    If length is 0, returns all the string until the end of the string.
+    *    If length is negative, returns all the string to the end less given length.
     */
    virtual String sub(_int start, _int length) const;
  

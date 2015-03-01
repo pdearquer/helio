@@ -69,7 +69,7 @@ void CStyle::escape(WritableWindow *w)
                break;  
                
             default:
-               ERROR(Error::Internal);
+               THROW_ERROR(Error::Internal);
          }
          start++;
       }
@@ -77,7 +77,7 @@ void CStyle::escape(WritableWindow *w)
       {
          if(c > 0xFF)
          {
-            Exception *ex = MAKE_ERROR(Exception::Format::InvalidCharacter);
+            MAKE_ERROR(ex, Exception::Format::InvalidCharacter);
             ex->add("escaping", _name);
             ex->addUInt32("char", c);
             throw ex;
@@ -103,7 +103,7 @@ void CStyle::unescape(WritableWindow *w)
       start = result;
       if(w->hasFinished(start))
       {
-         Exception *ex = MAKE_ERROR(Exception::Format::UnexpectedEnd);
+         MAKE_ERROR(ex, Exception::Format::UnexpectedEnd);
          ex->add("escaping", _name);
          throw ex;
       }
@@ -144,7 +144,7 @@ void CStyle::unescape(WritableWindow *w)
             result++;
             if(w->hasFinished(result))
             {
-               Exception *ex = MAKE_ERROR(Exception::Format::UnexpectedEnd);
+               MAKE_ERROR(ex, Exception::Format::UnexpectedEnd);
                ex->add("escaping", _name);
                throw ex;
             }
@@ -156,7 +156,7 @@ void CStyle::unescape(WritableWindow *w)
             break;
             
          default:
-            Exception *ex = MAKE_ERROR(Exception::Format::InvalidCharacter);
+            MAKE_ERROR(ex, Exception::Format::InvalidCharacter);
             ex->add("escaping", _name);
             ex->addUInt32("char", Character(w->getChar(start)).getUtf32());
             throw ex;

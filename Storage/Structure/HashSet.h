@@ -4,12 +4,12 @@
  */
 
 /** Set implementation using hash indices.
- * Dynamic hash table set with separate chaning by linked lists (called
+ * Dynamic hash table set with separate chaining by linked lists (called
  * buckets).
  *
- * The elements stored must be Hashable<> with themsleves.
+ * The elements stored must be Hashable<> with themselves.
  *
- * No order is guarantied when iterating.
+ * No order is warranted when iterating.
  */
 template<class T>
 class HashSet : 
@@ -21,9 +21,9 @@ class HashSet :
       
 protected:
    /**
-    * Inicial size of the table.
+    * Initial size of the table.
     */
-   static_const_int INICIAL_CAPACITY = 13;
+   static_const_int INITIAL_CAPACITY = 13;
    
    /**
     * Table load factor; Relation elements to buckets that
@@ -109,7 +109,7 @@ public:
     * Gets a dynamic iterator over the container elements.
     * This iterator must be deleted by the user.
     * Do not modify the container while iterating or the iterator will
-    * be invalidated with indetermined behavior.
+    * be invalidated with undetermined behaviour.
     */
    virtual DynIterator<T> *dynIterate();
    

@@ -3,10 +3,10 @@
  * Licensed under the GPLv3 or higher (http://www.gnu.org/licenses)
  */
 
-/** UTF-32 encoding
- * UCS Transformation Format to 32 bit words
+/** UTF-16 encoding
+ * UCS Transformation Format to 16 bit words
  */
-class UTF_32 : 
+class Utf16 : 
       public virtual Encoding
 {
 protected:
@@ -24,15 +24,15 @@ protected:
 public:
 
    /**
-    * Create an UTF-32 encoding.
+    * Create an UTF-16 encoding.
     * Use target endianness (at least BOM found)
     */
-   UTF_32();
+   Utf16();
    
    /**
-    * Create an UTF-32 encoding forcing Big or Little Endian.
+    * Create an UTF-16 encoding forcing Big or Little Endian.
     */
-   UTF_32(_bool bigEndian);
+   Utf16(_bool bigEndian);
    
    
    /**

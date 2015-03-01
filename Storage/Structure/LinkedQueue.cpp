@@ -57,7 +57,7 @@ template <class T> void LinkedQueue<T>::setCount(_int num, _bool deleting)
 
    if(num < 0 || num > this->_count)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::InvalidLength);
       ex->addInt("new", num);
       ex->addInt("count", this->_count);
       throw ex;
@@ -68,7 +68,7 @@ template <class T> void LinkedQueue<T>::setCount(_int num, _bool deleting)
 
    LinkedQueueNode<T> *node = this->_list->first();
    if(node == null)
-      ERROR(Error::Internal);
+      THROW_ERROR(Error::Internal);
    _int node_index = 0;
    while(node_index + node->_count < num)
    {
@@ -76,7 +76,7 @@ template <class T> void LinkedQueue<T>::setCount(_int num, _bool deleting)
       node = node->next();
 
       if(node == null)
-         ERROR(Error::Internal);
+         THROW_ERROR(Error::Internal);
    }
 
    if(num > node_index)
@@ -127,7 +127,7 @@ template <class T> void LinkedQueue<T>::set(_int index, T *el, _bool deleting)
 
    if(index < 0 || index >= this->_count)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("index", index);
       ex->addInt("count", this->_count);
       throw ex;
@@ -152,7 +152,7 @@ template <class T> void LinkedQueue<T>::set(_int index, T *el, _bool deleting)
       node = node->next();
    }
 
-   Error *ex = MAKE_ERROR(Error::Internal);
+   MAKE_ERROR(ex, Error::Internal);
    ex->add("reason", "Unexpected end; list corrupted");
    throw ex;
 }
@@ -161,7 +161,7 @@ template <class T> T *LinkedQueue<T>::get(_int index) const
 {
    if(index < 0 || index >= this->_count)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("index", index);
       ex->addInt("count", this->_count);
       throw ex;
@@ -177,7 +177,7 @@ template <class T> T *LinkedQueue<T>::get(_int index) const
       node = node->next();
    }
 
-   Error *ex = MAKE_ERROR(Error::Internal);
+   MAKE_ERROR(ex, Error::Internal);
    ex->add("reason", "Unexpected end; list corrupted");
    throw ex;
 }
@@ -188,7 +188,7 @@ template <class T> void LinkedQueue<T>::erase(_int start, _int end, _bool deleti
 
    if(0 > start || start > end || end >= this->_count)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("end", end);
       ex->addInt("count", this->_count);
@@ -200,7 +200,7 @@ template <class T> void LinkedQueue<T>::erase(_int start, _int end, _bool deleti
 
    LinkedQueueNode<T> *node = this->_list->first();
    if(node == null)
-      ERROR(Error::Internal);
+      THROW_ERROR(Error::Internal);
    _int node_index = 0;
    while(node_index + node->_count - 1 < start)
    {
@@ -208,7 +208,7 @@ template <class T> void LinkedQueue<T>::erase(_int start, _int end, _bool deleti
       node = node->next();
 
       if(node == null)
-         ERROR(Error::Internal);
+         THROW_ERROR(Error::Internal);
    }
 
    _int node_start = start - node_index;
@@ -223,7 +223,7 @@ template <class T> void LinkedQueue<T>::erase(_int start, _int end, _bool deleti
          node->removeThis();
       node = next;
       if(node == null)
-         ERROR(Error::Internal);
+         THROW_ERROR(Error::Internal);
 
       node_start = 0;
       node_end = end - node_index;
@@ -249,7 +249,7 @@ template <class T> T *LinkedQueue<T>::dequeue()
    this->modified();
 
    if(this->_count <= 0)
-      ERROR(Error::Structure::Empty);
+      THROW_ERROR(Error::Structure::Empty);
 
    LinkedQueueNode<T> *node = this->_list->first();
    T *el = node->dequeue();
@@ -263,7 +263,7 @@ template <class T> T *LinkedQueue<T>::dequeue()
 template <class T> T *LinkedQueue<T>::front() const
 {
    if(this->_count == 0)
-      ERROR(Error::Structure::Empty);
+      THROW_ERROR(Error::Structure::Empty);
 
    LinkedQueueNode<T> *node = this->_list->first();
    return node->front();
@@ -294,7 +294,7 @@ template <class T> T *LinkedQueue<T>::dequeueBack()
    this->modified();
 
    if(this->_count <= 0)
-      ERROR(Error::Structure::Empty);
+      THROW_ERROR(Error::Structure::Empty);
 
    LinkedQueueNode<T> *node = this->_list->last();
    T *el = node->dequeue_back();
@@ -308,7 +308,7 @@ template <class T> T *LinkedQueue<T>::dequeueBack()
 template <class T> T *LinkedQueue<T>::back() const
 {
    if(this->_count == 0)
-      ERROR(Error::Structure::Empty);
+      THROW_ERROR(Error::Structure::Empty);
 
    LinkedQueueNode<T> *node = this->_list->last();
    return node->back();

@@ -9,7 +9,7 @@
  * Add all the methods that run test cases in the constructor.
  * Do NOT assume any order in the execution of the tests.
  *
- * Fictures are common resources shared among a some test cases.
+ * Fixtures are common resources shared among a some test cases.
  * These resources can be created in setup() and must be destroyed
  * in destroy() for every test case. It is important that one test
  * do not affect others. Note that the fixtures do not run in a memory
@@ -36,7 +36,7 @@ protected:
    TestFramework *_framework;
 
    /**
-    * Tes unit name.
+    * Test unit name.
     */
    String _name;
    
@@ -180,7 +180,7 @@ public:
 #define ASSERT(cond) \
       do { \
          if( !(cond) ) { \
-            Error *ex = MAKE_ERROR(Error::Test::Assertion); \
+            MAKE_ERROR(ex, Error::Test::Assertion); \
             ex->add("macro", "ASSERT"); \
             ex->add("condition", #cond); \
             throw ex; \
@@ -194,7 +194,7 @@ public:
 #define ASSERT_EX(cond, extra) \
       do { \
          if( !(cond) ) { \
-            Error *ex = MAKE_ERROR(Error::Test::Assertion); \
+            MAKE_ERROR(ex, Error::Test::Assertion); \
             ex->add("macro", "ASSERT_EX"); \
             ex->add("extra", (::Storage::Structure::Text::StringBuffer) extra); \
             ex->add("condition", #cond); \
@@ -208,7 +208,7 @@ public:
 #define ASSERT_NO(cond) \
       do { \
          if( (cond) ) { \
-            Error *ex = MAKE_ERROR(Error::Test::Assertion); \
+            MAKE_ERROR(ex, Error::Test::Assertion); \
             ex->add("macro", "ASSERT_NO"); \
             ex->add("condition", #cond); \
             throw ex; \
@@ -222,7 +222,7 @@ public:
 #define ASSERT_NO_EX(cond, extra) \
       do { \
          if( (cond) ) { \
-            Error *ex = MAKE_ERROR(Error::Test::Assertion); \
+            MAKE_ERROR(ex, Error::Test::Assertion); \
             ex->add("macro", "ASSERT_NO_EX"); \
             ex->add("extra", (::Storage::Structure::Text::StringBuffer) extra); \
             ex->add("condition", #cond); \
@@ -238,7 +238,7 @@ public:
          _int e1 = (exp1); \
          _int e2 = (exp2); \
          if(e1 != e2) { \
-            Error *ex = MAKE_ERROR(Error::Test::Assertion); \
+            MAKE_ERROR(ex, Error::Test::Assertion); \
             ex->add("macro", "ASSERT_EQ"); \
             ex->add("exp1", #exp1); \
             ex->addInt("exp1.value", e1); \
@@ -257,7 +257,7 @@ public:
          _int e1 = (exp1); \
          _int e2 = (exp2); \
          if(e1 != e2) { \
-            Error *ex = MAKE_ERROR(Error::Test::Assertion); \
+            MAKE_ERROR(ex, Error::Test::Assertion); \
             ex->add("macro", "ASSERT_EQ_EX"); \
             ex->add("extra", (::Storage::Structure::Text::StringBuffer) extra); \
             ex->add("exp1", #exp1); \
@@ -276,7 +276,7 @@ public:
          _int e1 = (exp1); \
          _int e2 = (exp2); \
          if(e1 == e2) { \
-            Error *ex = MAKE_ERROR(Error::Test::Assertion); \
+            MAKE_ERROR(ex, Error::Test::Assertion); \
             ex->add("macro", "ASSERT_NO_EQ"); \
             ex->add("exp1", #exp1); \
             ex->addInt("exp1.value", e1); \
@@ -295,7 +295,7 @@ public:
          _int e1 = (exp1); \
          _int e2 = (exp2); \
          if(e1 == e2) { \
-            Error *ex = MAKE_ERROR(Error::Test::Assertion); \
+            MAKE_ERROR(ex, Error::Test::Assertion); \
             ex->add("macro", "ASSERT_NO_EQ_EX"); \
             ex->add("extra", (::Storage::Structure::Text::StringBuffer) extra); \
             ex->add("exp1", #exp1); \
@@ -307,7 +307,7 @@ public:
       } while(false)
 
 /**
- * Checks that the expression throws an especific exception. Otherwise aborts.
+ * Checks that the expression throws a specific exception. Otherwise aborts.
  */
 #define ASSERT_THROW(exp, except) \
       do { \
@@ -319,7 +319,7 @@ public:
             delete ex; \
          } \
          if(!thrown) { \
-            Error *ex = MAKE_ERROR(Error::Test::Assertion); \
+            MAKE_ERROR(ex, Error::Test::Assertion); \
             ex->add("macro", "ASSERT_THROW"); \
             ex->add("exp", #exp); \
             ex->add("except", #except); \
@@ -341,7 +341,7 @@ public:
             delete ex; \
          } \
          if(!thrown) { \
-            Error *ex = MAKE_ERROR(Error::Test::Assertion); \
+            MAKE_ERROR(ex, Error::Test::Assertion); \
             ex->add("macro", "ASSERT_THROW_EX"); \
             ex->add("extra", (::Storage::Structure::Text::StringBuffer) extra); \
             ex->add("exp", #exp); \

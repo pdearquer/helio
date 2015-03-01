@@ -6,7 +6,7 @@
 /** Test suite base
  * Group up a list of tests or other suites.
  *
- * To create a new suite inheritate from this class and
+ * To create a new suite inherits from this class and
  * build the list in you constructor.
  */
 class TestSuite :
@@ -42,7 +42,7 @@ protected:
    TestSuite();
    
    /**
-    * Setup the suite.
+    * Setups the suite.
     * @param framework Test framework reference
     * @param name Suite name
     */
@@ -90,7 +90,7 @@ public:
     * @param path Full name to this suite ending with ".".
     * @param filter Filtering string:
     *    "*" or "" means add the whole suite
-    *    "MySuite."... adds MySuite continuing the filtering proccess
+    *    "MySuite."... adds MySuite continuing the filtering process
     *    "MyTest" adds all the cases of MyTest 
     *    "MyTest.myCase" adds only the myCase case of MyTest
     * If the filtering pattern is not found an exceptions arises.
@@ -112,7 +112,7 @@ protected:
     * @param test Test unit to add.
     * @param filter Filtering string:
     *    "*" or "" means add the whole suite
-    *    "MySuite."... adds MySuite continuing the filtering proccess
+    *    "MySuite."... adds MySuite continuing the filtering process
     *    "MyTest" adds all the cases of MyTest
     *    "MyTest.myCase" adds only the myCase case of MyTest
     * If the filtering pattern is not found an exceptions arises.

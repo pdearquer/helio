@@ -22,12 +22,12 @@ protected:
    V *_values;
    
    /**
-    * Number of elements.
+    * Number of elements of the container.
     */
-   _int _length;
+   _int _count;
    
    /**
-    * Array total lenght.
+    * Number of elements allocated in the array.
     */
    _int _size;
    
@@ -67,7 +67,7 @@ public:
    
    /**
     * Adds an element to the table.
-    * @return true if other was overwriten.
+    * @return true if other was overwritten.
     */
    _bool add(K key, V value);
    

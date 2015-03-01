@@ -8,14 +8,14 @@
 namespace Storage {
 namespace Structure {
 
-template<class K, class V> const_int HashMap<K, V>::INICIAL_CAPACITY;
+template<class K, class V> const_int HashMap<K, V>::INITIAL_CAPACITY;
 
 template<class K, class V> const_float HashMap<K, V>::LOAD_FACTOR;
 
 
 template<class K, class V> HashMap<K, V>::HashMap()
 {
-   _capacity = INICIAL_CAPACITY;
+   _capacity = INITIAL_CAPACITY;
    _count = 0;
    
    _table = new HashMapNode<K, V>*[_capacity];
@@ -25,7 +25,7 @@ template<class K, class V> HashMap<K, V>::HashMap()
 
 template<class K, class V> HashMap<K, V>::HashMap(_bool owner)
 {
-   _capacity = INICIAL_CAPACITY;
+   _capacity = INITIAL_CAPACITY;
    _count = 0;
 
    _table = new HashMapNode<K, V>*[_capacity];
@@ -54,7 +54,7 @@ template<class K, class V> _bool HashMap<K, V>::add(K *key, V *value, _bool dele
 
    if(key == null)
    {
-      Error *ex = MAKE_ERROR(Error::NullObject);
+      MAKE_ERROR(ex, Error::NullObject);
       ex->add("reason", "This container do not allow null keys");
       throw ex;
    }
@@ -115,7 +115,7 @@ template<class K, class V> _bool HashMap<K, V>::contains(K *key)
 {
    if(key == null)
    {
-      Error *ex = MAKE_ERROR(Error::NullObject);
+      MAKE_ERROR(ex, Error::NullObject);
       ex->add("reason", "This container do not allow null keys");
       throw ex;
    }
@@ -141,7 +141,7 @@ template<class K, class V> V *HashMap<K, V>::get(K *key)
 {
    if(key == null)
    {
-      Error *ex = MAKE_ERROR(Error::NullObject);
+      MAKE_ERROR(ex, Error::NullObject);
       ex->add("reason", "This container do not allow null keys");
       throw ex;
    }
@@ -169,7 +169,7 @@ template<class K, class V> _bool HashMap<K, V>::remove(K *key, _bool deleting)
 
    if(key == null)
    {
-      Error *ex = MAKE_ERROR(Error::NullObject);
+      MAKE_ERROR(ex, Error::NullObject);
       ex->add("reason", "This container do not allow null keys");
       throw ex;
    }

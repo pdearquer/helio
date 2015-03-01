@@ -3,8 +3,8 @@
  * Licensed under the GPLv3 or higher (http://www.gnu.org/licenses)
  */
 
-/** Texts formating tests
- * Tests the Storage.Strucutre.Text.Format class.
+/** Texts formatting tests
+ * Tests the Storage.Structure.Text.Format class.
  */
 class FormatTest :
       public virtual Test
@@ -18,32 +18,32 @@ public:
 
    
    /**
-    * Tests the Boolean convertions.
+    * Tests the Boolean conversions.
     */
    void boolean();
    
    /**
-    * Tests the binary integers convertions.
+    * Tests the binary integers conversions.
     */
    void binary();
    
    /**
-    * Tests the Integer convertions.
+    * Tests the Integer conversions.
     */
    void integer();
 
    /**
-    * Tests the Float convertions.
+    * Tests the Float conversions.
     */
    void floatClass();
 
    /**
-    * Tests the Character convertions.
+    * Tests the Character conversions.
     */
    void character();
 
    /**
-    * Tests the Pointer convertions.
+    * Tests the Pointer conversions.
     */
    void pointer();
 };

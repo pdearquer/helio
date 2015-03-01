@@ -44,7 +44,7 @@ public:
    
    
    /**
-    * Get a copy of the complete the proccessing string.
+    * Get a copy of the complete the processing string.
     */
    virtual String getStringCopy();
    
@@ -54,7 +54,7 @@ public:
    virtual _int absolute(const WindowPointer &pos);   
    
    /**
-    * Returns true if the end pointer is in the last character to proccess.
+    * Returns true if the end pointer is in the last character to process.
     */
    virtual _bool hasFinished();
    using Window::hasFinished;

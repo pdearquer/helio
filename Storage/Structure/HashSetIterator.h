@@ -22,7 +22,7 @@ protected:
    HashSetNode<T> *_node;
    
    /**
-    * Current index positionin the table.
+    * Current index position in the table.
     */
    _int _index;
    

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <package>
   <name>Encodings</name>
-  <description>Implementation of encoding to convert bytes to characters and vicicersa</description>
+  <description>Implementation of encoding to convert bytes to characters and vice versa</description>
     
   <class>
-    <name>ASCII</name>
+    <name>Ascii</name>
     <description>American Standard Code for Information Interchange</description>
   </class>
   <class>
@@ -12,23 +12,23 @@
     <description>Radix-64 ASCII representation for binary data</description>
   </class>
   <class>
-    <name>ISO_8859_1</name>
+    <name>Iso8859_1</name>
     <description>ISO/IEC 8859-1 (Latin-1) encoding</description>
   </class>
   <class>
-    <name>ISO_8859_2</name>
+    <name>Iso8859_2</name>
     <description>ISO/IEC 8859-2 (Latin-2) encoding</description>
   </class>
   <class>
-    <name>UTF_8</name>
+    <name>Utf8</name>
     <description>UCS Transformation Format to 8 bit words</description>
   </class>
   <class>
-    <name>UTF_16</name>
+    <name>Utf16</name>
     <description>UCS Transformation Format to 16 bit words</description>
   </class>
   <class>
-    <name>UTF_32</name>
+    <name>Utf32</name>
     <description>UCS Transformation Format to 32 bit words</description>
   </class>
   <class>

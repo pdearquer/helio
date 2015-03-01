@@ -37,7 +37,7 @@ template <class T> T *HashSetIterator<T>::get()
 
    if(this->_node == null)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::IterationEnded);
+      MAKE_ERROR(ex, Error::Structure::IterationEnded);
       ex->addInt("count", this->_set->_count);
       throw ex;
    }
@@ -51,7 +51,7 @@ template <class T> T *HashSetIterator<T>::next()
 
    if(this->_node == null)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::IterationEnded);
+      MAKE_ERROR(ex, Error::Structure::IterationEnded);
       ex->addInt("count", this->_set->_count);
       throw ex;
    }

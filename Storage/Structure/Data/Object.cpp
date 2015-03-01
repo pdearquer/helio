@@ -38,7 +38,7 @@ String Object::getClass() const
    }
    catch(std::bad_typeid &e)
    {
-      Error *ex = MAKE_ERROR(Error::IllegalClass);
+      MAKE_ERROR(ex, Error::IllegalClass);
       ex->addPointer("object", this);
       throw ex;
    }

@@ -130,7 +130,7 @@ StringBuffer StringBuffer::sub(_int length) const
 
    if(actual_len < 0 || actual_len > _length)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("sub.length", length);
       ex->addInt("sub.actual", actual_len);
       ex->addInt("length", _length);
@@ -149,7 +149,7 @@ StringBuffer StringBuffer::sub(_int start, _int length) const
 
    if(start < 0 || actual_len < 0 || start + actual_len > _length)
    {
-      Error *ex = MAKE_ERROR(Error::Structure::OutOfBounds);
+      MAKE_ERROR(ex, Error::Structure::OutOfBounds);
       ex->addInt("start", start);
       ex->addInt("sub.length", length);
       ex->addInt("sub.actual", actual_len);
