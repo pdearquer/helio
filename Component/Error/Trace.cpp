@@ -7,15 +7,45 @@
 
 #include <execinfo.h>
 #include <stdlib.h>
+#include <dlfcn.h>
+#include <cxxabi.h>
 
 namespace Component {
 namespace Error {
+
+const_int Trace::MAX_POINTERS;
+
+
+String Trace::demangleSymbol(const char *mangled)
+{
+   int status;
+   char *demangled = abi::__cxa_demangle(mangled, 0, 0, &status);
+   if(demangled == null)
+      return (String)mangled;
+   String ret = demangled;
+   free(demangled);
+   if(status == 0)
+      return ret;
+   return (String)mangled;
+}
+
+String Trace::pointerInfo(_pointer p)
+{
+   Dl_info info;
+   if(dladdr((void *)p, &info) == 0)
+      return Pointer(p).toString();
+
+   return (StringBuffer)demangleSymbol(info.dli_sname) + " [+" + -Pointer::diff(p, info.dli_saddr) + "]";
+}
+
 
 Trace::Trace(_int discard)
 {
    discard++;  // Remove this call
    
-   _pointers = backtrace(_trace, 32);
+   _pointers = backtrace(_trace, MAX_POINTERS);
+   if(_pointers > 1)
+      _pointers--;   // Last one makes dladdr to crash
    
    if(discard < 0 || discard >= _pointers)
       return;
@@ -34,21 +64,22 @@ Trace::Trace(Trace *other)
 }
 
 
-String Trace::toString() const
+_int Trace::pointers()
 {
-   char **syms;
-   syms = backtrace_symbols(_trace, _pointers);
+   return _pointers;
+}
    
-   StringBuffer res;
-   
-   for(_int i = 0; i < _pointers; i++)
+_pointer Trace::getPointer(_int index)
+{
+   if(index < 0 || index >= _pointers)
    {
-      res.add((StringBuffer)" " + syms[i] + "\n");
+      MAKE_ERROR(ex, ::Error::Structure::OutOfBounds);
+      ex->addInt("index", index);
+      ex->addInt("pointers", _pointers);
+      throw ex;
    }
    
-   free(syms);
-   
-   return res;
+   return (_pointer)_trace[index];
 }
 
 } }

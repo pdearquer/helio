@@ -88,7 +88,7 @@ protected:
     * Initialize the class.
     * Must be called once and only once in the constructor.
     */    
-   void init(String msg, Throwable *child, const String &source, _int line, const String &date, _int traceDiscard);   
+   void init(String msg, Throwable *child, const String &source, _int line, const String &date);   
 
 
 public:

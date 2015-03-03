@@ -42,14 +42,14 @@ template <class T> const T *Object::tryAs() const
 }
 
 /**
- * Hard dynamic casting. If it fails throw an exception.
+ * Hard dynamic casting. If it fails produces an error.
  */
 template <class T> T *Object::as()
 {
    T *obj = dynamic_cast<T*>(this);
    if(obj == null)
    {
-      MAKE_ERROR(ex, Exception::InvalidClass);
+      MAKE_ERROR(ex, Error::IllegalClass);
       ex->add("class", getClass());
       try
       {
@@ -64,14 +64,14 @@ template <class T> T *Object::as()
 }
 
 /**
- * Hard dynamic constant casting. If it fails throw an exception.
+ * Hard dynamic constant casting. If it fails produces an error.
  */
 template <class T> const T *Object::as() const
 {
    const T *obj = dynamic_cast<const T*>(this);
    if(obj == null)
    {
-      MAKE_ERROR(ex, Exception::InvalidClass);
+      MAKE_ERROR(ex, Error::IllegalClass);
       ex->add("class", getClass());
       try
       {

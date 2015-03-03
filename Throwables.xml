@@ -11,9 +11,6 @@ If in doubt, use an Exception (e.g. *NotFound or *NotSupported)
   <error id="Exception::NotSupported">
     Operation not supported.
   </error>
-  <error id="Exception::InvalidClass">
-    The object does not belong to the expected class.
-  </error>
   <error id="Exception::Format">
     Invalid format found.
   </error>
@@ -88,7 +85,7 @@ If in doubt, use an Exception (e.g. *NotFound or *NotSupported)
     Internal error occurred.
   </error>  
   <error id="Error::IllegalClass">
-    The pointer given is not a legal Object.
+    The object does not belong to the expected class.
   </error>
   <error id="Error::Arithmetic::Overflow">
     Last arithmetic operation has overflown.

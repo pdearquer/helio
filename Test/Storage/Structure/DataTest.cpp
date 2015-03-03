@@ -36,7 +36,7 @@ void DataTest::object()
    ASSERT(obj->tryAs<Integer>() == null);
 
    ASSERT(obj->as<Object>() == obj);
-   ASSERT_THROW(obj->as<Integer>(), Exception::InvalidClass);
+   ASSERT_THROW(obj->as<Integer>(), Error::IllegalClass);
 
    ASSERT(obj->is<Object>());
    ASSERT_NO(obj->is<Integer>());

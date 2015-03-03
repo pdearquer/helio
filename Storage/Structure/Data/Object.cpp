@@ -27,14 +27,15 @@ _bool Object::equals(const Object *other) const
 
 String Object::toString() const
 {
-   return getClass() + "(" + Format::def()->toString((_pointer) this) + ")";
+   return getClass() + "[" + (_pointer)this + "]";
 }
 
 String Object::getClass() const
 {
+   const char *name;
    try
    {
-      return (String) typeid(*this).name();
+      name = typeid(*this).name();
    }
    catch(std::bad_typeid &e)
    {
@@ -42,6 +43,11 @@ String Object::getClass() const
       ex->addPointer("object", this);
       throw ex;
    }
+#ifdef __HELIO_COMPONENT_ERROR_TRACE
+   return Component::Error::Trace::demangleSymbol(name);
+#else
+   return (String)name;
+#endif
 }
 
 } } }

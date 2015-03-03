@@ -22,12 +22,11 @@ Throwable::~Throwable()
    delete _trace;
 }
 
-void Throwable::init(String msg, Throwable *child, const String &source, _int line, const String &date, _int traceDiscard)
+void Throwable::init(String msg, Throwable *child, const String &source, _int line, const String &date)
 {
    _msg = msg;
    _child = child;
-   //_trace = new Trace(1 + traceDiscard);   // It doesn't work well with optimization enabled
-   _trace = new Trace(1);
+   _trace = new Trace(2);
    
    add("debug.file", source);
    addInt("debug.line", line);

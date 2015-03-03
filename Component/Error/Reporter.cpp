@@ -54,7 +54,16 @@ void Reporter::report(Throwable *error, _bool silently)
       if(error->child() == null)
       {
          // Prints only the stack trace of the original error
-         PRINT(error->trace()->toString());
+         Trace *trace = error->trace();
+         if(trace != null)
+         {
+            PRINTLN(" Stack trace:");
+            for(_int i = 0; i < trace->pointers(); i++)
+            {
+               _pointer p = trace->getPointer(i);
+               PRINTLN("  [" + p + "] " + Trace::pointerInfo(p));
+            }
+         }
          break;
       }
       

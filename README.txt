@@ -2,8 +2,8 @@
   Helio : Experimental Operative System
 -----------------------------------------
 
-Helio is a framework to experiment and test new concepts in cooperative programming.
-This program is distributed under the GPLv3 or higher, see above.
+Helio is a framework to experiment with new patterns of safe and cooperative programming.
+This program is distributed under the GPLv3 licence or higher, see above.
 
 If you plan to play with it, I'd recommend you to start reading the project documentation:
   https://code.google.com/p/helio/

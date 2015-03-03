@@ -9,7 +9,6 @@
  *
  * FIXME: Only works in Linux with libc.
  *    Recommended compilation with "-g3 -rdynamic" flags.
- * TODO: Unmangle symbols.
  * TODO: Make the linker to load the symbols in memory and read them.
  */
 class Trace :
@@ -17,9 +16,15 @@ class Trace :
 {
 protected:
    /**
+    * Maximum number of pointers stored (depth of the stack trace).
+    */
+   static_const_int MAX_POINTERS = 32;
+   
+
+   /**
     * Pointers trace.
     */
-   void *_trace[32];
+   void *_trace[MAX_POINTERS];
    
    /**
     * Number of pointers.
@@ -28,6 +33,17 @@ protected:
    
    
 public:
+   /**
+    * Demangles the symbol internal name to produce the human readable name.
+    */
+   static String demangleSymbol(const char *mangled);
+
+   /**
+    * Returns an string with information about the pointer's closer symbol.
+    */
+   static String pointerInfo(_pointer p);
+   
+
    /**
     * Extract the trace from the stack discarding some last calls.
     */
@@ -38,10 +54,15 @@ public:
     */
    Trace(Trace *other);
 
+
+   /**
+    * Returns the number of pointers stored.
+    */
+   virtual _int pointers();
    
    /**
-    * Dump the trace to a String.
+    * Returns a pointer by index.
     */
-   virtual String toString() const; 
+   virtual _pointer getPointer(_int index);
 };
 
