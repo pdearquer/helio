@@ -19,7 +19,7 @@
  */
 template<class T>
 class Iterator :
-      public virtual Object
+      public virtual StaticObject
 {
 protected:
    /**

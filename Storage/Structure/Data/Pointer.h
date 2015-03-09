@@ -9,8 +9,8 @@
  * Static object.
  */
 class Pointer : 
-      public virtual Cloneable, public virtual Comparable<Pointer>,
-      public virtual Hashable<Pointer>
+      public virtual StaticObject, public virtual Cloneable,
+      public virtual Comparable<Pointer>, public virtual Hashable<Pointer>
 {
 public:
    /**
@@ -71,38 +71,38 @@ public:
    /**
     * Returns the value of the pointer.
     */
-   virtual Pointer get() const;
+   Pointer get() const;
 
    /**
     * Sets the value of the pointer.
     */
-   virtual void set(const Pointer &other);
+   void set(const Pointer &other);
 
 
    /**
     * Says if the pointer is null.
     */
-   virtual _bool isNull() const;
+   _bool isNull() const;
    
    
    /**
     * Moves the pointer a number of bytes forward (positive) or
     * backward (negative).
     */
-   virtual void move(_int bytes);
+   void move(_int bytes);
    
    /**
     * Returns the difference in bytes from this pointer to other
     * (negative is the other is behind).
     */
-   virtual _int diff(const Pointer &to) const;
+   _int diff(const Pointer &to) const;
    
 #ifndef __HELIO_TYPE_POINTER_IS_STATIC
    /**
     * Returns the difference in bytes from this pointer to other
     * (negative is the other is behind).
     */
-   virtual _int diff(_pointer to) const;
+   _int diff(_pointer to) const;
 #endif
 
    

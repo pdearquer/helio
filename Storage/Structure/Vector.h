@@ -9,7 +9,7 @@
  */
 template <class T>
 class Vector :
-      public virtual Object
+      public virtual StaticObject
 {
 protected:
    /**

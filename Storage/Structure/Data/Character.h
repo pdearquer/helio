@@ -9,8 +9,8 @@
  * Static object.
  */
 class Character : 
-      public virtual Cloneable, public virtual Orderable<Character>,
-      public virtual Hashable<Character>
+      public virtual StaticObject, public virtual Cloneable,
+      public virtual Orderable<Character>, public virtual Hashable<Character>
 {
 protected:
    /**
@@ -62,12 +62,12 @@ public:
    /**
     * Return the value of the character.
     */
-   virtual Character get() const;
+   Character get() const;
    
    /**
     * Set the value of the character.
     */
-   virtual void set(const Character &other);
+   void set(const Character &other);
    
    
    /**
@@ -78,53 +78,53 @@ public:
    /**
     * Returns the ASCII representation of the character.
     */
-   virtual _uint8 getAscii() const;
+   _uint8 getAscii() const;
    
    /**
     * Set the character from its ASCII representation.
     */
-   virtual void setAscii(_uint8 ascii);
+   void setAscii(_uint8 ascii);
    
    /**
     * Gets the character in UTF-16.
     */
-   virtual _uint16 getUtf16() const;
+   _uint16 getUtf16() const;
    
    /**
     * Sets the character in UTF-16.
     */
-   virtual void setUtf16(_uint16 utf16);
+   void setUtf16(_uint16 utf16);
    
    /**
     * Gets the character in UTF-32.
     */
-   virtual _uint32 getUtf32() const;
+   _uint32 getUtf32() const;
    
    /**
     * Sets the character in UTF-32.
     */
-   virtual void setUtf32(_uint32 utf32);
+   void setUtf32(_uint32 utf32);
    
    
    /**
     * Says if this character is lower case.
     */
-   virtual _bool isLowerCase() const;
+   _bool isLowerCase() const;
    
    /**
     * Says if this character is upper case.
     */
-   virtual _bool isUpperCase() const;
+   _bool isUpperCase() const;
    
    /**
     * Returns the lower case character of this (not modifying this).
     */
-   virtual Character toLowerCase() const;
+   Character toLowerCase() const;
    
    /**
     * Returns the upper case character of this (not modifying this).
     */
-   virtual Character toUpperCase() const;
+   Character toUpperCase() const;
    
    
    /**
@@ -137,32 +137,32 @@ public:
     * Compare to other character ignoring the case if required.
     * Return 0 if equals, -1 if less and +1 if more than it.
     */
-   virtual _int compare(const Character &other, _bool igncase = false) const;
+   _int compare(const Character &other, _bool igncase = false) const;
 #ifndef __HELIO_TYPE_CHAR_IS_STATIC
    /**
     * Compare to other character ignoring the case if required.
     * Return 0 if equals, -1 if less and +1 if more than it.
     */
-   virtual _int compare(_char other, _bool igncase = false) const;
+   _int compare(_char other, _bool igncase = false) const;
 #endif
    
    /**
     * Compare itself with another character.
     * Return true if the value is the same.
     */
-   virtual _bool equals(const Character *other) const;
+    _bool equals(const Character *other) const;
 
    /**
     * Compare itself with another character ignoring the case if required.
     * Return true if the value is the same.
     */
-   virtual _bool equals(const Character &other, _bool igncase = false) const;
+   _bool equals(const Character &other, _bool igncase = false) const;
 #ifndef __HELIO_TYPE_CHAR_IS_STATIC
    /**
     * Compare itself with another character ignoring the case if required.
     * Return true if the value is the same.
     */
-   virtual _bool equals(_char other, _bool igncase = false) const;
+   _bool equals(_char other, _bool igncase = false) const;
 #endif
    
    /**

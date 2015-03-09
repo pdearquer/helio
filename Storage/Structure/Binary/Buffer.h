@@ -240,7 +240,7 @@ public:
    
    
    /**
-    * Says if the buffer cointains no byte.
+    * Says if the buffer contains no byte.
     */
    _bool empty() const;   
    

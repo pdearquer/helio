@@ -10,8 +10,8 @@
  * Static object.
  */
 class Date : 
-      public virtual Cloneable, public virtual Orderable<Date>,
-      public virtual Hashable<Date>
+      public virtual StaticObject, public virtual Cloneable,
+      public virtual Orderable<Date>, public virtual Hashable<Date>
 {
 protected:
    /**

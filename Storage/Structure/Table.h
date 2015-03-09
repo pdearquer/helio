@@ -8,7 +8,7 @@
  */
 template <class K, class V>
 class Table :
-      public virtual Object
+      public virtual StaticObject
 {
 protected:
    /**

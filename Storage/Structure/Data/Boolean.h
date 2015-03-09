@@ -9,7 +9,8 @@
  * Static object.
  */
 class Boolean : 
-      public virtual Cloneable, public virtual Hashable<Boolean>
+      public virtual StaticObject, public virtual Cloneable,
+      public virtual Hashable<Boolean>
 {
 public:
    /**

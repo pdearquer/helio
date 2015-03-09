@@ -11,8 +11,8 @@
  * Static object.
  */
 class String : 
-      public virtual Cloneable, public virtual Orderable<String>,
-      public virtual Hashable<String>
+      public virtual StaticObject, public virtual Cloneable,
+      public virtual Orderable<String>, public virtual Hashable<String>
 {
    friend class Storage::Structure::Text::Buffer;
    
@@ -163,22 +163,22 @@ public:
    /**
     * Gets the string length in characters.
     */
-   virtual _int length() const;
+   _int length() const;
    
    /**
     * Gets the string length in characters.
     */
-   virtual _int count() const;
+   _int count() const;
    
    /**
     * Says if the string has no character at all.
     */
-   virtual _bool isEmpty() const;
+   _bool isEmpty() const;
    
    /**
     * Returns the character at the given position.
     */
-   virtual _char get(_int index) const;
+   _char get(_int index) const;
    
    
    /**
@@ -191,7 +191,7 @@ public:
     * Compare to other string ignoring the case if required.
     * Return 0 if equals, -1 if less and +1 if more than it.
     */
-   virtual _int compare(const String &other, _bool igncase = false) const;
+   _int compare(const String &other, _bool igncase = false) const;
    
    /**
     * Compare itself with another string.
@@ -203,7 +203,7 @@ public:
     * Compare itself with another string ignoring the case if required.
     * Return true if the text is similar.
     */
-   virtual _bool equals(const String &other, _bool igncase = false) const;
+   _bool equals(const String &other, _bool igncase = false) const;
    
    /**
     * Makes a copy of the object.
@@ -218,7 +218,7 @@ public:
    /**
     * Returns a buffer with a copy of the character sequence.
     */
-   virtual Text::Buffer *toBuffer() const;
+   Text::Buffer *toBuffer() const;
    
 
    /**
@@ -227,7 +227,7 @@ public:
     *    If length is 0, returns all the string until the end of the string.
     *    If length is negative, returns all the string to the end less given length.
     */
-   virtual String sub(_int length) const;
+   String sub(_int length) const;
    
    /**
     * Create the sub string between the given limits.
@@ -236,18 +236,18 @@ public:
     *    If length is 0, returns all the string until the end of the string.
     *    If length is negative, returns all the string to the end less given length.
     */
-   virtual String sub(_int start, _int length) const;
+   String sub(_int start, _int length) const;
  
  
    /**
     * Returns a new string with all the characters converted to lower case.
     */
-   virtual String toLowerCase() const;
+   String toLowerCase() const;
    
    /**
     * Returns a new string with all the characters converted to upper case.
     */
-   virtual String toUpperCase() const;
+   String toUpperCase() const;
       
    
    /**
@@ -255,14 +255,14 @@ public:
     * Returns -1 if the character isn't in this string.
     * A negative start value means from the end (-1 means last character).
     */
-   virtual _int indexOf(_char c, _int start = 0) const;
+   _int indexOf(_char c, _int start = 0) const;
 
    /**
     * Returns the position of a string starting from the indicated position.
     * Returns -1 if the string can't be found in this string.
     * A negative start value means from the end (-1 means last character).    
     */
-   virtual _int indexOf(const String &s, _int start = 0) const;
+   _int indexOf(const String &s, _int start = 0) const;
    
    
    /**
@@ -271,7 +271,7 @@ public:
     * Returns -1 if the character isn't in this string.
     * A negative start value means from the end (-1 means last character).
     */
-   virtual _int lastIndexOf(_char c, _int start = -1) const;
+   _int lastIndexOf(_char c, _int start = -1) const;
 
    /**
     * Returns the position of the last appearance of a string starting from the
@@ -279,28 +279,28 @@ public:
     * Returns -1 if the string can't be found in this string.
     * A negative start value means from the end (-1 means last character).  
     */
-   virtual _int lastIndexOf(const String &s, _int start = -1) const;
+   _int lastIndexOf(const String &s, _int start = -1) const;
    
    
    /**
     * Checks if the string starts with a prefix.
     */
-   virtual _bool startsWith(_char c) const;
+   _bool startsWith(_char c) const;
 
    /**
     * Checks if the string starts with a prefix.
     */
-   virtual _bool startsWith(const String &s) const;
+   _bool startsWith(const String &s) const;
  
    /**
     * Checks if the string ends with a sufix.
     */
-   virtual _bool endsWith(_char c) const;
+   _bool endsWith(_char c) const;
 
    /**
     * Checks if the string ends with a sufix.
     */
-   virtual _bool endsWith(const String &s) const;
+   _bool endsWith(const String &s) const;
 
 
    /**
@@ -389,6 +389,6 @@ public:
    /**
     * Returns a constant UTF-8 encoded representation (internal).
     */
-   virtual const _uint8 *getUTF8() const;
+   const _uint8 *getUTF8() const;
 };
 

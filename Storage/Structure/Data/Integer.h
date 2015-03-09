@@ -8,9 +8,10 @@
  *
  * Static object.
  */
-class Integer : 
-      public virtual Cloneable, public virtual Orderable<Integer>,
-      public virtual Hashable<Integer>, public virtual Number
+class Integer :
+      public virtual StaticObject, public virtual Cloneable,
+      public virtual Orderable<Integer>, public virtual Hashable<Integer>,
+      public virtual Number
 {
 public:
    /**
@@ -114,12 +115,12 @@ public:
    /**
     * Return the value of the integer.
     */
-   virtual Integer get() const;
+   Integer get() const;
    
    /**
     * Set the value of the integer.
     */
-   virtual void set(const Integer &other);
+   void set(const Integer &other);
 
 
    /**
@@ -610,7 +611,7 @@ public:
    /**
     * Returns the actual value stored.
     */
-   virtual __int raw() const;
+   __int raw() const;
 
 protected:
    /**
@@ -619,6 +620,6 @@ protected:
     * If the value is correct, it is assigned to _value.
     * If not, an exception is thrown.
     */
-   virtual void checkOverflow(__int value);
+   void checkOverflow(__int value);
 };
 

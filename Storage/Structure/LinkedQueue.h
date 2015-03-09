@@ -141,3 +141,4 @@ public:
     */
    virtual DynIterator<T> *dynIterate();
 };
+

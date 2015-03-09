@@ -7,6 +7,10 @@
     <name>Object</name>
     <description>Base of any information class</description>
   </class>
+  <class>
+    <name>StaticObject</name>
+    <description>Base of every static allocated classes</description>
+  </class>
   <!-- <class>
     <name>ObjectTemplate</name>
     <description>Object templates implementation</description>    

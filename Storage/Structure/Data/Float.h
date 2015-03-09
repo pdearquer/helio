@@ -17,8 +17,9 @@
  * Static object.
  */
 class Float :
-      public virtual Cloneable, public virtual Orderable<Float>,
-      public virtual Hashable<Float>, public virtual Number
+      public virtual StaticObject, public virtual Cloneable,
+      public virtual Orderable<Float>, public virtual Hashable<Float>,
+      public virtual Number
 {
 public:
    /**
@@ -98,12 +99,12 @@ public:
    /**
     * Return the value of the float.
     */
-   virtual Float get() const;
+   Float get() const;
    
    /**
     * Set the value of the float.
     */
-   virtual void set(const Float &other);
+   void set(const Float &other);
 
    
    /**
@@ -120,17 +121,17 @@ public:
    /**
     * Check if it is a normal number.
     */
-   virtual _bool isNumber() const;
+   _bool isNumber() const;
    
    /**
     * Check if it is Not a Number.
     */
-   virtual _bool isNaN() const;
+   _bool isNaN() const;
    
    /**
     * Check if it is infinity.
     */
-   virtual _bool isInfinity() const;
+   _bool isInfinity() const;
    
    
    /**

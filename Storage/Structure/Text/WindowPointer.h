@@ -9,7 +9,7 @@
  * Static object.
  */
 class WindowPointer :
-      public virtual Object
+      public virtual StaticObject
 {
    friend class Window;
    friend class WritableWindow;

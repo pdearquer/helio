@@ -15,7 +15,7 @@
  * Static object.
  */
 class StringBuffer : 
-      public virtual Buffer
+      public virtual StaticObject, public virtual Buffer
 {
 public:
    /**
